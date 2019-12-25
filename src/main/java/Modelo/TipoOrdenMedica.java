@@ -1,11 +1,11 @@
-package Negocio;
+package Modelo;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class Rol {
-	
+public class TipoOrdenMedica {
+
 	@Id
 	private int codigo;
 	private String nombre;
@@ -22,6 +22,6 @@ public class Rol {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-
+	
 	
 }

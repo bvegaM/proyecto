@@ -1,4 +1,4 @@
-package Negocio;
+package Modelo;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

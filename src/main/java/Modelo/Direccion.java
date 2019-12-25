@@ -1,14 +1,14 @@
-package Negocio;
+package Modelo;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class Telefono {
+public class Direccion {
 
 	@Id
 	private int codigo;
-	private String numero;
+	private String calle;
 	private String tipo;
 	public int getCodigo() {
 		return codigo;
@@ -16,11 +16,11 @@ public class Telefono {
 	public void setCodigo(int codigo) {
 		this.codigo = codigo;
 	}
-	public String getNumero() {
-		return numero;
+	public String getCalle() {
+		return calle;
 	}
-	public void setNumero(String numero) {
-		this.numero = numero;
+	public void setCalle(String calle) {
+		this.calle = calle;
 	}
 	public String getTipo() {
 		return tipo;
@@ -31,7 +31,7 @@ public class Telefono {
 	
 	@Override
 	public String toString() {
-		return "Telefono [codigo=" + codigo + ", numero=" + numero + ", tipo=" + tipo + "]";
+		return "Direccion [codigo=" + codigo + ", calle=" + calle + ", tipo=" + tipo + "]";
 	}
 	
 	
