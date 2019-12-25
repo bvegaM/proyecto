@@ -2,6 +2,7 @@ package Modelo;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -27,29 +28,29 @@ public class Paciente {
 	private String sexo;
 	private int edad;
 	
-	@OneToMany(cascade = {CascadeType.ALL})
+	@OneToMany(cascade = {CascadeType.ALL},fetch = FetchType.EAGER)
 	@JoinColumn(name = "telefono", referencedColumnName = "codigo")
-	private List<Telefono> telefonos;
+	private Set<Telefono> telefonos;
 	
-	@OneToMany(cascade = {CascadeType.ALL})
+	@OneToMany(cascade = {CascadeType.ALL},fetch = FetchType.EAGER)
 	@JoinColumn(name = "direccion", referencedColumnName = "codigo")
-	private List<Direccion> direcciones;
+	private Set<Direccion> direcciones;
 	
-	@OneToMany(cascade = {CascadeType.ALL})
+	@OneToMany(cascade = {CascadeType.ALL},fetch = FetchType.EAGER)
 	@JoinColumn(name = "receta", referencedColumnName = "codigo")
-	private List<Receta> recetas;
+	private Set<Receta> recetas;
 	
-	@OneToMany(cascade = {CascadeType.ALL})
+	@OneToMany(cascade = {CascadeType.ALL},fetch = FetchType.EAGER)
 	@JoinColumn(name = "historial", referencedColumnName = "codigo")
-	private List<Historial> historiales;
+	private Set<Historial> historiales;
 	
-	@OneToMany(cascade = {CascadeType.ALL})
+	@OneToMany(cascade = {CascadeType.ALL},fetch = FetchType.EAGER)
 	@JoinColumn(name = "certificado", referencedColumnName = "codigo")
-	private List<Certificado> certificados;
+	private Set<Certificado> certificados;
 	
-	@OneToMany(cascade = {CascadeType.ALL})
+	@OneToMany(cascade = {CascadeType.ALL},fetch = FetchType.EAGER)
 	@JoinColumn(name = "orden_medica", referencedColumnName = "codigo")
-	private List<OrdenMedica> ordenesMedicas;
+	private Set<OrdenMedica> ordenesMedicas;
 	
 	public int getCodigo() {
 		return codigo;
@@ -111,43 +112,42 @@ public class Paciente {
 	public void setEdad(int edad) {
 		this.edad = edad;
 	}
-	public List<Telefono> getTelefonos() {
+	public Set<Telefono> getTelefonos() {
 		return telefonos;
 	}
-	public void setTelefonos(List<Telefono> telefonos) {
+	public void setTelefonos(Set<Telefono> telefonos) {
 		this.telefonos = telefonos;
 	}
-	public List<Direccion> getDirecciones() {
+	public Set<Direccion> getDirecciones() {
 		return direcciones;
 	}
-	public void setDirecciones(List<Direccion> direcciones) {
+	public void setDirecciones(Set<Direccion> direcciones) {
 		this.direcciones = direcciones;
 	}
-	public List<Receta> getRecetas() {
+	public Set<Receta> getRecetas() {
 		return recetas;
 	}
-	public void setRecetas(List<Receta> recetas) {
+	public void setRecetas(Set<Receta> recetas) {
 		this.recetas = recetas;
 	}
-	public List<Historial> getHistoriales() {
+	public Set<Historial> getHistoriales() {
 		return historiales;
 	}
-	public void setHistoriales(List<Historial> historiales) {
+	public void setHistoriales(Set<Historial> historiales) {
 		this.historiales = historiales;
 	}
-	public List<Certificado> getCertificados() {
+	public Set<Certificado> getCertificados() {
 		return certificados;
 	}
-	public void setCertificados(List<Certificado> certificados) {
+	public void setCertificados(Set<Certificado> certificados) {
 		this.certificados = certificados;
 	}
-	public List<OrdenMedica> getOrdenesMedicas() {
+	public Set<OrdenMedica> getOrdenesMedicas() {
 		return ordenesMedicas;
 	}
-	public void setOrdenesMedicas(List<OrdenMedica> ordenesMedicas) {
+	public void setOrdenesMedicas(Set<OrdenMedica> ordenesMedicas) {
 		this.ordenesMedicas = ordenesMedicas;
 	}
-	
 	@Override
 	public String toString() {
 		return "Paciente [codigo=" + codigo + ", cedula=" + cedula + ", nombre=" + nombre + ", apellido=" + apellido
