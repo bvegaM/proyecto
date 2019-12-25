@@ -7,7 +7,9 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Paciente {
@@ -19,21 +21,34 @@ public class Paciente {
 	private String apellido;
 	private String email;
 	private String clave;
+	@OneToOne
 	private Rol rol;
 	private Date fechaNac;
 	private String sexo;
 	private int edad;
-	@OneToMany(cascade = {CascadeType.ALL},fetch = FetchType.EAGER)
+	
+	@OneToMany(cascade = {CascadeType.ALL})
+	@JoinColumn(name = "telefono", referencedColumnName = "codigo")
 	private List<Telefono> telefonos;
-	@OneToMany(cascade = {CascadeType.ALL},fetch = FetchType.EAGER)
+	
+	@OneToMany(cascade = {CascadeType.ALL})
+	@JoinColumn(name = "direccion", referencedColumnName = "codigo")
 	private List<Direccion> direcciones;
-	@OneToMany(cascade = {CascadeType.ALL},fetch = FetchType.EAGER)
+	
+	@OneToMany(cascade = {CascadeType.ALL})
+	@JoinColumn(name = "receta", referencedColumnName = "codigo")
 	private List<Receta> recetas;
-	@OneToMany(cascade = {CascadeType.ALL},fetch = FetchType.EAGER)
+	
+	@OneToMany(cascade = {CascadeType.ALL})
+	@JoinColumn(name = "historial", referencedColumnName = "codigo")
 	private List<Historial> historiales;
-	@OneToMany(cascade = {CascadeType.ALL},fetch = FetchType.EAGER)
+	
+	@OneToMany(cascade = {CascadeType.ALL})
+	@JoinColumn(name = "certificado", referencedColumnName = "codigo")
 	private List<Certificado> certificados;
-	@OneToMany(cascade = {CascadeType.ALL},fetch = FetchType.EAGER)
+	
+	@OneToMany(cascade = {CascadeType.ALL})
+	@JoinColumn(name = "orden_medica", referencedColumnName = "codigo")
 	private List<OrdenMedica> ordenesMedicas;
 	
 	public int getCodigo() {

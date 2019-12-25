@@ -23,10 +23,12 @@ public class Medico {
 	private String clave;
 	@OneToOne
 	private Rol rol;
-	@OneToMany(cascade = {CascadeType.ALL},fetch = FetchType.EAGER)
+	
+	@OneToMany(cascade = {CascadeType.ALL})
 	@JoinColumn(name="telefono", referencedColumnName ="codigo")
 	private List<Telefono> telefonos;
-	@OneToMany(cascade = {CascadeType.ALL},fetch = FetchType.EAGER)
+	
+	@OneToMany(cascade = {CascadeType.ALL})
 	@JoinColumn(name="direccion", referencedColumnName ="codigo")
 	private List<Direccion> direcciones;
 	private Date fechaNac;

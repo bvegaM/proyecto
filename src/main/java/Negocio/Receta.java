@@ -7,17 +7,22 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Receta {
 
 	@Id
 	private int codigo;
+	@OneToOne
 	private Medico medico;
 	private String observaciones;
 	private Date fechaEmision;
+	
 	@OneToMany(cascade = {CascadeType.ALL},fetch = FetchType.EAGER)
+	@JoinColumn(name = "detalle", referencedColumnName = "codigo")
 	private List<Detalle> items;
 	
 	public int getCodigo() {
