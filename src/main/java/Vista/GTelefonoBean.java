@@ -2,6 +2,7 @@ package Vista;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 
 import Modelo.Telefono;
@@ -9,35 +10,30 @@ import Modelo.Telefono;
 @ManagedBean
 public class GTelefonoBean {
 	
-	private int codigo;
-	private String numero;
-	private String tipo;
+	private Telefono telefono;
 	private List<Telefono> ListTelefono;
 	
-	public int getCodigo() {
-		return codigo;
+	@PostConstruct
+	public void init() {
+		telefono = new Telefono();
 	}
-	public void setCodigo(int codigo) {
-		this.codigo = codigo;
+	
+	public Telefono getTelefono() {
+		return telefono;
 	}
-	public String getNumero() {
-		return numero;
+
+	public void setTelefono(Telefono telefono) {
+		this.telefono = telefono;
 	}
-	public void setNumero(String numero) {
-		this.numero = numero;
-	}
-	public String getTipo() {
-		return tipo;
-	}
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
-	}
+
 	public List<Telefono> getListTelefono() {
 		return ListTelefono;
 	}
 	public void setListTelefono(List<Telefono> listTelefono) {
 		ListTelefono = listTelefono;
 	}
+	
+	
 	
 	
 }

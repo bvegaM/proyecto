@@ -4,17 +4,18 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.model.SelectItem;
+import javax.inject.Inject;
 
 import Modelo.Especialidad;
 import Modelo.Medico;
 import Modelo.MedicoEspecialidad;
+import Negocio.MedicoEspecialidadLocal;
 
 @ManagedBean
 public class GMedicoEspecialidadBean {
-	
-	private int codigo;
-	private Medico medico;
-	private Especialidad especialidad;
+	@Inject
+	private MedicoEspecialidadLocal gmel;
+	private MedicoEspecialidad medicoEspecialidad;
 	
 	private List<MedicoEspecialidad> listMedicoEspecialidad;
 	private List<Especialidad> listEspecialidad;
@@ -22,25 +23,10 @@ public class GMedicoEspecialidadBean {
 	private SelectItem medicoSeleccionado;
 	private SelectItem especialidadSeleccionado;
 	
+	public void init() {
+		medicoEspecialidad = new MedicoEspecialidad();
+	}
 	
-	public int getCodigo() {
-		return codigo;
-	}
-	public void setCodigo(int codigo) {
-		this.codigo = codigo;
-	}
-	public Medico getMedico() {
-		return medico;
-	}
-	public void setMedico(Medico medico) {
-		this.medico = medico;
-	}
-	public Especialidad getEspecialidad() {
-		return especialidad;
-	}
-	public void setEspecialidad(Especialidad especialidad) {
-		this.especialidad = especialidad;
-	}
 	public List<MedicoEspecialidad> getListMedicoEspecialidad() {
 		return listMedicoEspecialidad;
 	}
@@ -72,11 +58,28 @@ public class GMedicoEspecialidadBean {
 	public void setEspecialidadSeleccionado(SelectItem especialidadSeleccionado) {
 		this.especialidadSeleccionado = especialidadSeleccionado;
 	}
-	public void ListarMedico() {
+	public String guardarMedicoEspecialidad() {
+		this.gmel.insertar(medicoEspecialidad);
+		this.listMedicoEspecialidad = this.gmel.getMedicoEspecialidades();
+		return "Listar-MedicoEspecialidad";
 		
 	}
-	public void ListarEspecialidad() {
-		
+
+	public MedicoEspecialidadLocal getGmel() {
+		return gmel;
 	}
+
+	public void setGmel(MedicoEspecialidadLocal gmel) {
+		this.gmel = gmel;
+	}
+
+	public MedicoEspecialidad getMedicoEspecialidad() {
+		return medicoEspecialidad;
+	}
+
+	public void setMedicoEspecialidad(MedicoEspecialidad medicoEspecialidad) {
+		this.medicoEspecialidad = medicoEspecialidad;
+	}
+	
 
 }

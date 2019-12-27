@@ -11,42 +11,26 @@ import Modelo.TipoOrdenMedica;
 
 @ManagedBean
 public class GOrdenMedicaBean {
-	private int codigo;
-	private Medico medico;
-	private TipoOrdenMedica tipo;
-	private String descripcion;
-	
-	
+	 
+	private OrdenMedica ordenMedica;
 	private List<TipoOrdenMedica> listTipoOrdenMedica;
 	private List<Medico> listMedico;
 	private List<OrdenMedica> listOrdenMedica;
 	private SelectItem medicoSeleccionado;
 	private SelectItem tipoOrdenMedicaSeleccionado;
 	
-	public int getCodigo() {
-		return codigo;
+	public void init() {
+		ordenMedica = new OrdenMedica();
 	}
-	public void setCodigo(int codigo) {
-		this.codigo = codigo;
+	
+	public OrdenMedica getOrdenMedica() {
+		return ordenMedica;
 	}
-	public Medico getMedico() {
-		return medico;
+
+	public void setOrdenMedica(OrdenMedica ordenMedica) {
+		this.ordenMedica = ordenMedica;
 	}
-	public void setMedico(Medico medico) {
-		this.medico = medico;
-	}
-	public TipoOrdenMedica getTipo() {
-		return tipo;
-	}
-	public void setTipo(TipoOrdenMedica tipo) {
-		this.tipo = tipo;
-	}
-	public String getDescripcion() {
-		return descripcion;
-	}
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
+
 	public List<TipoOrdenMedica> getListTipoOrdenMedica() {
 		return listTipoOrdenMedica;
 	}
@@ -78,12 +62,7 @@ public class GOrdenMedicaBean {
 	public void setTipoOrdenMedicaSeleccionado(SelectItem tipoOrdenMedicaSeleccionado) {
 		this.tipoOrdenMedicaSeleccionado = tipoOrdenMedicaSeleccionado;
 	}
-	public void ListarMedicos() {
-		
-	}
-	public void ListarTipoOrdenMedica() {
-		
-	}
+	
 	
 
 }

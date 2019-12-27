@@ -2,35 +2,55 @@ package Vista;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.inject.Inject;
 
 import Modelo.TipoCertificado;
+import Negocio.TipoCertificadoLocal;
 
 @ManagedBean
 public class GTipoCertificadoBean {
 	
-	private int codigo;
-	private String nombre;
+	@Inject
+	private TipoCertificadoLocal gtcl;
+	
+	private TipoCertificado tipoCertificado;
 	private List<TipoCertificado> listTipoCertificado;
 	
 	
-	public int getCodigo() {
-		return codigo;
+	@PostConstruct
+	public void init() {
+		tipoCertificado = new TipoCertificado();
 	}
-	public void setCodigo(int codigo) {
-		this.codigo = codigo;
+	
+	public TipoCertificadoLocal getGtcl() {
+		return gtcl;
 	}
-	public String getNombre() {
-		return nombre;
+
+	public void setGtcl(TipoCertificadoLocal gtcl) {
+		this.gtcl = gtcl;
 	}
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+
+	public TipoCertificado getTipoCertificado() {
+		return tipoCertificado;
 	}
+
+	public void setTipoCertificado(TipoCertificado tipoCertificado) {
+		this.tipoCertificado = tipoCertificado;
+	}
+
 	public List<TipoCertificado> getListTipoCertificado() {
 		return listTipoCertificado;
 	}
 	public void setListTipoCertificado(List<TipoCertificado> listTipoCertificado) {
 		this.listTipoCertificado = listTipoCertificado;
+	}
+	
+	public String guardarTipoCertificado() {
+		this.gtcl.insertar(tipoCertificado);
+		this.listTipoCertificado= this.gtcl.getTipoCertificados();
+		return "Listar-TipoCertificado";
 	}
 	
 	

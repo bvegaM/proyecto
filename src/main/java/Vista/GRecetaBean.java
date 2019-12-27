@@ -12,10 +12,7 @@ import Modelo.Receta;
 
 @ManagedBean
 public class GRecetaBean {
-	private int codigo;
-	private Medico medico;
-	private String observaciones;
-	private Date fechaEmision;
+	private Receta receta;
 	
 	private List<Receta> listReceta;
 	private List<Medico> listMedico;
@@ -23,33 +20,20 @@ public class GRecetaBean {
 	
 	@PostConstruct
 	public void init() {
-		this.listarMedicos();
+		receta = new Receta();
 	}
 	
-	public int getCodigo() {
-		return codigo;
+	
+	public Receta getReceta() {
+		return receta;
 	}
-	public void setCodigo(int codigo) {
-		this.codigo = codigo;
+
+
+	public void setReceta(Receta receta) {
+		this.receta = receta;
 	}
-	public Medico getMedico() {
-		return medico;
-	}
-	public void setMedico(Medico medico) {
-		this.medico = medico;
-	}
-	public String getObservaciones() {
-		return observaciones;
-	}
-	public void setObservaciones(String observaciones) {
-		this.observaciones = observaciones;
-	}
-	public Date getFechaEmision() {
-		return fechaEmision;
-	}
-	public void setFechaEmision(Date fechaEmision) {
-		this.fechaEmision = fechaEmision;
-	}
+
+
 	public List<Receta> getListReceta() {
 		return listReceta;
 	}
@@ -70,9 +54,7 @@ public class GRecetaBean {
 	public void setMedicoSeleccionado(SelectItem medicoSeleccionado) {
 		this.medicoSeleccionado = medicoSeleccionado;
 	}
-	public void listarMedicos() {
-		//this.listMedico = this
-	}
+	
 	
 
 }

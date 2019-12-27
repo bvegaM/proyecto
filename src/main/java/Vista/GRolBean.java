@@ -3,32 +3,49 @@ package Vista;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
+import javax.inject.Inject;
 
 import Modelo.Rol;
+import Negocio.RolLocal;
 
 @ManagedBean
 public class GRolBean {
-	
-	private int codigo;
-	private String nombre;
+	@Inject
+	private RolLocal grl;
+	private Rol rol;
 	private List<Rol> listRol;
-	public int getCodigo() {
-		return codigo;
+	
+	public void init() {
+		rol = new Rol();
 	}
-	public void setCodigo(int codigo) {
-		this.codigo = codigo;
+	
+	public RolLocal getGrl() {
+		return grl;
 	}
-	public String getNombre() {
-		return nombre;
+
+	public void setGrl(RolLocal grl) {
+		this.grl = grl;
 	}
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+
+	public Rol getRol() {
+		return rol;
 	}
+
+	public void setRol(Rol rol) {
+		this.rol = rol;
+	}
+
 	public List<Rol> getListRol() {
 		return listRol;
 	}
 	public void setListRol(List<Rol> listRol) {
 		this.listRol = listRol;
+	}
+	
+	public String guardarRol() {
+		this.grl.insertar(rol);
+		this.listRol=this.grl.getRoles();
+		return "Listar-Roles";
 	}
 	
 

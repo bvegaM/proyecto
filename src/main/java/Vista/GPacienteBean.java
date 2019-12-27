@@ -5,105 +5,40 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.model.SelectItem;
+import javax.inject.Inject;
 
 import Modelo.Paciente;
 import Modelo.Rol;
+import Negocio.PacienteLocal;
 
 @ManagedBean
 public class GPacienteBean {
-	private int codigo;
-	private String cedula;
-	private String nombre;
-	private String apellido;
-	private String email;
-	private String clave;
-	private Rol rol;
-	private Date fechaNac;
-	private String sexo;
-	private int edad;
+	@Inject
+	private PacienteLocal gpl;
+	private Paciente paciente;
 	
 	private List<Paciente> listPaciente;
 	private List<Rol> listRol;
 	private SelectItem rolSeleccionado;
 	
-	public int getCodigo() {
-		return codigo;
+	public void init() {
+		paciente = new Paciente();
+	}
+	
+	public PacienteLocal getGpl() {
+		return gpl;
 	}
 
-	public void setCodigo(int codigo) {
-		this.codigo = codigo;
+	public void setGpl(PacienteLocal gpl) {
+		this.gpl = gpl;
 	}
 
-	public String getCedula() {
-		return cedula;
+	public Paciente getPaciente() {
+		return paciente;
 	}
 
-	public void setCedula(String cedula) {
-		this.cedula = cedula;
-	}
-
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public String getApellido() {
-		return apellido;
-	}
-
-	public void setApellido(String apellido) {
-		this.apellido = apellido;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getClave() {
-		return clave;
-	}
-
-	public void setClave(String clave) {
-		this.clave = clave;
-	}
-
-	public Rol getRol() {
-		return rol;
-	}
-
-	public void setRol(Rol rol) {
-		this.rol = rol;
-	}
-
-	public Date getFechaNac() {
-		return fechaNac;
-	}
-
-	public void setFechaNac(Date fechaNac) {
-		this.fechaNac = fechaNac;
-	}
-
-	public String getSexo() {
-		return sexo;
-	}
-
-	public void setSexo(String sexo) {
-		this.sexo = sexo;
-	}
-
-	public int getEdad() {
-		return edad;
-	}
-
-	public void setEdad(int edad) {
-		this.edad = edad;
+	public void setPaciente(Paciente paciente) {
+		this.paciente = paciente;
 	}
 
 	public List<Paciente> getListPaciente() {
@@ -130,8 +65,10 @@ public class GPacienteBean {
 		this.rolSeleccionado = rolSeleccionado;
 	}
 
-	public void listarRol() {
-		//this.listRol
+	public String guardarPaciente() {
+		this.gpl.insertar(paciente);
+		this.listPaciente=this.gpl.getPacientes();
+		return "Listar-Paciente";
 	}
 	
 
