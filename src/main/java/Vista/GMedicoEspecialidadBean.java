@@ -22,6 +22,7 @@ public class GMedicoEspecialidadBean {
 	private SelectItem medicoSeleccionado;
 	private SelectItem especialidadSeleccionado;
 	
+	
 	public int getCodigo() {
 		return codigo;
 	}

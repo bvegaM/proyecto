@@ -14,6 +14,8 @@ public class GMedicoBean {
 	private Medico medico;
 	private List<Medico> listMedico;
 	
+	
+	
 	@PostConstruct
 	public void init() {
 		medico = new Medico();

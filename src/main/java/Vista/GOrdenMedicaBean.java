@@ -16,6 +16,7 @@ public class GOrdenMedicaBean {
 	private TipoOrdenMedica tipo;
 	private String descripcion;
 	
+	
 	private List<TipoOrdenMedica> listTipoOrdenMedica;
 	private List<Medico> listMedico;
 	private List<OrdenMedica> listOrdenMedica;
