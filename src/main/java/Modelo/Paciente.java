@@ -7,24 +7,33 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Paciente {
 
 	@Id
 	private int codigo;
+	
 	private String cedula;
 	private String nombre;
 	private String apellido;
 	private String email;
 	private String clave;
+	
 	@OneToOne
 	private Rol rol;
+	
+	@Temporal(TemporalType.DATE)
 	private Date fechaNac;
+	
 	private String sexo;
 	private int edad;
 	
