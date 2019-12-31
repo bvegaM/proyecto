@@ -50,9 +50,9 @@ public class GestionPaciente implements GestionPacienteLocal {
 	}
 
 	@Override
-	public Rol obtenerRol() {
+	public Rol obtenerRol(int codigo) {
 		// TODO Auto-generated method stub
-		return rdao.leer(1);
+		return rdao.leer(codigo);
 	}
 
 }

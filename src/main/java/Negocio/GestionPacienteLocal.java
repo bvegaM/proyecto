@@ -15,5 +15,5 @@ public interface GestionPacienteLocal {
 	public void borrar(String cedula);
 	public Paciente leer(String cedula) ;
 	public List<Paciente> getPacientes();
-	public Rol obtenerRol();
+	public Rol obtenerRol(int codigo);
 }

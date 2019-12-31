@@ -43,11 +43,16 @@ public class GestionLoginBean {
 		pacientes = this.gpl.getPacientes();
 		for(Paciente p : pacientes) {
 			if(p.getEmail().equals(this.getEmail()) && p.getClave().equals(this.getContrasena())) {
-				System.out.println("hola");
-				return "index2.html";
+					if(p.getRol().getCodigo()==1) {
+						return "index2.html";
+					}else {
+						System.out.println(p.toString());
+						return "index.html";
+					}
+						
 			}
 		}
-		return null;
+		return "index.html";
 	}
 	
 	
