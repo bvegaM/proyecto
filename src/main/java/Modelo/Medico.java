@@ -2,7 +2,6 @@ package Modelo;
 
 import java.util.Date;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -12,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Medico {
@@ -33,6 +34,8 @@ public class Medico {
 	@OneToMany(cascade = {CascadeType.ALL},fetch = FetchType.EAGER)
 	@JoinColumn(name="direccion", referencedColumnName ="codigo")
 	private Set<Direccion> direcciones;
+	
+	@Temporal(TemporalType.DATE)
 	private Date fechaNac;
 	
 	public void addTelefono(Telefono t) {

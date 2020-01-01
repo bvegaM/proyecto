@@ -1,0 +1,39 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+		template="indexAdmin.xhtml">
+	
+		<ui:define name="registrar">
+		
+			<h:form>
+				
+				<h:panelGrid columns="2">
+		
+					<h:outputLabel value="Cedula" />
+					<h:inputText value="#{gestionMedicoBean.cedula}" />
+		
+					<h:outputLabel value="Nombre" />
+					<h:inputText value="#{gestionMedicoBean.nombre}" />
+					
+					<h:outputLabel value="Apellido" />
+					<h:inputText value="#{gestionMedicoBean.apellido}" />
+					
+					<h:outputLabel value="Email" />
+					<h:inputText value="#{gestionMedicoBean.email}" />
+					
+					<h:outputLabel value="Clave" />
+					<h:inputText value="#{gestionMedicoBean.clave}" />
+					
+					<h:outputLabel value="Fecha de nacimiento" />
+					<h:inputText value="#{gestionMedicoBean.fechaNac}" ><f:convertDateTime pattern="yyyy/MM/dd"/></h:inputText>
+					
+					<h:commandButton value="Guardar" action="#{gestionMedicoBean.guardarMedico()}">
+					</h:commandButton>
+				</h:panelGrid>
+			
+			</h:form>
+		
+		</ui:define>
+	
+</ui:composition>
