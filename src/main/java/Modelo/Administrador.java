@@ -13,7 +13,7 @@ public class Administrador {
 	private String nombre;
 	private String apellido;
 	private String email;
-	private String clabe;
+	private String clave;
 	@OneToOne
 	private Rol rol;
 	
@@ -47,11 +47,11 @@ public class Administrador {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getClabe() {
-		return clabe;
+	public String getClave() {
+		return clave;
 	}
-	public void setClabe(String clabe) {
-		this.clabe = clabe;
+	public void setClave(String clabe) {
+		this.clave = clabe;
 	}
 	public Rol getRol() {
 		return rol;
@@ -63,7 +63,7 @@ public class Administrador {
 	@Override
 	public String toString() {
 		return "Administrador [codigo=" + codigo + ", cedula=" + cedula + ", nombre=" + nombre + ", apellido="
-				+ apellido + ", email=" + email + ", clabe=" + clabe + ", rol=" + rol + "]";
+				+ apellido + ", email=" + email + ", clabe=" + clave + ", rol=" + rol + "]";
 	}
 	
 	
