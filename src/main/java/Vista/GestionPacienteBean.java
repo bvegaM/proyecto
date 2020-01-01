@@ -82,7 +82,7 @@ public class GestionPacienteBean {
 		paciente.setClave(this.getClave());
 		paciente.setFechaNac(this.getFechaNac());
 		paciente.setSexo(this.getSexo());
-		paciente.setRol(this.gpl.obtenerRol(2));
+		paciente.setRol(this.gpl.obtenerRol(3));
 		this.gpl.insertar(paciente);
 	}
 	

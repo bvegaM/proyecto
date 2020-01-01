@@ -7,11 +7,11 @@ import javax.ejb.Local;
 import Modelo.Medico;
 
 @Local
-public interface MedicoLocal {
+public interface GestionMedicoLocal {
 
-	public void insertar(Medico medicp);
+	public void insertar(Medico medico);
 	public void actualizar(Medico medico);
-	public void borrar(int codigo);
-	public Medico leer(int codigo);
+	public void borrar(String cedula);
+	public Medico leer(String cedula);
 	public List<Medico> getMedicos();
 }

@@ -7,7 +7,7 @@ import javax.ejb.Local;
 import Modelo.Administrador;
 
 @Local
-public interface AdministradorLocal {
+public interface GestionAdministradorLocal {
 
 	public void insertar(Administrador administrador);
 	public List<Administrador> getAdministradores();
