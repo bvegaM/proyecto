@@ -18,7 +18,8 @@ public class GestionAdministrador implements GestionAdministradorLocal {
 	public void insertar(Administrador administrador) {
 		// TODO Auto-generated method stub
 		dao.insertar(administrador);
-		
+		System.out.println(administrador.toString());
+
 	}
 
 	@Override
