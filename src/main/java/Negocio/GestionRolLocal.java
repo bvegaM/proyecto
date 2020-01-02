@@ -7,9 +7,9 @@ import javax.ejb.Local;
 import Modelo.Rol;
 
 @Local
-public interface RolLocal {
+public interface GestionRolLocal {
 
-	public void insertar(Rol rol) ;
+	public void insertar(int codigo, String nombre) ;
 	public void actualizar(Rol rol);
 	public void borrar(int codigo);
 	public Rol leer(int codigo)  ;

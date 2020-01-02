@@ -7,9 +7,9 @@ import javax.ejb.Local;
 import Modelo.TipoOrdenMedica;
 
 @Local
-public interface TipoOrdenMedicaLocal {
+public interface GestionTipoOrdenMedicaLocal {
 
-	public void insertar(TipoOrdenMedica tipoOrdenMedica) ;
+	public void insertar(int codigo, String nombre) ;
 	public void actualizar(TipoOrdenMedica tipoOrdenMedica);
 	public void borrar(int codigo);
 	public TipoOrdenMedica leer(int codigo)  ;

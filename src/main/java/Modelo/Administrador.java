@@ -9,7 +9,7 @@ public class Administrador {
 
 	@Id
 	private int codigo;
-	private String cedula;
+	private int cedula;
 	private String nombre;
 	private String apellido;
 	private String email;
@@ -23,10 +23,10 @@ public class Administrador {
 	public void setCodigo(int codigo) {
 		this.codigo = codigo;
 	}
-	public String getCedula() {
+	public int getCedula() {
 		return cedula;
 	}
-	public void setCedula(String cedula) {
+	public void setCedula(int cedula) {
 		this.cedula = cedula;
 	}
 	public String getNombre() {

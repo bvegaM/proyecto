@@ -23,11 +23,11 @@ public class AdministradorDAO {
 		em.merge(administrador);
 	}
 	
-	public void borrar(String cedula) {
+	public void borrar(int cedula) {
 		em.remove(leer(cedula));
 	}
 	
-	public Administrador leer(String cedula) {
+	public Administrador leer(int cedula) {
 		return em.find(Administrador.class, cedula);
 	}
 	

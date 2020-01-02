@@ -7,9 +7,9 @@ import javax.ejb.Local;
 import Modelo.Especialidad;
 
 @Local
-public interface EspecialidadLocal {
+public interface GestionEspecialidadLocal {
 
-	public void insertar(Especialidad especialidad);
+	public void insertar(int codigo, String nombre);
 	public void actualizar(Especialidad especialidad);
 	public void borrar(int codigo);
 	public Especialidad leer(int codigo);

@@ -23,11 +23,11 @@ public class PacienteDAO {
 		em.merge(paciente);
 	}
 	
-	public void borrar(String cedula) {
+	public void borrar(int cedula) {
 		em.remove(leer(cedula));
 	}
 	
-	public Paciente leer(String cedula) {
+	public Paciente leer(int cedula) {
 		return em.find(Paciente.class, cedula);
 	}
 	
