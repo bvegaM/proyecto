@@ -29,6 +29,7 @@ public class Paciente {
 	private String clave;
 	private String preguntaSecreta;
 	
+	
 	@OneToOne
 	private Rol rol;
 	
@@ -173,6 +174,43 @@ public class Paciente {
 				+ ", direcciones=" + direcciones + ", recetas=" + recetas + ", historiales=" + historiales
 				+ ", certificados=" + certificados + ", ordenesMedicas=" + ordenesMedicas + "]";
 	}
+	
+	public boolean validarCedula() {
+		if(this.cedula.length()==10) {
+			try {
+				Integer.parseInt(this.cedula);
+				return true;
+			}
+			catch(NumberFormatException ex){
+				return false;
+			}
+		}
+		else{;
+			return false;
+ 		}
+	}
+	public boolean validarNombre() {
+		for (int i = 0; i < this.nombre.length(); i++)
+		{
+			char caracter = this.nombre.toUpperCase().charAt(i);
+			int valorASCII = (int)caracter;
+			if (valorASCII != 165 && (valorASCII < 65 || valorASCII > 90))
+				return false; //Se ha encontrado un caracter que no es letra
+		}
+		return true;
+	}
+	public boolean validarApellido() {
+		for (int i = 0; i < this.apellido.length(); i++)
+		{
+			char caracter = this.apellido.toUpperCase().charAt(i);
+			int valorASCII = (int)caracter;
+			if (valorASCII != 165 && (valorASCII < 65 || valorASCII > 90))
+				return false; //Se ha encontrado un caracter que no es letra
+		}
+		return true;
+	}
+	
+	
 	
 	
 	
