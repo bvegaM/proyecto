@@ -7,7 +7,7 @@ import javax.ejb.Local;
 import Modelo.Cita;
 
 @Local
-public interface CitaLocal {
+public interface GestionCitaLocal {
 
 	public void insertar(Cita cita);
 	public void actualizar(Cita cita);
