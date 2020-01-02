@@ -23,12 +23,14 @@ public class GestionCita implements GestionCitaLocal {
 	@Override
 	public void actualizar(Cita cita) {
 		// TODO Auto-generated method stub
+		this.cdao.actualizar(cita);
 		
 	}
 
 	@Override
 	public void borrar(int codigo) {
 		// TODO Auto-generated method stub
+		this.cdao.borrar(codigo);
 		
 	}
 
