@@ -12,8 +12,8 @@ public interface GestionPacienteLocal {
 
 	public void insertar(Paciente paciente) ;
 	public void actualizar(Paciente paciente);
-	public void borrar(String cedula);
-	public Paciente leer(String cedula) ;
+	public void borrar(int codigo);
+	public Paciente leer(int codigo) ;
 	public List<Paciente> getPacientes();
 	public Rol obtenerRol(int codigo);
 }

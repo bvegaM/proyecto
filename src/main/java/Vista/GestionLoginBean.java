@@ -67,7 +67,7 @@ public class GestionLoginBean {
 		}else if(medico == true) {
 			return "index.html";
 		}else if(administrador == true) {
-			return "index3.html";
+			return "crearMedico.xhtml";
 		}
 		
 		return null;

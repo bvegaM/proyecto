@@ -176,4 +176,6 @@ public class GestionMedicoBean {
 		return "crearMedico?faces-redirect=true";
 	}
 	
+	
+	
 }

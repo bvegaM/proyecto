@@ -28,19 +28,21 @@ public class GestionPaciente implements GestionPacienteLocal {
 	@Override
 	public void actualizar(Paciente paciente) {
 		// TODO Auto-generated method stub
+		pdao.actualizar(paciente);
 		
 	}
 
 	@Override
-	public void borrar(String cedula) {
-		// TODO Auto-generated method stub
+	public void borrar(int codigo) {
+		pdao.borrar(codigo);
 		
 	}
 
 	@Override
-	public Paciente leer(String cedula) {
+	public Paciente leer(int codigo) {
 		// TODO Auto-generated method stub
-		return null;
+		return pdao.leer(codigo);
+		
 	}
 
 	@Override

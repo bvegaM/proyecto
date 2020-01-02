@@ -88,6 +88,94 @@
 		
 		</ui:define>
 		
+		<ui:define name="registrarPaciente">
 		
+			<h:form>
+				
+				<h:panelGrid columns="2">
+		
+					<h:outputLabel value="Cedula" />
+					<h:inputText value="#{gestionPacienteBean.cedula}" />
+		
+					<h:outputLabel value="Nombre" />
+					<h:inputText value="#{gestionPacienteBean.nombre}" />
+					
+					<h:outputLabel value="Apellido" />
+					<h:inputText value="#{gestionPacienteBean.apellido}" />
+					
+					<h:outputLabel value="Email" />
+					<h:inputText value="#{gestionPacienteBean.email}" />
+					
+					<h:outputLabel value="Clave" />
+					<h:inputText value="#{gestionPacienteBean.clave}" />
+					
+					<h:outputLabel value="Fecha de nacimiento" />
+					<h:inputText value="#{gestionPacienteBean.fechaNac}" ><f:convertDateTime pattern="yyyy/MM/dd"/></h:inputText>
+					
+					<h:outputLabel value="Sexo" />
+					<h:inputText value="#{gestionPacienteBean.sexo}" />
+					
+					<h:commandButton value="Guardar" action="#{gestionPacienteBean.guardarPaciente()}">
+					</h:commandButton>
+				</h:panelGrid>
+			
+			</h:form>
+		
+		</ui:define>
+		
+		<ui:define name="listarPaciente">
+			
+			<h:form>
+		
+				<h:dataTable var="_pacientes" value="#{gestionPacienteBean.pacientes}"
+					styleClass="simpletablestyle">
+					<h:column>
+						<f:facet name="header">Codigo</f:facet>
+						#{_pacientes.codigo}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Cedula</f:facet>
+						#{_pacientes.cedula}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Nombre</f:facet>
+						#{_pacientes.nombre}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Apellido</f:facet>
+						#{_pacientes.apellido}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Email</f:facet>
+						#{_pacientes.email}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Clave</f:facet>
+						#{_pacientes.clave}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Fecha Nacimiento</f:facet>
+						#{_pacientes.fechaNac}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Sexo</f:facet>
+						#{_pacientes.sexo}
+					</h:column>
+					
+					<h:column>
+						<f:facet name="header">Acciones</f:facet>
+						<h:commandButton action="#{gestionPacienteBean.editar(_pacientes)}" value="Editar" />
+						<h:commandButton action="#{gestionPacienteBean.eliminar(_pacientes.codigo)}" value="Eliminar" />
+					</h:column>
+			
+					<f:facet name="footer">
+					</f:facet>
+		
+				</h:dataTable>
+		
+		
+			</h:form>
+		
+		</ui:define>
 	
 </ui:composition>
