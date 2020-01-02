@@ -23,12 +23,12 @@ public class MedicoDAO {
 		em.merge(medico);
 	}
 	
-	public void borrar(String cedula) {
-		em.remove(leer(cedula));
+	public void borrar(int codigo) {
+		em.remove(leer(codigo));
 	}
 	
-	public Medico leer(String cedula) {
-		return em.find(Medico.class, cedula);
+	public Medico leer(int codigo) {
+		return em.find(Medico.class, codigo);
 	}
 	
 	public List<Medico> getMedicos(){

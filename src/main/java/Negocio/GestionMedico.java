@@ -27,15 +27,15 @@ public class GestionMedico implements GestionMedicoLocal {
 	}
 
 	@Override
-	public void borrar(String cedula) {
+	public void borrar(int codigo) {
 		// TODO Auto-generated method stub
-		dao.borrar(cedula);
+		dao.borrar(codigo);
 	}
 
 	@Override
-	public Medico leer(String cedula) {
+	public Medico leer(int codigo) {
 		// TODO Auto-generated method stub
-		return null;
+		return dao.leer(codigo);
 	}
 
 	@Override

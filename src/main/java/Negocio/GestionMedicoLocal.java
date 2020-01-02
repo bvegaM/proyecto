@@ -11,7 +11,7 @@ public interface GestionMedicoLocal {
 
 	public void insertar(Medico medico);
 	public void actualizar(Medico medico);
-	public void borrar(String cedula);
-	public Medico leer(String cedula);
+	public void borrar(int codigo);
+	public Medico leer(int codigo);
 	public List<Medico> getMedicos();
 }

@@ -35,5 +35,59 @@
 			</h:form>
 		
 		</ui:define>
+		
+		
+		<ui:define name="listarMedicos">
+			
+			<h:form>
+		
+				<h:dataTable var="_medicos" value="#{gestionMedicoBean.medicos}"
+					styleClass="simpletablestyle">
+					<h:column>
+						<f:facet name="header">Codigo</f:facet>
+						#{_medicos.codigo}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Cedula</f:facet>
+						#{_medicos.cedula}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Nombre</f:facet>
+						#{_medicos.nombre}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Apellido</f:facet>
+						#{_medicos.apellido}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Email</f:facet>
+						#{_medicos.email}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Clave</f:facet>
+						#{_medicos.clave}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Fecha Nacimiento</f:facet>
+						#{_medicos.fechaNac}
+					</h:column>
+					
+					<h:column>
+						<f:facet name="header">Acciones</f:facet>
+						<h:commandButton action="#{gestionMedicoBean.editar(_medicos)}" value="Editar" />
+						<h:commandButton action="#{gestionMedicoBean.eliminar(_medicos.codigo)}" value="Eliminar" />
+					</h:column>
+			
+					<f:facet name="footer">
+					</f:facet>
+		
+				</h:dataTable>
+		
+		
+			</h:form>
+		
+		</ui:define>
+		
+		
 	
 </ui:composition>
