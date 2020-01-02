@@ -718,7 +718,7 @@
     <!-- Default box -->
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Opciones</h3>
+          <h3 class="card-title">Agendar Citas</h3>
 
           <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -728,7 +728,54 @@
           </div>
         </div>
         <div class="card-body">
-          Start creating your amazing application!
+          
+          <h:form>
+      
+      		<div class="input-group mb-3">
+      			<h:outputText value="Medicos:" />
+      			<h:selectOneListbox value="#{gestionIndexPacienteBean.medico}" converter="medicoConverter">
+      				<f:selectItems value="#{gestionIndexPacienteBean.medicos}" var="m"
+      				itemLabel="#{m.nombre}" itemValue="#{m}"/>
+      			</h:selectOneListbox>
+      			
+        	</div>
+        
+      		<div class="input-group mb-3">
+          		<h:inputText value="#{gestionIndexPacienteBean.fecha}" class="form-control" pt:placeholder="Fecha" ><f:convertDateTime pattern="yyyy/MM/dd"/></h:inputText>
+          		<div class="input-group-append">
+            		<div class="input-group-text">
+              			<span class="fas fa-calendar"></span>
+            		</div>
+          		</div>
+        	</div>
+      	
+        	<div class="input-group mb-3">
+          		<h:inputText value="#{gestionIndexPacienteBean.hora}" pt:type="text" class="form-control" pt:placeholder="Hora"/>
+          		<div class="input-group-append">
+            		<div class="input-group-text">
+              			<span class="fas fa-calendar"></span>
+            		</div>
+          		</div>
+        	</div>
+        
+        	<div class="input-group mb-3">
+          		<h:inputText value="#{gestionIndexPacienteBean.estado}" pt:type="text" class="form-control" pt:placeholder="Estado"/>
+          		<div class="input-group-append">
+            		<div class="input-group-text">
+              			<span class="fas fa-envelope"></span>
+            		</div>
+          		</div>
+        	</div>
+          
+        
+        
+        <h:commandButton value="Agendar Cita" action="#{gestionIndexPacienteBean.guardarCita(gestionLoginBean.email)}" class="btn btn-primary btn-block"></h:commandButton>
+        
+      </h:form>
+          
+          
+          
+          
         </div>
         <!-- /.card-body -->
         <div class="card-footer">
