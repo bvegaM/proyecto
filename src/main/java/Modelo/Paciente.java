@@ -27,6 +27,7 @@ public class Paciente {
 	private String apellido;
 	private String email;
 	private String clave;
+	private String preguntaSecreta;
 	
 	@OneToOne
 	private Rol rol;
@@ -157,14 +158,23 @@ public class Paciente {
 	public void setOrdenesMedicas(Set<OrdenMedica> ordenesMedicas) {
 		this.ordenesMedicas = ordenesMedicas;
 	}
+	
+	public String getPreguntaSecreta() {
+		return preguntaSecreta;
+	}
+	public void setPreguntaSecreta(String preguntaSecreta) {
+		this.preguntaSecreta = preguntaSecreta;
+	}
 	@Override
 	public String toString() {
 		return "Paciente [codigo=" + codigo + ", cedula=" + cedula + ", nombre=" + nombre + ", apellido=" + apellido
-				+ ", email=" + email + ", clave=" + clave + ", rol=" + rol + ", fechaNac=" + fechaNac + ", sexo=" + sexo
-				+ ", edad=" + edad + ", telefonos=" + telefonos + ", direcciones=" + direcciones + ", recetas="
-				+ recetas + ", historiales=" + historiales + ", certificados=" + certificados + ", ordenesMedicas="
-				+ ordenesMedicas + "]";
+				+ ", email=" + email + ", clave=" + clave + ", preguntaSecreta=" + preguntaSecreta + ", rol=" + rol
+				+ ", fechaNac=" + fechaNac + ", sexo=" + sexo + ", edad=" + edad + ", telefonos=" + telefonos
+				+ ", direcciones=" + direcciones + ", recetas=" + recetas + ", historiales=" + historiales
+				+ ", certificados=" + certificados + ", ordenesMedicas=" + ordenesMedicas + "]";
 	}
+	
+	
 	
 	
 	

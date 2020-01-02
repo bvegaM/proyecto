@@ -30,6 +30,7 @@ public class GestionPacienteBean {
 	private String clave;
 	private Date fechaNac;
 	private String sexo;
+	private String preguntaSecreta;
 	
 	@PostConstruct
 	public void init() {
@@ -85,6 +86,15 @@ public class GestionPacienteBean {
 		this.sexo = sexo;
 	}
 	
+	
+	public String getPreguntaSecreta() {
+		return preguntaSecreta;
+	}
+
+	public void setPreguntaSecreta(String preguntaSecreta) {
+		this.preguntaSecreta = preguntaSecreta;
+	}
+
 	public List<Paciente> getPacientes() {
 		return pacientes;
 	}
@@ -115,6 +125,7 @@ public class GestionPacienteBean {
 		this.setClave(aux.getClave());
 		this.setFechaNac(aux.getFechaNac());
 		this.setSexo(aux.getSexo());
+		this.setPreguntaSecreta(preguntaSecreta);
 	}
 	
 	public String editarPaciente() {
@@ -127,6 +138,7 @@ public class GestionPacienteBean {
 		pacienteActualizado.setClave(this.getClave());
 		pacienteActualizado.setFechaNac(this.getFechaNac());
 		pacienteActualizado.setSexo(this.getSexo());
+		pacienteActualizado.setPreguntaSecreta(this.getPreguntaSecreta());
 		this.gpl.actualizar(pacienteActualizado);
 		return "crearMedico?faces-redirect=true";
 	}
@@ -155,6 +167,7 @@ public class GestionPacienteBean {
 		paciente.setFechaNac(this.getFechaNac());
 		paciente.setSexo(this.getSexo());
 		paciente.setRol(this.gpl.obtenerRol(3));
+		paciente.setPreguntaSecreta(this.getPreguntaSecreta());
 		this.gpl.insertar(paciente);
 	}
 	
