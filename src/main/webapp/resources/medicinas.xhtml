@@ -7,7 +7,7 @@
 <h:head>
   <meta charset="utf-8"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-  <title>Digital Medical | Medico | Inicio</title>
+  <title>Digital Medical | Administrador | Medicina</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
@@ -154,7 +154,7 @@
            alt="AdminLTE Logo"
            class="brand-image img-circle elevation-3"
            style="opacity: .8"/>
-      <span class="brand-text font-weight-light">AdminLTE 3</span>
+      <span class="brand-text font-weight-light">Administrador</span>
     </a>
 
     <!-- Sidebar -->
@@ -165,7 +165,7 @@
           <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image"/>
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="#" class="d-block"><ui:insert name="user"></ui:insert></a>
         </div>
       </div>
 
@@ -174,25 +174,39 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
+          <li class="nav-item">
+            <a href="crearMedico.xhtml" class="nav-link">
+              <i class="nav-icon far fa-image"></i>
+              <p>
+                Inicio
+              </p>
+            </a>
+          </li>
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-                Recetas
+                Dashboard
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="listaRecetasMedico.xhtml" class="nav-link">
+                <a href="index.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Lista de recetas</p>
+                  <p>Dashboard v1</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="crearReceta.xhtml" class="nav-link">
+                <a href="index2.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Crear nueva receta</p>
+                  <p>Dashboard v2</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="index3.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Dashboard v3</p>
                 </a>
               </li>
             </ul>
@@ -694,7 +708,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Blank Page</h1>
+            <h1>Medicinas</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -712,7 +726,7 @@
     <!-- Default box -->
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Citas</h3>
+          <h3 class="card-title">Crear Medicina</h3>
 
           <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -722,79 +736,74 @@
           </div>
         </div>
         <div class="card-body">
-          
-          <h:form>
+        	<h:form>
+        		<h:panelGrid columns="2">
+        			<h:outputLabel value="Nombre del medicamento: " />
+					<h:inputText value="#{gestionMedicinasBean.nombre}" class="form-control"/>
+		
+					<h:outputLabel value="Descripción:" />
+        		</h:panelGrid>
+        		<div class="box-body pad">
+              		<h:inputTextarea value="#{gestionMedicinasBean.descripcion}" pt:maxlength="250" class="textarea" pt:placeholder="Ingrese la descripcion del medicamento."
+                          style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></h:inputTextarea>
+            	</div>
+            	<h:commandButton styleClass="btn btn-default" value="Guardar Medicamento" action="#{gestionMedicinasBean.guardar()}">
+				</h:commandButton>
+        	</h:form>
+        </div>
+      </div>
+      <!-- /.card -->
+      
+          <!-- Default box -->
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Lista de medicinas</h3>
+
+          <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+              <i class="fas fa-minus"></i></button>
+            <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
+              <i class="fas fa-times"></i></button>
+          </div>
+        </div>
+        <div class="card-body">
+        
+        <h:form>
 				<div class="row">
 					<div class="col-12 table-responsive">
-						<h:dataTable var="_citas" value="#{gestionIndexMedicoBean.obtenerCitas(gestionLoginBean.email)}"
+						<h:dataTable var="_medicinas" value="#{gestionMedicinasBean.medicinas}"
 						styleClass="table table-striped">
 						<h:column>
 							<f:facet name="header">Codigo</f:facet>
-							#{_citas.codigo}
+							#{_medicinas.codigo}
 						</h:column>
 						<h:column>
-							<f:facet name="header">Paciente</f:facet>
-							#{_citas.paciente.nombre}
+							<f:facet name="header">Nombre</f:facet>
+							#{_medicinas.nombre}
 						</h:column>
 						<h:column>
-							<f:facet name="header">Fecha</f:facet>
-							#{_citas.fecha}
-						</h:column>
-						<h:column>
-							<f:facet name="header">Hora</f:facet>
-							#{_citas.hora}
-						</h:column>
-						<h:column>
-							<f:facet name="header">Estado</f:facet>
-							#{_citas.estado}
-						</h:column>
-						
+							<f:facet name="header">Descripcion</f:facet>
+							#{_medicinas.descripcion}
+						</h:column>	
 						<h:column>
 							<f:facet name="header">Acciones</f:facet>
 							<div class="btn-group btn-group-sm">
-								<h:commandButton action="#{gestionIndexMedicoBean.agendarCita(_citas)}" styleClass="btn btn-info" value="Agendar" />
-								<h:commandButton action="#{gestionIndexMedicoBean.rechazarCita(_citas)}" styleClass="btn btn-danger" value="Rechazar" />
+								<h:commandButton action="#{gestionMedicoBean.editar(_medicos)}" styleClass="btn btn-info" value="Editar" />
+								<h:commandButton action="#{gestionMedicinasBean.eliminar(_medicinas.codigo)}" styleClass="btn btn-danger" value="Eliminar" />
 							</div>
-							
 						</h:column>
 					</h:dataTable>
 					</div>
 				</div>
-			</h:form>  
-          
-          
+			</h:form>
+        
         </div>
-        <!-- /.card-body -->
-        <div class="card-footer">
-          Footer
-        </div>
-        <!-- /.card-footer-->
       </div>
       <!-- /.card -->
 
-      <!-- Default box -->
-      <div class="card">
-        <div class="card-header">
-          <h3 class="card-title">Title</h3>
 
-          <div class="card-tools">
-            <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
-              <i class="fas fa-minus"></i></button>
-            <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
-              <i class="fas fa-times"></i></button>
-          </div>
-        </div>
-        <div class="card-body">
-          Start creating your amazing application!
-        </div>
-        <!-- /.card-body -->
-        <div class="card-footer">
-          Footer
-        </div>
-        <!-- /.card-footer-->
-      </div>
-      <!-- /.card -->
 
+            
     </section>
     <!-- /.content -->
   </div>
@@ -802,9 +811,9 @@
 
   <footer class="main-footer">
     <div class="float-right d-none d-sm-block">
-      <b>Version</b> 3.0.1
+      <b>Version</b> 1.0.0
     </div>
-    <strong>Copyright 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong> All rights
+    <strong>Copyright 2014-2019 <a href="http://adminlte.io">Universidad Politécnica Salesiana</a>.</strong> All rights
     reserved.
   </footer>
 

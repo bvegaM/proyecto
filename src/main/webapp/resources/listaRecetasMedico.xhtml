@@ -7,7 +7,7 @@
 <h:head>
   <meta charset="utf-8"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-  <title>Digital Medical | Medico | Inicio</title>
+  <title>Digital Medical | Medico | Recetas Emitidas</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
@@ -712,7 +712,7 @@
     <!-- Default box -->
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Citas</h3>
+          <h3 class="card-title">Recetas Emitidas</h3>
 
           <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -722,46 +722,39 @@
           </div>
         </div>
         <div class="card-body">
-          
-          <h:form>
+        	
+        	<h:form>
 				<div class="row">
 					<div class="col-12 table-responsive">
-						<h:dataTable var="_citas" value="#{gestionIndexMedicoBean.obtenerCitas(gestionLoginBean.email)}"
+						<h:dataTable var="_recetas" value="#{gestionRecetaBean.obtenerRecetasMedico(gestionLoginBean.email)}"
 						styleClass="table table-striped">
 						<h:column>
 							<f:facet name="header">Codigo</f:facet>
-							#{_citas.codigo}
+							#{_recetas.codigo}
 						</h:column>
 						<h:column>
 							<f:facet name="header">Paciente</f:facet>
-							#{_citas.paciente.nombre}
+							#{_recetas.paciente.nombre}
 						</h:column>
 						<h:column>
-							<f:facet name="header">Fecha</f:facet>
-							#{_citas.fecha}
-						</h:column>
-						<h:column>
-							<f:facet name="header">Hora</f:facet>
-							#{_citas.hora}
-						</h:column>
-						<h:column>
-							<f:facet name="header">Estado</f:facet>
-							#{_citas.estado}
+							<f:facet name="header">Fecha de emision</f:facet>
+							#{_recetas.fechaEmision}
 						</h:column>
 						
 						<h:column>
 							<f:facet name="header">Acciones</f:facet>
 							<div class="btn-group btn-group-sm">
-								<h:commandButton action="#{gestionIndexMedicoBean.agendarCita(_citas)}" styleClass="btn btn-info" value="Agendar" />
-								<h:commandButton action="#{gestionIndexMedicoBean.rechazarCita(_citas)}" styleClass="btn btn-danger" value="Rechazar" />
+								<h:commandButton action="#{gestionRecetaBean.editar(_recetas)}" styleClass="btn btn-info" value="Editar" />
+								<h:commandButton action="#{gestionIndexPacienteBean.eliminar(_citas.codigo)}" styleClass="btn btn-danger" value="Eliminar" />
 							</div>
 							
 						</h:column>
 					</h:dataTable>
 					</div>
 				</div>
-			</h:form>  
+			</h:form>
           
+               
           
         </div>
         <!-- /.card-body -->
