@@ -8,7 +8,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 
-import Modelo.Cita;
 import Modelo.Detalle;
 import Modelo.Medicina;
 import Modelo.Medico;
@@ -35,6 +34,7 @@ public class GestionRecetaBean {
 	@Inject
 	private GestionMedicoLocal gmel;
 	
+	
 	private String id;
 	
 	private Receta receta;
@@ -43,14 +43,17 @@ public class GestionRecetaBean {
 	private List<Paciente> pacientes;
 	private List<Medicina> medicinas;
 	
+	
 	@PostConstruct
 	public void init() {
 		this.receta =  new Receta();
 		this.receta.addDetalle(new Detalle());
-		this.recetas = new ArrayList<Receta>();
+		this.recetas = this.grl.getRecetas();
 		this.pacientes = this.gpl.getPacientes();
 		this.medicinas = this.gml.getMedicinas();
+		
 	}
+	
 	
 	
 	public String getId() {
@@ -108,6 +111,8 @@ public class GestionRecetaBean {
 		this.medicinas = medicinas;
 	}
 	
+
+
 	public String guardar(String email) {
 		this.receta.setCodigo(this.grl.getRecetas().size()+1);
 		this.receta.setMedico(this.buscarMedicoxEmail(email));
@@ -135,9 +140,19 @@ public class GestionRecetaBean {
 	public List<Receta> obtenerRecetasMedico(String email){
 		System.out.println(email);
 		List<Receta> aux= new ArrayList<Receta>();
-		this.recetas=this.grl.getRecetas();
 		for(Receta re: recetas) {
 			if(re.getMedico().getEmail().equals(email)) {
+				aux.add(re);
+			}
+		}
+		return aux;
+	}
+	
+	public List<Receta> obtenerRecetasPaciente(String email){
+		System.out.println(email);
+		List<Receta> aux= new ArrayList<Receta>();
+		for(Receta re: recetas) {
+			if(re.getPaciente().getEmail().equals(email)) {
 				aux.add(re);
 			}
 		}
@@ -160,7 +175,23 @@ public class GestionRecetaBean {
 		this.receta = this.grl.leer(Integer.parseInt(id));
 	}
 	
+	public String ver(Receta r) {
+		return "verReceta?faces-redirect=true&id="+r.getCodigo();
+	}
 	
+	public String eliminar(int codigo) {
+		
+		try {
+			this.grl.borrar(codigo);
+			System.out.println("Receta eliminado");
+			return "listaRecetasMedico?faces-redirect=true";
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			System.out.println("Error al eliminar");
+			e.printStackTrace();			
+		}		
+		return null;
+	}
 	
 
 }

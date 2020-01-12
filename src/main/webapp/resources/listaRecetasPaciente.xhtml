@@ -728,16 +728,15 @@
         	<h:form id="formListaReceta">
 				<div class="row">
 					<div class="col-12 table-responsive">
-						<h:dataTable id="recetas" var="_recetas" value="#{gestionRecetaBean.obtenerRecetasMedico(gestionLoginBean.email)}"
+						<h:dataTable id="recetas" var="_recetas" value="#{gestionRecetaBean.obtenerRecetasPaciente(gestionLoginBean.email)}"
 						styleClass="table table-striped">
 						<h:column>
 							<f:facet name="header">Codigo</f:facet>
 							#{_recetas.codigo}
-							<h:outputText value="#{_recetas.codigo}" id="cod" style="display:none;" />
 						</h:column>
 						<h:column>
-							<f:facet name="header">Paciente</f:facet>
-							#{_recetas.paciente.nombre}
+							<f:facet name="header">Medico</f:facet>
+							#{_recetas.medico.nombre}
 						</h:column>
 						<h:column>
 							<f:facet name="header">Fecha de emision</f:facet>
@@ -747,8 +746,7 @@
 						<h:column>
 							<f:facet name="header">Acciones</f:facet>
 							<div class="btn-group btn-group-sm">
-								<h:commandButton action="#{gestionRecetaBean.editar(_recetas)}" styleClass="btn btn-info" value="Editar" />
-								<h:commandButton action="#{gestionRecetaBean.eliminar(_recetas.codigo)}" styleClass="btn btn-danger" value="Eliminar" />
+								<h:commandButton action="#{gestionRecetaBean.ver(_recetas)}" styleClass="btn btn-info" value="Ver" />
 							</div>
 							
 						</h:column>
@@ -758,6 +756,7 @@
 			</h:form>
           
                
+          
         </div>
         <!-- /.card-body -->
         <div class="card-footer">
