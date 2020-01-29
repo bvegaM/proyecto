@@ -115,22 +115,13 @@ public class GestionRecetaBean {
 
 	public String guardar(String email) {
 		this.receta.setCodigo(this.grl.getRecetas().size()+1);
-		this.receta.setMedico(this.buscarMedicoxEmail(email));
+		this.receta.setMedico(this.gmel.buscarMedicoxEmail(email));
 		System.out.println(receta.toString());
 		this.grl.insertar(receta);
 		return "crearReceta?faces-redirect=true";
 	}
 	
-	public Medico buscarMedicoxEmail(String email) {
-		List<Medico> medicos = new ArrayList<Medico>();
-		medicos = this.gmel.getMedicos();
-		for(Medico m: medicos) {
-			if(m.getEmail().equals(email)) {
-				return m;
-			}
-		}
-		return null;
-	}
+	
 	
 	public String addDetalle() {
 		this.receta.addDetalle(new Detalle());
