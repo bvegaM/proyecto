@@ -56,7 +56,7 @@ public class GestionLoginBean implements Serializable {
 			HttpSession session = SessionUtils.getSession();
 			session.setAttribute("username", this.email);
 			this.nameUser=administrador.getNombre()+" "+administrador.getApellido();
-			return "crearMedico.xhtml";
+			return "indexAdmin.xhtml";
 		}
 		
 		return null;
