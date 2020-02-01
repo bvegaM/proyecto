@@ -35,9 +35,9 @@ public class GestionAdministrador implements GestionAdministradorLocal {
 	}
 
 	@Override
-	public void borrar(String cedula) {
+	public void borrar(int codigo) {
 		// TODO Auto-generated method stub
-		
+		dao.borrar(codigo);
 	}
 
 	@Override

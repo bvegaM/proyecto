@@ -5,6 +5,8 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Cita {
@@ -15,9 +17,14 @@ public class Cita {
 	private Paciente paciente;
 	@OneToOne
 	private Medico medico;
+	
+	@Temporal(TemporalType.DATE)
 	private Date fecha;
-	private Date hora;
+	
+	private String hora;
+	
 	private String estado;
+	
 	public int getCodigo() {
 		return codigo;
 	}
@@ -42,10 +49,10 @@ public class Cita {
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
-	public Date getHora() {
+	public String getHora() {
 		return hora;
 	}
-	public void setHora(Date hora) {
+	public void setHora(String hora) {
 		this.hora = hora;
 	}
 	public String getEstado() {

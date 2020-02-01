@@ -30,7 +30,19 @@ public class GestionPacienteBean {
 	private String clave;
 	private Date fechaNac;
 	private String sexo;
+	private String preguntaSecreta;
+	private String validar;
+	private String validar2;
 	
+	
+	public String getValidar2() {
+		return validar2;
+	}
+
+	public void setValidar2(String validar2) {
+		this.validar2 = validar2;
+	}
+
 	@PostConstruct
 	public void init() {
 		this.pacientes=this.gpl.getPacientes();
@@ -85,6 +97,15 @@ public class GestionPacienteBean {
 		this.sexo = sexo;
 	}
 	
+	
+	public String getPreguntaSecreta() {
+		return preguntaSecreta;
+	}
+
+	public void setPreguntaSecreta(String preguntaSecreta) {
+		this.preguntaSecreta = preguntaSecreta;
+	}
+
 	public List<Paciente> getPacientes() {
 		return pacientes;
 	}
@@ -106,6 +127,16 @@ public class GestionPacienteBean {
 	}
 	
 	
+	
+	
+	public String getValidar() {
+		return validar;
+	}
+
+	public void setValidar(String validar) {
+		this.validar = validar;
+	}
+
 	public void loadData() {
 		Paciente aux = gpl.leer(Integer.parseInt(id));
 		this.setCedula(aux.getCedula());
@@ -115,6 +146,7 @@ public class GestionPacienteBean {
 		this.setClave(aux.getClave());
 		this.setFechaNac(aux.getFechaNac());
 		this.setSexo(aux.getSexo());
+		this.setPreguntaSecreta(preguntaSecreta);
 	}
 	
 	public String editarPaciente() {
@@ -127,6 +159,7 @@ public class GestionPacienteBean {
 		pacienteActualizado.setClave(this.getClave());
 		pacienteActualizado.setFechaNac(this.getFechaNac());
 		pacienteActualizado.setSexo(this.getSexo());
+		pacienteActualizado.setPreguntaSecreta(this.getPreguntaSecreta());
 		this.gpl.actualizar(pacienteActualizado);
 		return "crearMedico?faces-redirect=true";
 	}
@@ -145,6 +178,7 @@ public class GestionPacienteBean {
 	}
 	
 	public void guardarPaciente() {
+		
 		Paciente paciente = new Paciente();
 		paciente.setCodigo(this.gpl.getPacientes().size()+1);
 		paciente.setCedula(this.getCedula());
@@ -155,7 +189,21 @@ public class GestionPacienteBean {
 		paciente.setFechaNac(this.getFechaNac());
 		paciente.setSexo(this.getSexo());
 		paciente.setRol(this.gpl.obtenerRol(3));
-		this.gpl.insertar(paciente);
+		paciente.setPreguntaSecreta(this.getPreguntaSecreta());
+		if(paciente.validarCedula()==true){
+			this.validar="";
+			if(paciente.validarNombre()==true) {
+				this.gpl.insertar(paciente);
+				this.validar2="";
+			}
+			else{
+				this.validar2="Nombre Incorrecto";
+			}
+		}
+		else {
+			this.validar="Cedula Incorrecta";
+			System.out.println("No se registro");
+		}
 	}
 	
 	

@@ -7,7 +7,7 @@ import javax.ejb.Local;
 import Modelo.Medicina;
 
 @Local
-public interface MedicinaLocal {
+public interface GestionMedicinaLocal {
 
 	public void insertar(Medicina medicina);
 	public void actualizar(Medicina medicina);

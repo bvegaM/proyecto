@@ -175,33 +175,12 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
+            <a href="listaRecetasPaciente.xhtml" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-                Dashboard
-                <i class="right fas fa-angle-left"></i>
+                Mis Recetas
               </p>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="index.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Dashboard v1</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="index2.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Dashboard v2</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="index3.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Dashboard v3</p>
-                </a>
-              </li>
-            </ul>
           </li>
           <li class="nav-item">
             <a href="../widgets.html" class="nav-link">
@@ -718,7 +697,7 @@
     <!-- Default box -->
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Opciones</h3>
+          <h3 class="card-title">Agendar Citas</h3>
 
           <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -728,7 +707,45 @@
           </div>
         </div>
         <div class="card-body">
-          Start creating your amazing application!
+          
+          <h:form>
+              <div class="form-group">
+              <h:outputText value="Medicos:" />
+                <h:selectOneMenu class="form-control select2" style="width: 80%;" value="#{gestionIndexPacienteBean.medico}" converter="medicoConverter">
+      				<f:selectItems value="#{gestionIndexPacienteBean.medicos}" var="m"
+      				itemLabel="#{m.nombre}" itemValue="#{m}"/>
+      			</h:selectOneMenu>
+              </div>      
+      
+        
+      		<div class="input-group mb-3">
+          		<h:inputText   value="#{gestionIndexPacienteBean.fecha}" class="form-control" pt:placeholder="Fecha" ><f:convertDateTime pattern="yyyy/MM/dd"/></h:inputText>
+          		<div class="input-group-append">
+            		<div class="input-group-text">
+              			<span class="fas fa-calendar"></span>
+            		</div>
+          		</div>
+        	</div>
+      	
+        	<div class="input-group mb-3">
+          		<h:inputText value="#{gestionIndexPacienteBean.hora}" pt:type="text" class="form-control" pt:placeholder="Hora"/>
+          		<div class="input-group-append">
+            		<div class="input-group-text">
+              			<span class="fas fa-calendar"></span>
+            		</div>
+          		</div>
+        	</div>
+       
+          
+        
+        
+        <h:commandButton value="Agendar Cita" action="#{gestionIndexPacienteBean.guardarCita(gestionLoginBean.email)}" class="btn btn-primary btn-block"></h:commandButton>
+        
+      </h:form>
+          
+          
+          
+          
         </div>
         <!-- /.card-body -->
         <div class="card-footer">
@@ -741,7 +758,7 @@
       <!-- Default box -->
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Title</h3>
+          <h3 class="card-title">Mis Citas</h3>
 
           <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -751,7 +768,46 @@
           </div>
         </div>
         <div class="card-body">
-          Start creating your amazing application!
+          
+          <h:form>
+				<div class="row">
+					<div class="col-12 table-responsive">
+						<h:dataTable var="_citas" value="#{gestionIndexPacienteBean.obtenerCitas(gestionLoginBean.email)}"
+						styleClass="table table-striped">
+						<h:column>
+							<f:facet name="header">Codigo</f:facet>
+							#{_citas.codigo}
+						</h:column>
+						<h:column>
+							<f:facet name="header">Medico</f:facet>
+							#{_citas.medico.nombre}
+						</h:column>
+						<h:column>
+							<f:facet name="header">Fecha</f:facet>
+							#{_citas.fecha}
+						</h:column>
+						<h:column>
+							<f:facet name="header">Hora</f:facet>
+							#{_citas.hora}
+						</h:column>
+						<h:column>
+							<f:facet name="header">Estado</f:facet>
+							#{_citas.estado}
+						</h:column>
+						
+						<h:column>
+							<f:facet name="header">Acciones</f:facet>
+							<div class="btn-group btn-group-sm">
+								<h:commandButton action="#{gestionIndexPacienteBean.eliminar(_citas.codigo)}" styleClass="btn btn-danger" value="Eliminar" />
+							</div>
+							
+						</h:column>
+					</h:dataTable>
+					</div>
+				</div>
+			</h:form>
+          
+          
         </div>
         <!-- /.card-body -->
         <div class="card-footer">

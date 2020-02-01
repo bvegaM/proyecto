@@ -27,6 +27,8 @@ public class Paciente {
 	private String apellido;
 	private String email;
 	private String clave;
+	private String preguntaSecreta;
+	
 	
 	@OneToOne
 	private Rol rol;
@@ -35,7 +37,6 @@ public class Paciente {
 	private Date fechaNac;
 	
 	private String sexo;
-	private int edad;
 	
 	@OneToMany(cascade = {CascadeType.ALL},fetch = FetchType.EAGER)
 	@JoinColumn(name = "telefono", referencedColumnName = "codigo")
@@ -45,21 +46,6 @@ public class Paciente {
 	@JoinColumn(name = "direccion", referencedColumnName = "codigo")
 	private Set<Direccion> direcciones;
 	
-	@OneToMany(cascade = {CascadeType.ALL},fetch = FetchType.EAGER)
-	@JoinColumn(name = "receta", referencedColumnName = "codigo")
-	private Set<Receta> recetas;
-	
-	@OneToMany(cascade = {CascadeType.ALL},fetch = FetchType.EAGER)
-	@JoinColumn(name = "historial", referencedColumnName = "codigo")
-	private Set<Historial> historiales;
-	
-	@OneToMany(cascade = {CascadeType.ALL},fetch = FetchType.EAGER)
-	@JoinColumn(name = "certificado", referencedColumnName = "codigo")
-	private Set<Certificado> certificados;
-	
-	@OneToMany(cascade = {CascadeType.ALL},fetch = FetchType.EAGER)
-	@JoinColumn(name = "orden_medica", referencedColumnName = "codigo")
-	private Set<OrdenMedica> ordenesMedicas;
 	
 	public int getCodigo() {
 		return codigo;
@@ -115,12 +101,6 @@ public class Paciente {
 	public void setSexo(String sexo) {
 		this.sexo = sexo;
 	}
-	public int getEdad() {
-		return edad;
-	}
-	public void setEdad(int edad) {
-		this.edad = edad;
-	}
 	public Set<Telefono> getTelefonos() {
 		return telefonos;
 	}
@@ -133,38 +113,59 @@ public class Paciente {
 	public void setDirecciones(Set<Direccion> direcciones) {
 		this.direcciones = direcciones;
 	}
-	public Set<Receta> getRecetas() {
-		return recetas;
+	public String getPreguntaSecreta() {
+		return preguntaSecreta;
 	}
-	public void setRecetas(Set<Receta> recetas) {
-		this.recetas = recetas;
+	public void setPreguntaSecreta(String preguntaSecreta) {
+		this.preguntaSecreta = preguntaSecreta;
 	}
-	public Set<Historial> getHistoriales() {
-		return historiales;
-	}
-	public void setHistoriales(Set<Historial> historiales) {
-		this.historiales = historiales;
-	}
-	public Set<Certificado> getCertificados() {
-		return certificados;
-	}
-	public void setCertificados(Set<Certificado> certificados) {
-		this.certificados = certificados;
-	}
-	public Set<OrdenMedica> getOrdenesMedicas() {
-		return ordenesMedicas;
-	}
-	public void setOrdenesMedicas(Set<OrdenMedica> ordenesMedicas) {
-		this.ordenesMedicas = ordenesMedicas;
-	}
+	
 	@Override
 	public String toString() {
 		return "Paciente [codigo=" + codigo + ", cedula=" + cedula + ", nombre=" + nombre + ", apellido=" + apellido
-				+ ", email=" + email + ", clave=" + clave + ", rol=" + rol + ", fechaNac=" + fechaNac + ", sexo=" + sexo
-				+ ", edad=" + edad + ", telefonos=" + telefonos + ", direcciones=" + direcciones + ", recetas="
-				+ recetas + ", historiales=" + historiales + ", certificados=" + certificados + ", ordenesMedicas="
-				+ ordenesMedicas + "]";
+				+ ", email=" + email + ", clave=" + clave + ", preguntaSecreta=" + preguntaSecreta + ", rol=" + rol
+				+ ", fechaNac=" + fechaNac + ", sexo=" + sexo + ", telefonos=" + telefonos + ", direcciones="
+				+ direcciones + "]";
 	}
+	
+	public boolean validarCedula() {
+		if(this.cedula.length()==10) {
+			try {
+				Integer.parseInt(this.cedula);
+				return true;
+			}
+			catch(NumberFormatException ex){
+				return false;
+			}
+		}
+		else{;
+			return false;
+ 		}
+	}
+	public boolean validarNombre() {
+		for (int i = 0; i < this.nombre.length(); i++)
+		{
+			char caracter = this.nombre.toUpperCase().charAt(i);
+			int valorASCII = (int)caracter;
+			if (valorASCII != 165 && (valorASCII < 65 || valorASCII > 90))
+				return false; //Se ha encontrado un caracter que no es letra
+		}
+		return true;
+	}
+	public boolean validarApellido() {
+		for (int i = 0; i < this.apellido.length(); i++)
+		{
+			char caracter = this.apellido.toUpperCase().charAt(i);
+			int valorASCII = (int)caracter;
+			if (valorASCII != 165 && (valorASCII < 65 || valorASCII > 90))
+				return false; //Se ha encontrado un caracter que no es letra
+		}
+		return true;
+	}
+	
+	
+	
+	
 	
 	
 	
