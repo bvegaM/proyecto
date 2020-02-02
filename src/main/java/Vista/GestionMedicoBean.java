@@ -9,7 +9,9 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 
+import Modelo.Especialidad;
 import Modelo.Medico;
+import Negocio.GestionEspecialidadLocal;
 import Negocio.GestionMedicoLocal;
 import Negocio.GestionRolLocal;
 
@@ -23,9 +25,13 @@ public class GestionMedicoBean {
 	@Inject
 	private GestionRolLocal grl;
 	
+	@Inject
+	private GestionEspecialidadLocal gel;
+	
 	private String id;
 	
 	private List<Medico> medicos;
+	private List<Especialidad> especialidades;
 	
 	private String cedula;
 	private String nombre;
@@ -33,10 +39,12 @@ public class GestionMedicoBean {
 	private String email;
 	private String clave;
 	private Date fechaNac;
+	private Especialidad especialidad;
 	
 	@PostConstruct
 	public void init() {
 		this.medicos = gml.getMedicos();
+		this.especialidades = gel.getEspecialidades();
 	}
 	
 	
@@ -118,7 +126,28 @@ public class GestionMedicoBean {
 	public void setFechaNac(Date fechaNac) {
 		this.fechaNac = fechaNac;
 	}
-	
+	public GestionEspecialidadLocal getGel() {
+		return gel;
+	}
+	public void setGel(GestionEspecialidadLocal gel) {
+		this.gel = gel;
+	}
+	public List<Especialidad> getEspecialidades() {
+		return especialidades;
+	}
+	public void setEspecialidades(List<Especialidad> especialidades) {
+		this.especialidades = especialidades;
+	}
+	public Especialidad getEspecialidad() {
+		return especialidad;
+	}
+	public void setEspecialidad(Especialidad especialidad) {
+		this.especialidad = especialidad;
+	}
+
+
+
+
 	public void guardarMedico() {
 		Medico medico = new Medico();
 		medico.setCodigo(this.gml.getMedicos().size()+1);
@@ -129,6 +158,7 @@ public class GestionMedicoBean {
 		medico.setClave(this.getClave());
 		medico.setFechaNac(this.getFechaNac());
 		medico.setRol(this.grl.leer(2));
+		medico.setEspecialidad(this.getEspecialidad());
 		this.gml.insertar(medico);
 	}
 	
