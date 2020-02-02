@@ -58,6 +58,7 @@ public class GestionLoginBean implements Serializable {
 			HttpSession session = SessionUtils.getSession();
 			session.setAttribute("username", this.email);
 			this.nameUser=administrador.getNombre()+" "+administrador.getApellido();
+			//comentario para hacer commit
 			this.admin=administrador;
 			return "PaginaPrincipalAdministrador.xhtml";
 		}
