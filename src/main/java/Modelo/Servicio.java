@@ -1,7 +1,12 @@
 package Modelo;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Servicio {
 
+	@Id
 	private int codigo;
 	private String descripción;
 	private double precio;

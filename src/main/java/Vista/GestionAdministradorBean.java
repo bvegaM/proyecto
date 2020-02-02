@@ -23,6 +23,7 @@ public class GestionAdministradorBean {
 	private String email;
 	private String clave;
 	private Rol rol;
+	
 	public GestionAdministradorLocal getGal() {
 		return gal;
 	}

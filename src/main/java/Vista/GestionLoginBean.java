@@ -35,6 +35,8 @@ public class GestionLoginBean implements Serializable {
 	private String contrasena;
 	private String user;
 	private String nameUser;
+	private Administrador admin;
+	
 
 	public String iniciarSesion() {
 		
@@ -46,17 +48,18 @@ public class GestionLoginBean implements Serializable {
 			HttpSession session = SessionUtils.getSession();
 			session.setAttribute("username", this.email);
 			this.nameUser=paciente.getNombre()+" "+paciente.getApellido();
-			return "crearMedico.xhtml";
+			return "index2.xhtml";
 		}else if(medico != null) {
 			HttpSession session = SessionUtils.getSession();
 			session.setAttribute("username", this.email);
 			this.nameUser=medico.getNombre()+" "+medico.getApellido();
-			return "crearMedico.xhtml";
+			return "index.xhtml";
 		}else if(administrador != null) {
 			HttpSession session = SessionUtils.getSession();
 			session.setAttribute("username", this.email);
 			this.nameUser=administrador.getNombre()+" "+administrador.getApellido();
-			return "crearMedico.xhtml";
+			this.admin=administrador;
+			return "PaginaPrincipalAdministrador.xhtml";
 		}
 		
 		return null;
@@ -147,5 +150,14 @@ public class GestionLoginBean implements Serializable {
 	public void setNameUser(String nameUser) {
 		this.nameUser = nameUser;
 	}
+
+	public Administrador getAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(Administrador admin) {
+		this.admin = admin;
+	}
+	
 	
 }
