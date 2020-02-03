@@ -168,7 +168,7 @@ public class GestionPacienteBean {
 		try {
 			this.gpl.borrar(codigo);
 			System.out.println("Registro eliminado");
-			return "crearMedico?faces-redirect=true";
+			return "PaginaListarPacientes?faces-redirect=true";
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			System.out.println("Error al eliminar");
@@ -177,8 +177,7 @@ public class GestionPacienteBean {
 		return null;
 	}
 	
-	public void guardarPaciente() {
-		
+	public String guardarPaciente() {
 		Paciente paciente = new Paciente();
 		paciente.setCodigo(this.gpl.getPacientes().size()+1);
 		paciente.setCedula(this.getCedula());
@@ -190,20 +189,8 @@ public class GestionPacienteBean {
 		paciente.setSexo(this.getSexo());
 		paciente.setRol(this.gpl.obtenerRol(3));
 		paciente.setPreguntaSecreta(this.getPreguntaSecreta());
-		if(paciente.validarCedula()==true){
-			this.validar="";
-			if(paciente.validarNombre()==true) {
-				this.gpl.insertar(paciente);
-				this.validar2="";
-			}
-			else{
-				this.validar2="Nombre Incorrecto";
-			}
-		}
-		else {
-			this.validar="Cedula Incorrecta";
-			System.out.println("No se registro");
-		}
+		this.gpl.insertar(paciente);
+		return "PaginaListarPacientes";
 	}
 	
 	
