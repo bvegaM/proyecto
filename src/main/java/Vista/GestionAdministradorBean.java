@@ -81,7 +81,6 @@ public class GestionAdministradorBean {
 	
 	public void guardarAdministrador(){
 		Administrador administrador=new Administrador();
-		administrador.setCodigo(this.gal.getAdministradores().size()+1);
 		administrador.setCedula(this.cedula);
 		administrador.setNombre(this.nombre);
 		administrador.setApellido(this.apellido);

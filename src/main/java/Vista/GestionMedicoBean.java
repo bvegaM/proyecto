@@ -145,10 +145,7 @@ public class GestionMedicoBean {
 		this.especialidad = especialidad;
 	}
 
-
-
-
-	public void guardarMedico() {
+	public String guardarMedico() {
 		Medico medico = new Medico();
 		medico.setCodigo(this.gml.getMedicos().size()+1);
 		medico.setCedula(this.getCedula());
@@ -160,6 +157,7 @@ public class GestionMedicoBean {
 		medico.setRol(this.grl.leer(2));
 		medico.setEspecialidad(this.getEspecialidad());
 		this.gml.insertar(medico);
+		return "PaginaListarMedicos?faces-redirect=true";
 	}
 	
 	public String eliminar(int codigo) {
@@ -167,7 +165,7 @@ public class GestionMedicoBean {
 		try {
 			this.gml.borrar(codigo);
 			System.out.println("Registro eliminado");
-			return "crearMedico?faces-redirect=true";
+			return "PaginaListarMedicos?faces-redirect=true";
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			System.out.println("Error al eliminar");
