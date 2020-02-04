@@ -138,7 +138,6 @@ public class GestionPacienteBean {
 	}
 
 	public String editar(Paciente paciente) {
-		
 		return "editarPaciente?faces-redirect=true&id="+paciente.getCodigo();
 	}
 	

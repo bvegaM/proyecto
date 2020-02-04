@@ -36,7 +36,8 @@ public class GestionLoginBean implements Serializable {
 	private String user;
 	private String nameUser;
 	private Administrador admin;
-	
+	private String nuevaContrasena;
+	private String repiteContrasena;
 
 	public String iniciarSesion() {
 		
@@ -101,6 +102,19 @@ public class GestionLoginBean implements Serializable {
 		return "PaginaPrincipalAdministrador.xhtml";
 	}
 	
+	public String editarClaveAdministrador() {
+		if(this.getNuevaContrasena().equals(this.getRepiteContrasena())) {
+			this.admin.setClave(this.getNuevaContrasena());
+			System.out.println(this.admin.toString());
+			this.gal.actualizar(this.admin);
+			this.cerrarSesion();
+			return "login.xhtml";
+		}else {
+			System.out.println("Las contraseñas no son iguales");
+			return "PaginaCambiarClave";
+		}
+	}
+	
 	public Administrador validarLoginAdministrador() {
 		List<Administrador> administradores= new ArrayList<Administrador>();
 		administradores=this.gal.getAdministradores();
@@ -111,8 +125,6 @@ public class GestionLoginBean implements Serializable {
 		}
 		return null;
 	}
-	
-	
 	public GestionPacienteLocal getGpl() {
 		return gpl;
 	}
@@ -164,6 +176,22 @@ public class GestionLoginBean implements Serializable {
 
 	public void setAdmin(Administrador admin) {
 		this.admin = admin;
+	}
+
+	public String getNuevaContrasena() {
+		return nuevaContrasena;
+	}
+
+	public void setNuevaContrasena(String nuevaContrasena) {
+		this.nuevaContrasena = nuevaContrasena;
+	}
+
+	public String getRepiteContrasena() {
+		return repiteContrasena;
+	}
+
+	public void setRepiteContrasena(String repiteContrasena) {
+		this.repiteContrasena = repiteContrasena;
 	}
 	
 	
