@@ -68,7 +68,7 @@ public class Administrador {
 	@Override
 	public String toString() {
 		return "Administrador [codigo=" + codigo + ", cedula=" + cedula + ", nombre=" + nombre + ", apellido="
-				+ apellido + ", email=" + email + ", clabe=" + clave + ", rol=" + rol + "]";
+				+ apellido + ", email=" + email + ", clave=" + clave + ", rol=" + rol + "]";
 	}
 	
 	

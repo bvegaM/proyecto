@@ -55,12 +55,16 @@ public class GestionMedicinasBean {
 	
 	public String guardar() {
 		Medicina medicina = new Medicina();
-		medicina.setCodigo(this.gml.getMedicinas().size()+1);
+		if(this.gml.getMedicinas().size()==0) {
+			medicina.setCodigo(this.gml.getMedicinas().size()+1);
+		}else {
+			medicina.setCodigo(this.gml.getMedicinas().get(this.gml.getMedicinas().size()-1).getCodigo()+1);
+		}
 		medicina.setNombre(this.getNombre());
 		medicina.setDescripcion(this.getDescripcion());
 		System.out.println(medicina.toString());
 		this.gml.insertar(medicina);
-		return "medicinas?faces-redirect=true";
+		return "PaginaListarMedicamentos?faces-redirect=true";
 	}
 	
 	public String eliminar(int codigo) {
@@ -68,7 +72,7 @@ public class GestionMedicinasBean {
 		try {
 			this.gml.borrar(codigo);
 			System.out.println("Medicina eliminado");
-			return "medicinas?faces-redirect=true";
+			return "PaginaListarMedicamentos?faces-redirect=true";
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			System.out.println("Error al eliminar");
