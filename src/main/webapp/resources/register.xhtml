@@ -49,7 +49,6 @@
 					</div>
 					<div class="input-group mb-3">
 
-						<h:outputLabel value="#{gestionPacienteBean.validar}" />
 					</div>
 					<div class="input-group mb-3">
 						<h:inputText value="#{gestionPacienteBean.nombre}" pt:type="text"
@@ -62,7 +61,7 @@
 					</div>
 					<div class="input-group mb-3">
 
-						<h:outputLabel value="#{gestionPacienteBean.validar2}" />
+		
 					</div>
 
 					<div class="input-group mb-3">
@@ -97,8 +96,9 @@
 					</div>
 
 					<div class="input-group mb-3">
-						<input type="password" class="form-control"
-							placeholder="Repetir contraseña" />
+						<h:inputText value="#{gestionPacienteBean.clave2}"
+							pt:type="password" class="form-control"
+							pt:placeholder="Repetir Contraseña" />
 						<div class="input-group-append">
 							<div class="input-group-text">
 								<span class="fas fa-lock"></span>
@@ -143,6 +143,8 @@
 							</div>
 						</div>
 					</div>
+					
+					<h:messages globalOnly="true"/>
 
 					<h:commandButton value="Registrar"
 						action="#{gestionPacienteBean.guardarPaciente()}"

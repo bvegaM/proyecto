@@ -5,44 +5,72 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
+import com.sun.org.omg.CORBA.ExceptionDescription;
+
 import Datos.PacienteDAO;
 import Datos.RolDAO;
+import Excepciones.ExceptionDigitalMedical;
+import Excepciones.MetodosVarios;
 import Modelo.Paciente;
 import Modelo.Rol;
 
 @Stateless
 public class GestionPaciente implements GestionPacienteLocal {
-	
+
 	@Inject
 	private PacienteDAO pdao;
 	@Inject
 	private RolDAO rdao;
+	@Inject
+	private MetodosVarios mv;
 
 	@Override
-	public void insertar(Paciente paciente) {
-		// TODO Auto-generated method stub
-		System.out.println(paciente.toString());
-		pdao.insertar(paciente);
+	public void insertar(Paciente paciente) throws ExceptionDigitalMedical {
+		List<Paciente> p = pdao.buscar1Paciente(paciente.getCedula());
+		if (p.isEmpty()) {
+			if (paciente.getCedula().length() == 10) {
+				if (mv.numerico(paciente.getCedula()) == true) {
+					if (mv.soloLetras(paciente.getNombre()) == true & mv.soloLetras(paciente.getApellido()) == true) {
+						if (mv.soloLetras(paciente.getPreguntaSecreta()) == true) {
+							pdao.insertar(paciente);
+						} else {
+							throw new ExceptionDigitalMedical(6);
+						}
+
+					} else {
+						throw new ExceptionDigitalMedical(4);
+					}
+				} else {
+					throw new ExceptionDigitalMedical(3);
+				}
+
+			} else {
+				throw new ExceptionDigitalMedical(2);
+			}
+
+		} else {
+			throw new ExceptionDigitalMedical(1);
+		}
 	}
 
 	@Override
 	public void actualizar(Paciente paciente) {
 		// TODO Auto-generated method stub
 		pdao.actualizar(paciente);
-		
+
 	}
 
 	@Override
 	public void borrar(int codigo) {
 		pdao.borrar(codigo);
-		
+
 	}
 
 	@Override
 	public Paciente leer(int codigo) {
 		// TODO Auto-generated method stub
 		return pdao.leer(codigo);
-		
+
 	}
 
 	@Override
