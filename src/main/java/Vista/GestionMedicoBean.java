@@ -121,7 +121,11 @@ public class GestionMedicoBean {
 	
 	public String guardarMedico() {
 		Medico medico = new Medico();
-		medico.setCodigo(this.gml.getMedicos().size()+1);
+		if(this.gml.getMedicos().size()==0) {
+			medico.setCodigo(this.gml.getMedicos().size()+1);
+		}else {
+			medico.setCodigo(this.gml.getMedicos().get(this.gml.getMedicos().size()-1).getCodigo()+1);
+		}
 		medico.setCedula(this.getCedula());
 		medico.setNombre(this.getNombre());
 		medico.setApellido(this.getApellido());
@@ -153,8 +157,6 @@ public class GestionMedicoBean {
 	}
 	
 	public void loadData() {
-		
-		
 		Medico aux = gml.leer(Integer.parseInt(id));
 		this.setCedula(aux.getCedula());
 		this.setNombre(aux.getNombre());

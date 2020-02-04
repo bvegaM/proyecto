@@ -7,6 +7,7 @@
 		<ui:define name="nombreAdmin">#{gestionLoginBean.nameUser.toUpperCase()}</ui:define>
 		<ui:define name="cedula">#{gestionLoginBean.admin.cedula}</ui:define>
 		<ui:define name="correo">#{gestionLoginBean.email.toLowerCase()}</ui:define>
-		
+		<ui:define name="cerrarSesion"><h:form><h:commandButton styleClass="btn btn-block btn-outline-success" action="#{gestionLoginBean.cerrarSesion()}" value="Cerrar Sesion" /> </h:form>
+		</ui:define>
 		
 </ui:composition>
