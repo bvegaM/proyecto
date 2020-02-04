@@ -46,10 +46,6 @@ public class GestionMedicoBean {
 		this.medicos = gml.getMedicos();
 		this.especialidades = gel.getEspecialidades();
 	}
-	
-	
-	
-	
 	public String getId() {
 		return id;
 	}

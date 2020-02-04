@@ -8,7 +8,6 @@ import javax.persistence.Id;
 public class Especialidad {
 
 	@Id
-	@GeneratedValue
 	private int codigo;
 	
 	private String nombre;

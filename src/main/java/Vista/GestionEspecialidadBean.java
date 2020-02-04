@@ -70,11 +70,16 @@ public class GestionEspecialidadBean {
 
 	public String guardar() {
 		Especialidad especialidad = new Especialidad();
+		if(this.gel.getEspecialidades().size()==0) {
+			especialidad.setCodigo(this.gel.getEspecialidades().size()+1);
+		}else {
+			especialidad.setCodigo(this.gel.getEspecialidades().get(this.gel.getEspecialidades().size()-1).getCodigo()+1);
+		}
 		especialidad.setNombre(this.getNombre());
 		especialidad.setDescripcion(this.getDescripcion());
 		System.out.println(especialidad.toString());
 		this.gel.insertar(especialidad);
-		return "especialidades?faces-redirect=true";
+		return "PaginaListarEspecialidades?faces-redirect=true";
 	}
 	
 	public String eliminar(int codigo) {
@@ -82,7 +87,7 @@ public class GestionEspecialidadBean {
 		try {
 			this.gel.borrar(codigo);
 			System.out.println("Especialidad eliminada");
-			return "especialidades?faces-redirect=true";
+			return "PaginaListarEspecialidades?faces-redirect=true";
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			System.out.println("Error al eliminar");
