@@ -5,6 +5,8 @@
 		template="listarMedicos.xhtml">
 	
 		<ui:define name="nombreAdmin">#{gestionLoginBean.nameUser.toUpperCase()}</ui:define>
+		<ui:define name="cerrarSesion"><h:form><h:commandButton styleClass="btn btn-block btn-outline-success" action="#{gestionLoginBean.cerrarSesion()}" value="Cerrar Sesion" /> </h:form>
+		</ui:define>
 		
 		<ui:define name="listarMedicos">
 			

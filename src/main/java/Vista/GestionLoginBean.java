@@ -57,9 +57,9 @@ public class GestionLoginBean implements Serializable {
 		}else if(administrador != null) {
 			HttpSession session = SessionUtils.getSession();
 			session.setAttribute("username", this.email);
-			this.nameUser=administrador.getNombre()+" "+administrador.getApellido();
 			//comentario para hacer commit
 			this.admin=administrador;
+			this.nameUser=this.admin.getNombre()+" "+this.admin.getApellido();
 			return "PaginaPrincipalAdministrador.xhtml";
 		}
 		
@@ -72,6 +72,7 @@ public class GestionLoginBean implements Serializable {
 		session.invalidate();
 		return "login.xhtml";
 	}
+	
 	
 	public Paciente validarLoginPaciente() {
 		List<Paciente> pacientes = new ArrayList<Paciente>();
@@ -93,6 +94,11 @@ public class GestionLoginBean implements Serializable {
 			}
 		}
 		return null;
+	}
+	
+	public String editarAdministrador() {
+		this.gal.actualizar(this.admin);
+		return "PaginaPrincipalAdministrador.xhtml";
 	}
 	
 	public Administrador validarLoginAdministrador() {
