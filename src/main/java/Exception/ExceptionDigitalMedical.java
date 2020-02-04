@@ -25,6 +25,10 @@ public class ExceptionDigitalMedical extends Exception{
 			this.setMensaje("Las contraseñas deben ser iguales");
 		}else if(id==6) {
 			this.setMensaje("La pregunta secreta debe contener solo letras");
+		}else if(id==7) {
+			this.setMensaje("No puede dejar campos vacios");
+		}else if(id==8) {
+			this.setMensaje("El sexo no puede contener numeros");
 		}
 	}
 	
