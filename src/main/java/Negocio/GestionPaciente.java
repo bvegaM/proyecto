@@ -30,6 +30,7 @@ public class GestionPaciente implements GestionPacienteLocal {
 				if (mv.numerico(paciente.getCedula()) == true) {
 					if (mv.soloLetras(paciente.getNombre()) == true & mv.soloLetras(paciente.getApellido()) == true) {
 						if (mv.soloLetras(paciente.getPreguntaSecreta()) == true) {
+							System.out.println("Hasta aqui llego");
 							pdao.insertar(paciente);
 						} else {
 							throw new ExceptionDigitalMedical(6);
