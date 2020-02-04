@@ -97,8 +97,9 @@
 					</div>
 
 					<div class="input-group mb-3">
-						<input type="password" class="form-control"
-							placeholder="Repetir contraseña" />
+						<h:inputText value="#{gestionPacienteBean.clave2}"
+							pt:type="password" class="form-control"
+							pt:placeholder="Repetir Contraseña" />
 						<div class="input-group-append">
 							<div class="input-group-text">
 								<span class="fas fa-lock"></span>
@@ -144,8 +145,9 @@
 						</div>
 					</div>
 
+					<h:messages globalOnly="true" />
 					<h:commandButton value="Registrar"
-						action="#{gestionPacienteBean.guardarPaciente()}"
+						action="#{gestionPacienteBean.guardarPaciente2()}"
 						class="btn btn-primary btn-block"></h:commandButton>
 
 				</h:form>
