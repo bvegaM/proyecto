@@ -4,27 +4,25 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
-<h:head>
-	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<title>Digital Medical | Medico | Recetas Emitidas</title>
-	<!-- Tell the browser to be responsive to screen width -->
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<title>Digital Medical | Paciente | Inicio</title>
+<!-- Tell the browser to be responsive to screen width -->
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-	<!-- Font Awesome -->
-	<link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css" />
-	<!-- Ionicons -->
-	<link rel="stylesheet"
-		href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
-	<!-- overlayScrollbars -->
-	<link rel="stylesheet" href="dist/css/adminlte.min.css" />
-	<!-- Google Font: Source Sans Pro -->
-	<link
-		href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700"
-		rel="stylesheet" />
-	<link rel="stylesheet" href="estilos.css" />
-
-</h:head>
+<!-- Font Awesome -->
+<link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css" />
+<!-- Ionicons -->
+<link rel="stylesheet"
+	href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
+<!-- overlayScrollbars -->
+<link rel="stylesheet" href="dist/css/adminlte.min.css" />
+<!-- Google Font: Source Sans Pro -->
+<link
+	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700"
+	rel="stylesheet" />
+</head>
 <body class="hold-transition sidebar-mini">
 	<!-- Site wrapper -->
 	<div class="wrapper">
@@ -36,7 +34,7 @@
 				<li class="nav-item"><a class="nav-link" data-widget="pushmenu"
 					href="#"><i class="fas fa-bars"></i></a></li>
 				<li class="nav-item d-none d-sm-inline-block"><a
-					href="index2.xhtml" class="nav-link">Home</a></li>
+					href="index2.html" class="nav-link">Home</a></li>
 				<li class="nav-item d-none d-sm-inline-block"><a href="#"
 					class="nav-link">Contact</a></li>
 			</ul>
@@ -154,7 +152,7 @@
 		<!-- Main Sidebar Container -->
 		<aside class="main-sidebar sidebar-dark-primary elevation-4">
 			<!-- Brand Logo -->
-			<a href="index2.html" class="brand-link"> <img
+			<a href="index2.xhtml" class="brand-link"> <img
 				src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo"
 				class="brand-image img-circle elevation-3" style="opacity: .8" /> <span
 				class="brand-text font-weight-light">Paciente</span>
@@ -219,7 +217,6 @@
 			<!-- /.sidebar -->
 		</aside>
 
-
 		<!-- Content Wrapper. Contains page content -->
 		<div class="content-wrapper">
 			<!-- Content Header (Page header) -->
@@ -227,12 +224,12 @@
 				<div class="container-fluid">
 					<div class="row mb-2">
 						<div class="col-sm-6">
-							<h1>Mis recetas</h1>
+							<h1>Agendar cita</h1>
 						</div>
 						<div class="col-sm-6">
 							<ol class="breadcrumb float-sm-right">
 								<li class="breadcrumb-item"><a href="index2.xhtml">Inicio</a></li>
-								<li class="breadcrumb-item active">Mis recetas</li>
+								<li class="breadcrumb-item active">Mis citas</li>
 							</ol>
 						</div>
 					</div>
@@ -243,10 +240,11 @@
 			<!-- Main content -->
 			<section class="content">
 
+
 				<!-- Default box -->
 				<div class="card">
 					<div class="card-header">
-						<h3 class="card-title">Recetas Emitidas</h3>
+						<h3 class="card-title">Mis Citas</h3>
 
 						<div class="card-tools">
 							<button type="button" class="btn btn-tool"
@@ -262,30 +260,39 @@
 					</div>
 					<div class="card-body">
 
-						<h:form id="formListaReceta">
+						<h:form>
 							<div class="row">
 								<div class="col-12 table-responsive">
-									<h:dataTable id="recetas" var="_recetas"
-										value="#{gestionRecetaBean.obtenerRecetasPaciente(gestionLoginBean.email)}"
+									<h:dataTable var="_citas"
+										value="#{gestionIndexPacienteBean.obtenerCitas(gestionLoginBean.email)}"
 										styleClass="table table-striped">
 										<h:column>
 											<f:facet name="header">Codigo</f:facet>
-							#{_recetas.codigo}
+							#{_citas.codigo}
 						</h:column>
 										<h:column>
 											<f:facet name="header">Medico</f:facet>
-							#{_recetas.medico.nombre}
+							#{_citas.medico.nombre}
 						</h:column>
 										<h:column>
-											<f:facet name="header">Fecha de emision</f:facet>
-							#{_recetas.fechaEmision}
+											<f:facet name="header">Fecha</f:facet>
+							#{_citas.fecha}
+						</h:column>
+										<h:column>
+											<f:facet name="header">Hora</f:facet>
+							#{_citas.hora}
+						</h:column>
+										<h:column>
+											<f:facet name="header">Estado</f:facet>
+							#{_citas.estado}
 						</h:column>
 
 										<h:column>
 											<f:facet name="header">Acciones</f:facet>
 											<div class="btn-group btn-group-sm">
-												<h:commandButton action="#{gestionRecetaBean.ver(_recetas)}"
-													styleClass="btn btn-info" value="Ver" />
+												<h:commandButton
+													action="#{gestionIndexPacienteBean.eliminar(_citas.codigo)}"
+													styleClass="btn btn-danger" value="Eliminar" />
 											</div>
 
 										</h:column>
@@ -295,20 +302,19 @@
 						</h:form>
 
 
-
 					</div>
 					<!-- /.card-body -->
-					<div class="card-footer"></div>
+					<div class="card-footer">Footer</div>
 					<!-- /.card-footer-->
 				</div>
 				<!-- /.card -->
+
 
 
 			</section>
 			<!-- /.content -->
 		</div>
 		<!-- /.content-wrapper -->
-
 
 		<footer class="main-footer">
 			<div class="float-right d-none d-sm-block">
