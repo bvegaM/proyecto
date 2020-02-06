@@ -1,8 +1,10 @@
 package Vista;
 
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Stack;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -33,6 +35,7 @@ public class GestionMedicoBean {
 	
 	private List<Medico> medicos;
 	private List<Especialidad> especialidades;
+	private List<Especialidad> especialidadesEditar;
 	
 	private String cedula;
 	private String nombre;
@@ -46,6 +49,7 @@ public class GestionMedicoBean {
 	public void init() {
 		this.medicos = gml.getMedicos();
 		this.especialidades = gel.getEspecialidades();
+		this.especialidadesEditar=new ArrayList<Especialidad>();
 	}
 	public String getId() {
 		return id;
@@ -141,7 +145,12 @@ public class GestionMedicoBean {
 	public void setEspecialidad(Especialidad especialidad) {
 		this.especialidad = especialidad;
 	}
-
+	public List<Especialidad> getEspecialidadesEditar() {
+		return especialidadesEditar;
+	}
+	public void setEspecialidadesEditar(List<Especialidad> especialidadesEditar) {
+		this.especialidadesEditar = especialidadesEditar;
+	}
 	public String guardarMedico() {
 		Medico medico = new Medico();
 		if(this.gml.getMedicos().size()==0) {
@@ -177,7 +186,7 @@ public class GestionMedicoBean {
 	
 	public String editar(Medico medico) {
 		
-		return "editarMedico?faces-redirect=true&id="+medico.getCodigo();
+		return "PaginaEditarMedico?faces-redirect=true&id="+medico.getCodigo();
 	}
 	
 	public String MedicoPorEspecialidad(Especialidad medico) {
@@ -201,6 +210,14 @@ public class GestionMedicoBean {
 		this.setEmail(aux.getEmail());
 		this.setClave(aux.getClave());
 		this.setFechaNac(aux.getFechaNac());
+		List<Especialidad> secundaria=this.getEspecialidades();
+		Especialidad indice=secundaria.get(aux.getEspecialidad().getCodigo()-1);
+		secundaria.remove(indice.getCodigo()-1);
+		this.especialidadesEditar.add(indice);
+		for(int i=0;i<secundaria.size();i++) {
+			this.especialidadesEditar.add(secundaria.get(i));
+		}
+		this.setEspecialidad(aux.getEspecialidad());
 	}
 	
 	public String editarMedico() {
@@ -212,8 +229,10 @@ public class GestionMedicoBean {
 		medicoActualizado.setEmail(this.getEmail());
 		medicoActualizado.setClave(this.getClave());
 		medicoActualizado.setFechaNac(this.getFechaNac());
+		medicoActualizado.setEspecialidad(this.especialidad);
+		System.out.println(medicoActualizado.toString());
 		this.gml.actualizar(medicoActualizado);
-		return "crearMedico?faces-redirect=true";
+		return "PaginaListarMedicos?faces-redirect=true";
 	}
 	
 	

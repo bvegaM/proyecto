@@ -19,6 +19,7 @@ public class GestionEspecialidadBean {
 	
 	private List<Especialidad> especialidades;
 	
+	private String id;
 	private String nombre;
 	private String descripcion;
 	
@@ -67,6 +68,15 @@ public class GestionEspecialidadBean {
 		this.descripcion = descripcion;
 	}
 
+	public String getId() {
+		return id;
+	}
+
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
 
 	public String guardar() {
 		Especialidad especialidad = new Especialidad();
@@ -96,7 +106,23 @@ public class GestionEspecialidadBean {
 		return null;
 	}
 	
+	public String editar(Especialidad especialidad) {
+		return "PaginaEditarEspecialidad?faces-redirect=true&id="+especialidad.getCodigo();
+	}
 	
+	public void loadData() {
+		Especialidad especialidad=this.gel.leer(Integer.parseInt(id));
+		this.setNombre(especialidad.getNombre());
+		this.setDescripcion(especialidad.getDescripcion());
+	}
 	
+	public String editarEspecialidad() {
+		Especialidad actualizada=new Especialidad();
+		actualizada.setCodigo(Integer.parseInt(this.getId()));
+		actualizada.setNombre(this.getNombre());
+		actualizada.setDescripcion(this.getDescripcion());
+		this.gel.actualizar(actualizada);
+		return "PaginaListarEspecialidades?faces-redirect=true";
+	}
 
 }

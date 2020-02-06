@@ -19,6 +19,7 @@ public class GestionMedicinasBean {
 	
 	private List<Medicina> medicinas;
 	
+	private String id;
 	private String nombre;
 	private String descripcion;
 	
@@ -52,7 +53,14 @@ public class GestionMedicinasBean {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-	
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+
+
 	public String guardar() {
 		Medicina medicina = new Medicina();
 		if(this.gml.getMedicinas().size()==0) {
@@ -81,7 +89,24 @@ public class GestionMedicinasBean {
 		return null;
 	}
 	
+	public String editar(Medicina medicina) {
+		return "PaginaEditarMedicamento?faces-redirect=true&id="+medicina.getCodigo();
+	}
 	
+	public void loadData() {
+		Medicina medicina=this.gml.leer(Integer.parseInt(id));
+		this.setNombre(medicina.getNombre());
+		this.setDescripcion(medicina.getDescripcion());
+		
+	}
 	
+	public String editarMedicina() {
+		Medicina actualizada=new Medicina();
+		actualizada.setCodigo(Integer.parseInt(this.getId()));
+		actualizada.setNombre(this.getNombre());
+		actualizada.setDescripcion(this.getDescripcion());
+		this.gml.actualizar(actualizada);
+		return "PaginaListarMedicamentos?faces-redirect=true";
+	}
 
 }
