@@ -15,4 +15,5 @@ public interface GestionMedicoLocal {
 	public Medico leer(int codigo);
 	public List<Medico> getMedicos();
 	public Medico buscarMedicoxEmail(String email);
+	public List<Medico> getMedicoPorEspecialidad(int filtro);
 }

@@ -11,6 +11,7 @@ import javax.inject.Inject;
 
 import Modelo.Especialidad;
 import Modelo.Medico;
+import Modelo.Receta;
 import Negocio.GestionEspecialidadLocal;
 import Negocio.GestionMedicoLocal;
 import Negocio.GestionRolLocal;
@@ -177,6 +178,19 @@ public class GestionMedicoBean {
 	public String editar(Medico medico) {
 		
 		return "editarMedico?faces-redirect=true&id="+medico.getCodigo();
+	}
+	
+	public String MedicoPorEspecialidad(Especialidad medico) {
+		return "ListarEspecialidadMedico?faces-redirect=true&id="+medico.getCodigo();
+	}
+	
+	public void loadMedico() {
+		System.out.println("load data " + id);
+		if(id==null)
+			return;
+		List<Medico> aux = gml.getMedicoPorEspecialidad(Integer.parseInt(id));
+		this.medicos=aux;
+		
 	}
 	
 	public void loadData() {
