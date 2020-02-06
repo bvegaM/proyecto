@@ -37,6 +37,7 @@ public class GestionLoginBean implements Serializable {
 	private String nameUser;
 	private Administrador admin;
 	private Medico medico;
+	private Paciente paciente;
 	private String nuevaContrasena;
 	private String repiteContrasena;
 
@@ -49,8 +50,9 @@ public class GestionLoginBean implements Serializable {
 		if(paciente != null) {
 			HttpSession session = SessionUtils.getSession();
 			session.setAttribute("username", this.email);
-			this.nameUser=paciente.getNombre()+" "+paciente.getApellido();
-			return "index2.xhtml";
+			this.paciente=paciente;
+			this.nameUser=this.paciente.getNombre()+" "+this.paciente.getApellido();
+			return "paginaPrincipalPaciente.xhtml";
 		}else if(medico != null) {
 			HttpSession session = SessionUtils.getSession();
 			session.setAttribute("username", this.email);
@@ -222,6 +224,14 @@ public class GestionLoginBean implements Serializable {
 
 	public void setMedico(Medico medico) {
 		this.medico = medico;
+	}
+
+	public Paciente getPaciente() {
+		return paciente;
+	}
+
+	public void setPaciente(Paciente paciente) {
+		this.paciente = paciente;
 	}
 	
 	
