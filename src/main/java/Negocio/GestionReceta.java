@@ -6,6 +6,7 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 import Datos.RecetaDAO;
+import Modelo.Medico;
 import Modelo.Receta;
 
 @Stateless
@@ -44,6 +45,12 @@ public class GestionReceta implements GestionRecetaLocal {
 	public List<Receta> getRecetas() {
 		// TODO Auto-generated method stub
 		return this.rdao.getRecetas();
+	}
+
+	@Override
+	public List<Receta> obtenerRecetasMedico(Medico medico) {
+		// TODO Auto-generated method stub
+		return this.rdao.obtenerRecetasMedico(medico);
 	}
 
 }

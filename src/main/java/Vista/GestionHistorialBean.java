@@ -157,21 +157,44 @@ public class GestionHistorialBean {
 		this.historial.setFecha(fecha);
 		System.out.println(historial.toString());
 		this.ghl.insertar(historial);
-		return "listaHistorialesMedico?faces-redirect=true";
+		return "PaginaListarHistorialesMedico?faces-redirect=true";
 	}
 	
 	
 	
 	
-	public List<Historial> obtenerHistorialesMedico(String email){
-		System.out.println(email);
-		List<Historial> aux= new ArrayList<Historial>();
-		for(Historial hi: historiales) {
-			if(hi.getMedico().getEmail().equals(email)) {
-				aux.add(hi);
-			}
-		}
-		return aux;
+	public List<Historial> obtenerHistorialesMedico(Medico medico){
+		return this.ghl.obteneHistorialesMedico(medico);
+	}
+	
+	public String eliminar(int codigo) {
+		
+		try {
+			this.ghl.borrar(codigo);
+			System.out.println("Historial eliminado");
+			return "PaginaListarHistorialesMedico?faces-redirect=true";
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			System.out.println("Error al eliminar");
+			e.printStackTrace();			
+		}		
+		return null;
+	}
+	
+	public String editarHistorial() {
+		this.ghl.actualizar(this.historial);
+		return "PaginaListarHistorialesMedico?faces-redirect=true";
+	}
+	
+	public String editar(Historial h) {
+		return "editarHistorialesMedico?faces-redirect=true&id="+h.getCodigo();
+	}
+	
+	public void loadData() {
+		System.out.println("load data " + id);
+		if(id==null)
+			return;
+		this.historial = this.ghl.leer(Integer.parseInt(id));
 	}
 	
 	

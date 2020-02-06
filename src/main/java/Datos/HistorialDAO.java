@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import Modelo.Historial;
+import Modelo.Medico;
 
 @Stateless
 public class HistorialDAO {
@@ -38,6 +39,13 @@ public class HistorialDAO {
 		return listado;
 	}
 	
+	public List<Historial> obtenerHistorialesMedico(Medico medico){
+		String jpql = "SELECT h FROM Historial h WHERE h.medico = :medico";
+		Query query = em.createQuery(jpql, Historial.class);
+		query.setParameter("medico", medico);
+		List<Historial> listado = query.getResultList();
+		return listado;
+	}
 	
 	
 }
