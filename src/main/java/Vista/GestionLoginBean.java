@@ -99,6 +99,7 @@ public class GestionLoginBean implements Serializable {
 	
 	public String editarAdministrador() {
 		this.gal.actualizar(this.admin);
+		this.nameUser=this.admin.getNombre()+" "+this.admin.getApellido();
 		return "PaginaPrincipalAdministrador.xhtml";
 	}
 	
