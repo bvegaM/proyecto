@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
+import Modelo.Medico;
 import Modelo.Receta;
 
 @Stateless
@@ -35,6 +36,14 @@ public class RecetaDAO {
 		String jpql = "SELECT r FROM Receta r";
 		Query query = em.createQuery(jpql, Receta.class);
 		List<Receta> listado = query.getResultList();		
+		return listado;
+	}
+	
+	public List<Receta> obtenerRecetasMedico(Medico medico){
+		String jpql = "SELECT r FROM Receta r WHERE r.medico = :medico";
+		Query query = em.createQuery(jpql, Receta.class);
+		query.setParameter("medico", medico);
+		List<Receta> listado = query.getResultList();
 		return listado;
 	}
 	

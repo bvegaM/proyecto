@@ -118,7 +118,7 @@ public class GestionRecetaBean {
 		this.receta.setMedico(this.gmel.buscarMedicoxEmail(email));
 		System.out.println(receta.toString());
 		this.grl.insertar(receta);
-		return "crearReceta?faces-redirect=true";
+		return "PaginaListarRecetasMedico?faces-redirect=true";
 	}
 	
 	
@@ -128,15 +128,8 @@ public class GestionRecetaBean {
 		return null;
 	}
 	
-	public List<Receta> obtenerRecetasMedico(String email){
-		System.out.println(email);
-		List<Receta> aux= new ArrayList<Receta>();
-		for(Receta re: recetas) {
-			if(re.getMedico().getEmail().equals(email)) {
-				aux.add(re);
-			}
-		}
-		return aux;
+	public List<Receta> obtenerRecetasMedico(Medico medico){
+		return this.grl.obtenerRecetasMedico(medico);
 	}
 	
 	public List<Receta> obtenerRecetasPaciente(String email){
@@ -152,11 +145,11 @@ public class GestionRecetaBean {
 	
 	public String editarReceta() {
 		this.grl.actualizar(this.receta);
-		return "listaRecetasMedico?faces-redirect=true";
+		return "PaginaListarRecetasMedico?faces-redirect=true";
 	}
 	
 	public String editar(Receta r) {
-		return "editarReceta?faces-redirect=true&id="+r.getCodigo();
+		return "editarRecetasMedico?faces-redirect=true&id="+r.getCodigo();
 	}
 	
 	public void loadData() {
@@ -175,7 +168,7 @@ public class GestionRecetaBean {
 		try {
 			this.grl.borrar(codigo);
 			System.out.println("Receta eliminado");
-			return "listaRecetasMedico?faces-redirect=true";
+			return "PaginaListarRecetasMedico?faces-redirect=true";
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			System.out.println("Error al eliminar");

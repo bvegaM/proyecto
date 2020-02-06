@@ -7,6 +7,7 @@ import javax.inject.Inject;
 
 import Datos.CitaDAO;
 import Modelo.Cita;
+import Modelo.Medico;
 
 @Stateless
 public class GestionCita implements GestionCitaLocal {
@@ -44,6 +45,14 @@ public class GestionCita implements GestionCitaLocal {
 	public List<Cita> getCitas() {
 		// TODO Auto-generated method stub
 		return this.cdao.getCitas();
+	}
+	
+	public List<Cita> obtenerCitasPendientes(Medico medico){
+		return this.cdao.obtenerCitasPendientes(medico);
+	}
+	
+	public List<Cita> obtenerCitasAgendadas(Medico medico){
+		return this.cdao.obtenerCitasAgendadas(medico);
 	}
 
 }

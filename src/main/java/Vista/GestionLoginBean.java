@@ -36,6 +36,7 @@ public class GestionLoginBean implements Serializable {
 	private String user;
 	private String nameUser;
 	private Administrador admin;
+	private Medico medico;
 	private String nuevaContrasena;
 	private String repiteContrasena;
 
@@ -53,8 +54,9 @@ public class GestionLoginBean implements Serializable {
 		}else if(medico != null) {
 			HttpSession session = SessionUtils.getSession();
 			session.setAttribute("username", this.email);
+			this.medico=medico;
 			this.nameUser=medico.getNombre()+" "+medico.getApellido();
-			return "index.xhtml";
+			return "PaginaPrincipalMedico.xhtml";
 		}else if(administrador != null) {
 			HttpSession session = SessionUtils.getSession();
 			session.setAttribute("username", this.email);
@@ -103,6 +105,12 @@ public class GestionLoginBean implements Serializable {
 		return "PaginaPrincipalAdministrador.xhtml";
 	}
 	
+	public String editarMedico() {
+		this.gml.actualizar(this.medico);
+		this.nameUser=medico.getNombre()+" "+medico.getApellido();
+		return "PaginaPrincipalMedico.xhtml";
+	}
+	
 	public String editarClaveAdministrador() {
 		if(this.getNuevaContrasena().equals(this.getRepiteContrasena())) {
 			this.admin.setClave(this.getNuevaContrasena());
@@ -113,6 +121,19 @@ public class GestionLoginBean implements Serializable {
 		}else {
 			System.out.println("Las contraseñas no son iguales");
 			return "PaginaCambiarClave";
+		}
+	}
+	
+	public String editarClaveMedico() {
+		if(this.getNuevaContrasena().equals(this.getRepiteContrasena())) {
+			this.medico.setClave(this.getNuevaContrasena());
+			System.out.println(this.medico.toString());
+			this.gml.actualizar(this.medico);
+			this.cerrarSesion();
+			return "login.xhtml";
+		}else {
+			System.out.println("Las contraseñas no son iguales");
+			return "PaginaCambiarClaveMedico";
 		}
 	}
 	
@@ -193,6 +214,14 @@ public class GestionLoginBean implements Serializable {
 
 	public void setRepiteContrasena(String repiteContrasena) {
 		this.repiteContrasena = repiteContrasena;
+	}
+
+	public Medico getMedico() {
+		return medico;
+	}
+
+	public void setMedico(Medico medico) {
+		this.medico = medico;
 	}
 	
 	
