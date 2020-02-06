@@ -2,6 +2,7 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
 		template="listarMedicos.xhtml">
 	
 		<ui:define name="nombreAdmin">#{gestionLoginBean.nameUser.toUpperCase()}</ui:define>
@@ -36,7 +37,7 @@
 							#{_medicos.email}
 						</h:column>
 						<h:column>
-							<f:facet name="header">Clave</f:facet>
+							<f:facet name="header" >Clave</f:facet>
 							#{_medicos.clave}
 						</h:column>
 						<h:column>

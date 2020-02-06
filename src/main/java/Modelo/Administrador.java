@@ -64,7 +64,6 @@ public class Administrador {
 	public void setRol(Rol rol) {
 		this.rol = rol;
 	}
-	
 	@Override
 	public String toString() {
 		return "Administrador [codigo=" + codigo + ", cedula=" + cedula + ", nombre=" + nombre + ", apellido="

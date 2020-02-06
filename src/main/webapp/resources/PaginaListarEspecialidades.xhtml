@@ -29,7 +29,7 @@
 						<h:column>
 							<f:facet name="header">Acciones</f:facet>
 							<div class="btn-group btn-group-sm">
-								<h:commandButton action="#" styleClass="btn btn-info" value="Editar" />
+								<h:commandButton action="#{gestionEspecialidadBean.editar(_especialidades)}" styleClass="btn btn-info" value="Editar" />
 								<h:commandButton action="#{gestionEspecialidadBean.eliminar(_especialidades.codigo)}" styleClass="btn btn-danger" value="Eliminar" />
 							</div>
 						</h:column>
