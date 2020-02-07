@@ -1,0 +1,72 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+		template="verHistoriales.xhtml">
+
+		<f:metadata>
+        	<f:viewParam id="id" name="id" value="#{gestionHistorialBean.id}"/>
+        	<f:viewAction action="#{gestionHistorialBean.loadData()}" />
+ 		</f:metadata>
+
+		<ui:define name="nombreAdmin">#{gestionLoginBean.nameUser.toUpperCase()}</ui:define>
+		<ui:define name="cerrarSesion"><h:form><h:commandButton styleClass="btn btn-block btn-outline-success" action="#{gestionLoginBean.cerrarSesion()}" value="Cerrar Sesion" /> </h:form>
+		</ui:define>
+		
+		<ui:define name="verHistorial">
+		<div class="card card-info">
+        	<div class="card-header">
+          		<h3 class="card-title">Datos del Historial Médico</h3>
+		    	<div class="card-tools">
+		            <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+		              <i class="fas fa-minus"></i></button>
+		            <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
+		              <i class="fas fa-times"></i></button>
+		         </div>      
+        	</div>
+        	<div class="card-body">
+        		<h:form>
+	        		<h:outputLabel value="Paciente:" />
+	        		<div class="input-group mb-3">
+	          			<h:outputText value="#{gestionHistorialBean.historial.paciente.nombre.toUpperCase()} #{gestionHistorialBean.historial.paciente.apellido.toUpperCase()}"  class="form-control" pt:placeholder="Paciente:" ></h:outputText>
+	        		</div>
+	        		<h:outputLabel value="Médico que creo el historial:" />
+	        		<div class="input-group mb-3">
+	          			<h:outputText value="#{gestionHistorialBean.historial.medico.nombre.toUpperCase()} #{gestionHistorialBean.historial.medico.apellido.toUpperCase()}" class="form-control" pt:placeholder="Paciente:" ></h:outputText>
+	        		</div>     		
+	        		<h:outputLabel value="Motivo de consulta:" />
+	        		<div class="input-group mb-3">
+	          			<h:outputText  value="#{gestionHistorialBean.historial.motivoConsulta.toUpperCase()}" class="form-control"></h:outputText>
+	        		</div>
+	        		<h:outputLabel value="Diagnostico:" />
+	        		<div class="input-group mb-3">
+	          			<h:outputText  value="#{gestionHistorialBean.historial.diagnostico.toUpperCase()}" class="form-control"></h:outputText>
+	        		</div>
+	        		<h:outputLabel value="Tratamiento:" />
+	        		<div class="input-group mb-3">
+	          			<h:outputText  value="#{gestionHistorialBean.historial.tratamiento.toUpperCase()}" class="form-control"></h:outputText>
+	        		</div>
+	        		<h3>Antecedentes Clinicos</h3>
+	        		<h:outputLabel value="Enfermedades:" />
+	        		<div class="input-group mb-3">
+	          			<h:outputText  value="#{gestionHistorialBean.historial.enfermedades.toUpperCase()}" class="form-control"></h:outputText>
+	        		</div>
+	        		<h:outputLabel value="Medicamentos que toma actualmente:" />
+	        		<div class="input-group mb-3">
+	          			<h:outputText  value="#{gestionHistorialBean.historial.medicamentosActuales.toUpperCase()}" class="form-control"></h:outputText>
+	        		</div>
+	        		<h:outputLabel value="Antecedentes enfermedades cronicas:" />
+	        		<div class="input-group mb-3">
+	          			<h:outputText  value="#{gestionHistorialBean.historial.antecedentesEnfermedades.toUpperCase()}" class="form-control"></h:outputText>
+	        		</div>
+	        		<h:outputLabel value="Alergias:" />
+	        		<div class="input-group mb-3">
+	          			<h:outputText  value="#{gestionHistorialBean.historial.alergias.toUpperCase()}" class="form-control"></h:outputText>
+	        		</div>
+        		</h:form>        	 
+        	</div>
+        </div>
+		</ui:define>
+		
+</ui:composition>

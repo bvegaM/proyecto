@@ -163,6 +163,10 @@ public class GestionRecetaBean {
 		return "verReceta?faces-redirect=true&id="+r.getCodigo();
 	}
 	
+	public String verAdmin(Receta r) {
+		return "PaginaVerReceta?faces-redirect=true&id="+r.getCodigo();
+	}
+	
 	public String eliminar(int codigo) {
 		
 		try {

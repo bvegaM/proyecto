@@ -1,0 +1,69 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+		template="verRecetas.xhtml">
+
+		<f:metadata>
+        	<f:viewParam id="id" name="id" value="#{gestionRecetaBean.id}"/>
+        	<f:viewAction action="#{gestionRecetaBean.loadData()}" />
+ 		</f:metadata>
+
+		<ui:define name="nombreAdmin">#{gestionLoginBean.nameUser.toUpperCase()}</ui:define>
+		<ui:define name="cerrarSesion"><h:form><h:commandButton styleClass="btn btn-block btn-outline-success" action="#{gestionLoginBean.cerrarSesion()}" value="Cerrar Sesion" /> </h:form>
+		</ui:define>
+		
+		<ui:define name="verReceta">
+			<div class="card card-info">
+        <div class="card-header">
+          <h3 class="card-title">Datos de la receta</h3>
+
+          <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+              <i class="fas fa-minus"></i></button>
+            <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
+              <i class="fas fa-times"></i></button>
+          </div>
+        </div>
+        <div class="card-body">
+        	
+        	<h:form id="form">
+                <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Fecha de Emisión</label>
+                    <div class="col-sm-10">
+                      <h:outputText value="#{gestionRecetaBean.receta.fechaEmision}" class="form-control" pt:placeholder="Fecha:" ><f:convertDateTime pattern="yyyy/MM/dd"/></h:outputText>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Nombre del paciente</label>
+                    <div class="col-sm-10">
+                      <h:outputText disabled="true" value="#{gestionRecetaBean.receta.paciente.nombre.toUpperCase()} #{gestionRecetaBean.receta.paciente.apellido.toUpperCase()}" class="form-control" pt:placeholder="Paciente:" ></h:outputText>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Nombre del medico</label>
+                    <div class="col-sm-10">
+                      <h:outputText disabled="true" value="#{gestionRecetaBean.receta.medico.nombre.toUpperCase()} #{gestionRecetaBean.receta.medico.apellido.toUpperCase()}" class="form-control" pt:placeholder="Paciente:" ></h:outputText>
+                    </div>
+                </div>                 	
+              	<h:dataTable style="width:100%" var="_detalle" value="#{gestionRecetaBean.receta.detalle}" id="tblDetalle">
+              		<h:column>
+              			<f:facet name="header">Medicamentos</f:facet>
+              			<h:outputText styleClass="form-control input-sm" value="#{_detalle.medicina.nombre.toUpperCase()}" ></h:outputText>
+              		</h:column>
+              		<h:column>
+              			<f:facet name="header">Dosis</f:facet>
+              			<h:outputText styleClass="form-control input-sm" value="#{_detalle.dosis.toUpperCase()}" />
+              		</h:column>
+              	</h:dataTable>
+        	</h:form>
+        	
+        	 
+        </div>
+      </div>
+		
+		
+		</ui:define>
+		
+</ui:composition>

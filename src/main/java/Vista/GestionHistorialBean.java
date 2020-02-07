@@ -197,6 +197,9 @@ public class GestionHistorialBean {
 		this.historial = this.ghl.leer(Integer.parseInt(id));
 	}
 	
+	public String verHistorial(Historial h) {
+		return "PaginaVerHistorial?faces-redirect=true&id="+h.getCodigo();
+	}
 	
 
 }
