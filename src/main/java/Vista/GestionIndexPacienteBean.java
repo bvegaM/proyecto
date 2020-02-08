@@ -10,9 +10,11 @@ import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 
 import Modelo.Cita;
+import Modelo.Historial;
 import Modelo.Medico;
 import Modelo.Paciente;
 import Negocio.GestionCitaLocal;
+import Negocio.GestionHistorialLocal;
 import Negocio.GestionMedicoLocal;
 import Negocio.GestionPacienteLocal;
 
@@ -29,6 +31,8 @@ public class GestionIndexPacienteBean {
 	
 	@Inject
 	private GestionPacienteLocal gpl;
+	@Inject
+	private GestionHistorialLocal ghl;
 	
 	
 	private Medico medico;
@@ -37,6 +41,7 @@ public class GestionIndexPacienteBean {
 	
 	private List<Medico> medicos;
 	private List<Cita> citas;
+	private List<Historial> historiales;
 	
 	@PostConstruct
 	public void init() {
@@ -45,6 +50,32 @@ public class GestionIndexPacienteBean {
 		
 	}
 	
+	
+	
+	public GestionHistorialLocal getGhl() {
+		return ghl;
+	}
+
+
+
+	public void setGhl(GestionHistorialLocal ghl) {
+		this.ghl = ghl;
+	}
+
+
+
+	public List<Historial> getHistoriales() {
+		return historiales;
+	}
+
+
+
+	public void setHistoriales(List<Historial> historiales) {
+		this.historiales = historiales;
+	}
+
+
+
 	public List<Medico> getMedicos() {
 		return medicos;
 	}
@@ -161,5 +192,18 @@ public class GestionIndexPacienteBean {
 		}
 		return aux;
 	}
+	
+	public List<Historial> obtenerHistoriales(String email){
+		System.out.println(email);
+		List<Historial> aux= new ArrayList<Historial>();
+		this.historiales= this.ghl.getHistoriales();
+		for(Historial ci: historiales) {
+			if(ci.getPaciente().getEmail().equals(email)) {
+				aux.add(ci);
+			}
+		}
+		return aux;
+	}
+
 
 }

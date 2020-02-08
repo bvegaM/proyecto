@@ -131,6 +131,10 @@ public class Medico {
 				+ ", direcciones=" + direcciones + ", fechaNac=" + fechaNac + ", especialidad=" + especialidad + "]";
 	}
 	
+	public String toString2() {
+		return nombre + " "+ apellido;
+	}
+	
 	
 	
 }
