@@ -1,6 +1,8 @@
 package Vista;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -21,6 +23,8 @@ import Negocio.GestionRecetaLocal;
 @ManagedBean
 @ViewScoped
 public class GestionRecetaBean {
+	
+	private String fecha;
 	
 	@Inject
 	private GestionRecetaLocal grl;
@@ -57,6 +61,18 @@ public class GestionRecetaBean {
 	
 	
 	
+	public String getFecha() {
+		return fecha;
+	}
+
+
+
+	public void setFecha(String fecha) {
+		this.fecha = fecha;
+	}
+
+
+
 	public String getId() {
 		return id;
 	}
@@ -128,11 +144,22 @@ public class GestionRecetaBean {
 
 
 	public String guardar(String email) {
-		this.receta.setCodigo(this.grl.getRecetas().size()+1);
-		this.receta.setMedico(this.gmel.buscarMedicoxEmail(email));
-		System.out.println(receta.toString());
-		this.grl.insertar(receta);
-		return "PaginaListarRecetasMedico?faces-redirect=true";
+		try {
+			SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+			this.receta.setCodigo(this.grl.getRecetas().size()+1);
+			this.receta.setMedico(this.gmel.buscarMedicoxEmail(email));
+			Date fecha=formato.parse(this.fecha);
+			this.receta.setFechaEmision(fecha);
+			System.out.println(fecha);
+			System.out.println(receta.toString());
+			this.grl.insertar(receta);
+			return "PaginaListarRecetasMedico?faces-redirect=true";
+		}catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e.getMessage());
+			return "Hola";
+		}
+		
 	}
 	
 	

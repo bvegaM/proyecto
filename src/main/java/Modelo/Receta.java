@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Receta {
@@ -24,6 +26,7 @@ public class Receta {
 	@OneToOne
 	private Medico medico;
 	
+	@Temporal(TemporalType.DATE)
 	private Date fechaEmision;
 	
 	@OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
