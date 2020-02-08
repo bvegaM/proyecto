@@ -57,12 +57,26 @@ public class GestionIndexMedicoBean {
 		return "PaginaListarCitasMedico?faces-redirect=true";
 	}
 	
+	public String citaAtendida(Cita cita) {
+		cita.setEstado("Atendida");
+		this.gcl.actualizar(cita);
+		return "PaginaListarCitasMedico?faces-redirect=true";
+	}
+	
 	public List<Cita> obtenerCitasPendientes(Medico medico){
 		return this.gcl.obtenerCitasPendientes(medico);
 	}
 	
 	public List<Cita> obtenerCitasAgendadas(Medico medico){
 		return this.gcl.obtenerCitasAgendadas(medico);
+	}
+	
+	public List<Cita> obtenerCitasAtendidas(Medico medico){
+		return this.gcl.obtenerCitasAtendidas(medico);
+	}
+	
+	public String facturar() {
+		return "factura?faces-redirect=true";
 	}
 
 }

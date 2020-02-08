@@ -65,7 +65,7 @@
     </ul>
     <ul class="navbar-nav ml-auto">
       <li class="nav-item">
-        <ui:insert name="cerrarSesion"></ui:insert>
+        <h:form><h:commandButton styleClass="btn btn-block btn-outline-success" action="#{gestionLoginBean.cerrarSesion()}" value="Cerrar Sesion" /> </h:form>
       </li>
     </ul>
     <!-- Right navbar links -->
@@ -86,7 +86,7 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="info">
-          <a href="PaginaEditarPerfil.xhtml" class="d-block"><ui:insert name="nombreMedico"></ui:insert></a>
+          <a href="PaginaEditarPerfil.xhtml" class="d-block">#{gestionLoginBean.nameUser.toUpperCase()}</a>
         </div>
       </div>
 

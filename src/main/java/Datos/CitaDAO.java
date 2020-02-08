@@ -57,5 +57,14 @@ public class CitaDAO {
 		return listado;
 	}
 	
+	public List<Cita> obtenerCitasAtendidas(Medico medico){
+		String jpql = "SELECT c FROM Cita c WHERE c.medico = :medico and c.estado = :estado";
+		Query query = em.createQuery(jpql, Cita.class);
+		query.setParameter("medico", medico);
+		query.setParameter("estado", "Atendida");
+		List<Cita> listado = query.getResultList();
+		return listado;
+	}
+	
 	
 }

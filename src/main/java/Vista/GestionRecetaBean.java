@@ -36,6 +36,7 @@ public class GestionRecetaBean {
 	
 	
 	private String id;
+	private String codigoPaciente;
 	
 	private Receta receta;
 	private List<Receta> recetas;
@@ -62,6 +63,19 @@ public class GestionRecetaBean {
 	public void setId(String id) {
 		this.id = id;
 	}
+	
+	public String getCodigoPaciente() {
+		return codigoPaciente;
+	}
+
+
+
+	public void setCodigoPaciente(String codigoPaciente) {
+		this.codigoPaciente = codigoPaciente;
+	}
+
+
+
 	public GestionRecetaLocal getGrl() {
 		return grl;
 	}
@@ -179,6 +193,15 @@ public class GestionRecetaBean {
 			e.printStackTrace();			
 		}		
 		return null;
+	}
+	
+	public String recetar(Paciente p) {
+		return "crearRecetasMedicoDesdeCita?faces-redirect=true&id="+p.getCodigo();
+	}
+	
+	public void cargarPaciente() {
+		this.receta = new Receta();
+		this.receta.setPaciente(this.gpl.leer(Integer.parseInt(codigoPaciente)));
 	}
 	
 

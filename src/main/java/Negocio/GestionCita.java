@@ -54,5 +54,9 @@ public class GestionCita implements GestionCitaLocal {
 	public List<Cita> obtenerCitasAgendadas(Medico medico){
 		return this.cdao.obtenerCitasAgendadas(medico);
 	}
+	
+	public List<Cita> obtenerCitasAtendidas(Medico medico){
+		return this.cdao.obtenerCitasAtendidas(medico);
+	}
 
 }

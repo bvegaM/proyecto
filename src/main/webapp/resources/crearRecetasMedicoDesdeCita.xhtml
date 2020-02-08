@@ -4,7 +4,7 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
-<head>
+<h:head>
   <meta charset="utf-8"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
   <title>Digital Medical</title>
@@ -31,8 +31,15 @@
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet"/>
   
-</head>
-<body class="hold-transition sidebar-mini layout-fixed">
+  
+ 	<f:metadata>
+        <f:viewParam id="id" name="id" value="#{gestionRecetaBean.codigoPaciente}"/>
+        <f:viewAction action="#{gestionRecetaBean.cargarPaciente()}" />
+ 	</f:metadata>	
+
+  
+</h:head>
+<h:body class="hold-transition sidebar-mini layout-fixed" onload="ShowSelected()">
 <div class="wrapper">
 
   <!-- Navbar -->
@@ -48,7 +55,7 @@
     </ul>
     <ul class="navbar-nav ml-auto">
       <li class="nav-item">
-        <ui:insert name="cerrarSesion"></ui:insert>
+        <h:form><h:commandButton styleClass="btn btn-block btn-outline-success" action="#{gestionLoginBean.cerrarSesion()}" value="Cerrar Sesion" /> </h:form>
       </li>
     </ul>
     <!-- Right navbar links -->
@@ -69,7 +76,7 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="info">
-          <a href="PaginaEditarPerfil.xhtml" class="d-block"><ui:insert name="nombreMedico"></ui:insert></a>
+          <a href="PaginaEditarPerfil.xhtml" class="d-block">#{gestionLoginBean.nameUser.toUpperCase()}</a>
         </div>
       </div>
 
@@ -154,15 +161,9 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="PaginaEditarPerfilMedico.xhtml" class="nav-link">
+                <a href="PaginaEditarPerfil.xhtml" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Editar Perfil</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="PaginaCambiarClaveMedico.xhtml" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Cambiar Contraseña</p>
                 </a>
               </li>
             </ul>
@@ -182,12 +183,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Mis Citas</h1>
+            <h1 class="m-0 text-dark">Editar Receta</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Citas</li>
+              <li class="breadcrumb-item active">Recetas</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -198,7 +199,7 @@
       <!-- Default box -->
       <div class="card card-info">
         <div class="card-header">
-          <h3 class="card-title">Mis citas</h3>
+          <h3 class="card-title">Editar Receta</h3>
 
           <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -208,43 +209,54 @@
           </div>
         </div>
         <div class="card-body">
-        	<ui:insert name="listarCitasAgendadas"></ui:insert>    
+        	
+        	<h:form id="form">
+        		
+        		<div class="input-group mb-3">
+          			<h:inputText value="#{gestionRecetaBean.receta.fechaEmision}" class="form-control" pt:placeholder="Fecha:" ><f:convertDateTime pattern="yyyy/MM/dd"/></h:inputText>
+          			<div class="input-group-append">
+            			<div class="input-group-text">
+              				<span class="fas fa-calendar"></span>
+            			</div>
+          			</div>
+        		</div>
+        		
+        		<div class="input-group mb-3">
+          			<h:outputText disabled="true" value="#{gestionRecetaBean.receta.paciente.nombre}" class="form-control" pt:placeholder="Paciente:" ></h:outputText>
+          			<div class="input-group-append">
+            			<div class="input-group-text">
+              				<span class="fas fa-calendar"></span>
+            			</div>
+          			</div>
+        		</div>
+        	
+              	
+              	<h:commandButton styleClass="btn btn-success" action="#{gestionRecetaBean.addDetalle()}" value="Agregar medicamento" >
+              		<f:ajax render="tblDetalle" execute="@all" />
+              	</h:commandButton>
+              	
+              	<h:dataTable style="width:100%" var="_detalle" value="#{gestionRecetaBean.receta.detalle}" id="tblDetalle">
+              		<h:column>
+              			<f:facet name="header">Medicamento</f:facet>
+              			<h:outputText  style="display:none;" id="codigoMedicamento" value="#{_detalle.medicina.codigo}" ></h:outputText>
+              			<h:selectOneMenu class="form-control select2" style="width: 100%;" id="medi" name="medi"  value="#{_detalle.medicina}" converter="medicinaConverter">
+      						<f:selectItems value="#{gestionRecetaBean.medicinas}" var="r"
+      							itemLabel="#{r.nombre}" itemValue="#{r}"/>
+      					</h:selectOneMenu>
+              		</h:column>
+              		<h:column>
+              			<f:facet name="header">Dosis</f:facet>
+              			<h:inputText styleClass="form-control input-sm" value="#{_detalle.dosis}" />
+              		</h:column>
+              	</h:dataTable>
+              	
+            	<h:commandButton class="btn btn-info" action="#{gestionRecetaBean.guardar(gestionLoginBean.email)}" value="Guardar" />
+        	</h:form>
+        	
+        	 
         </div>
       </div>
-      
-      
-      <div class="card card-info">
-        <div class="card-header">
-          <h3 class="card-title">Citas Pendientes de Aprobación</h3>
 
-          <div class="card-tools">
-            <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
-              <i class="fas fa-minus"></i></button>
-            <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
-              <i class="fas fa-times"></i></button>
-          </div>
-        </div>
-        <div class="card-body">
-        	<ui:insert name="listarCitasPendientes"></ui:insert>    
-        </div>
-      </div>
-      
-      <div class="card card-info">
-        <div class="card-header">
-          <h3 class="card-title">Citas Atendidas</h3>
-
-          <div class="card-tools">
-            <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
-              <i class="fas fa-minus"></i></button>
-            <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
-              <i class="fas fa-times"></i></button>
-          </div>
-        </div>
-        <div class="card-body">
-        	<ui:insert name="listarCitasAtendidas"></ui:insert>    
-        </div>
-      </div>
-      
     </section>
     <!-- /.content-header -->
     <!-- /.content -->
@@ -300,5 +312,5 @@
 <script src="dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
-</body>
+</h:body>
 </html>
