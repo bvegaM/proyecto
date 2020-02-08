@@ -132,6 +132,8 @@ public class Medico {
 	}
 	
 	public String toString2() {
+		//Merge de las ramas
+		
 		return nombre + " "+ apellido;
 	}
 	
