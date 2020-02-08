@@ -49,4 +49,12 @@ public class MedicoDAO {
 		return medicosEspecialidad;
 	}
 	
+	public List<Medico> getMedicosPorId(int codigo){
+		String jpql = "SELECT m FROM Medico m WHERE m.codigo = ?1";
+		Query q = em.createQuery(jpql, Medico.class);
+		q.setParameter(1,codigo);
+		List<Medico> medicos = q.getResultList();
+		return medicos;
+	}
+	
 }

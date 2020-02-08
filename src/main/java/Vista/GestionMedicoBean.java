@@ -193,6 +193,10 @@ public class GestionMedicoBean {
 		return "ListarEspecialidadMedico?faces-redirect=true&id="+medico.getCodigo();
 	}
 	
+	public String MedicoPorId(Medico medico) {
+		return "crearCitaPorMedico?faces-redirect=true&id="+medico.getCodigo();
+	}
+	
 	public void loadMedico() {
 		System.out.println("load data " + id);
 		if(id==null)
@@ -200,6 +204,14 @@ public class GestionMedicoBean {
 		List<Medico> aux = gml.getMedicoPorEspecialidad(Integer.parseInt(id));
 		this.medicos=aux;
 		
+	}
+	
+	public void loadMedicoPorID() {
+		System.out.println("load data " + id);
+		if(id==null)
+			return;
+		List<Medico> aux = gml.getMedicoPorId(Integer.parseInt(id));
+		this.medicos=aux;
 	}
 	
 	public void loadData() {

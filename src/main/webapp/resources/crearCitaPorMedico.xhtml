@@ -4,7 +4,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
-<head>
+<h:head>
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <title>Digital Medical | Paciente | Inicio</title>
@@ -22,7 +22,12 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700"
 	rel="stylesheet" />
-</head>
+	
+<f:metadata>
+        <f:viewParam id="id" name="id" value="#{gestionIndexPacienteBean.idMedico}"/>
+        <f:viewAction action="#{gestionIndexPacienteBean.cargarMedico()}" />
+  </f:metadata>
+</h:head>
 <body class="hold-transition sidebar-mini">
 	<!-- Site wrapper -->
 	<div class="wrapper">
@@ -204,8 +209,9 @@
 								class="nav-icon fas fa-tachometer-alt"></i>
 								<p>Mi Historial</p>
 						</a></li>
-						<li class="nav-item has-treeview"><a href="misFacturas.xhtml"
-							class="nav-link"> <i class="nav-icon fas fa-tachometer-alt"></i>
+						<li class="nav-item has-treeview"><a
+							href="misFacturas.xhtml" class="nav-link"> <i
+								class="nav-icon fas fa-tachometer-alt"></i>
 								<p>Mis Facturas</p>
 						</a></li>
 
@@ -224,27 +230,62 @@
 				<div class="container-fluid">
 					<div class="row mb-2">
 						<div class="col-sm-6">
-							<h1>Historiales</h1>
+							<h1>Agendar cita</h1>
 						</div>
 						<div class="col-sm-6">
 							<ol class="breadcrumb float-sm-right">
 								<li class="breadcrumb-item"><a href="paginaPrincipalPaciente.xhtml">Inicio</a></li>
-								<li class="breadcrumb-item active">Mis Historiales</li>
+								<li class="breadcrumb-item active">Agendar Cita</li>
 							</ol>
 						</div>
 					</div>
 				</div>
 				<!-- /.container-fluid -->
 			</section>
-
+			
 			<!-- Main content -->
 			<section class="content">
-
-
+				<!-- AQUIIIIIIIIIIIIIIIII COMIENZAAAAAAAAAAAA EL PERFIL -->
+              <!-- /.col -->
+          <div class="col-md-5">
+            <!-- Widget: user widget style 1 -->
+            <div class="card card-widget widget-user">
+              <!-- Add the bg color to the header using any of the bg-* classes -->
+              <div class="widget-user-header bg-info">
+                
+                <h:outputText  value="#{gestionIndexPacienteBean.cita.medico.nombre.toUpperCase()} #{gestionIndexPacienteBean.cita.medico.apellido.toUpperCase()}" class="widget-user-username"/>
+                <h5 class="widget-user-desc">Doctor</h5>
+                <h5 class="widget-user-desc">Reserve su Cita</h5>
+              </div>
+              <div class="card-footer">
+                <div class="row">
+                  <!-- /.col -->
+                  <div class="col-sm-6 border-right">
+                    <div class="description-block">
+                      <h5 class="description-header">Correo</h5>
+                      <span class="description-text"><h:outputText value="#{gestionIndexPacienteBean.cita.medico.email}"/></span>
+                    </div>
+                    <!-- /.description-block -->
+                  </div>
+                  <!-- /.col -->
+                  <div class="col-sm-6 border-right">
+                    <div class="description-block">
+                      <h5 class="description-header">Especialidad</h5>
+                      <span class="description-text"><h:outputText value="#{gestionIndexPacienteBean.cita.medico.nombre}"/></span>
+                    </div>
+                    <!-- /.description-block -->
+                  </div>
+                </div>
+                <!-- /.row -->
+              </div>
+            </div>
+            <!-- /.widget-user -->
+          </div>
+          <!-- /.col -->
 				<!-- Default box -->
 				<div class="card">
 					<div class="card-header">
-						<h3 class="card-title">Mis Historiales</h3>
+						<h3 class="card-title">Agendar Citas</h3>
 
 						<div class="card-tools">
 							<button type="button" class="btn btn-tool"
@@ -261,35 +302,44 @@
 					<div class="card-body">
 
 						<h:form>
-							<div class="row">
-								<div class="col-12 table-responsive">
-									<h:dataTable var="_historiales"
-										value="#{gestionIndexPacienteBean.obtenerHistoriales(gestionLoginBean.email)}"
-										styleClass="table table-striped">
-										<h:column>
-											<f:facet name="header">Codigo</f:facet>
-											#{_historiales.codigo}
-										</h:column>
-										<h:column>
-											<f:facet name="header">Medico Encargado</f:facet>
-											#{_historiales.medico.toString2()}
-										</h:column>
-										<h:column>
-											<f:facet name="header">Motivo de la consulta</f:facet>
-											#{_historiales.motivoConsulta}
-										</h:column>
-										<h:column>
-											<f:facet name="header">Diagnostico</f:facet>
-											#{_historiales.diagnostico}
-										</h:column>
-										<h:column>
-											<f:facet name="header">Tratamiento</f:facet>
-											#{_historiales.tratamiento}
-										</h:column>								
-									</h:dataTable>
+							<div class="form-group">
+								<h:outputText value="Medicos: " />
+								<h:outputText value="#{gestionIndexPacienteBean.cita.medico.nombre.toUpperCase()}"/>
+							</div>
+
+
+							<div class="input-group mb-3">
+								<h:inputText value="#{gestionIndexPacienteBean.cita.fecha}"
+									class="form-control" pt:placeholder="Fecha">
+									<f:convertDateTime pattern="yyyy/MM/dd" />
+								</h:inputText>
+								<div class="input-group-append">
+									<div class="input-group-text">
+										<span class="fas fa-calendar"></span>
+									</div>
 								</div>
 							</div>
+
+							<div class="input-group mb-3">
+								<h:inputText value="#{gestionIndexPacienteBean.cita.hora}"
+									pt:type="text" class="form-control" pt:placeholder="Hora" />
+								<div class="input-group-append">
+									<div class="input-group-text">
+										<span class="fas fa-calendar"></span>
+									</div>
+								</div>
+							</div>
+
+
+
+
+							<h:commandButton value="Agendar Cita"
+								action="#{gestionIndexPacienteBean.guardarCita(gestionLoginBean.email)}"
+								class="btn btn-primary btn-block"></h:commandButton>
+
 						</h:form>
+
+
 
 
 					</div>
@@ -298,7 +348,6 @@
 					<!-- /.card-footer-->
 				</div>
 				<!-- /.card -->
-
 
 
 			</section>

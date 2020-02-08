@@ -60,5 +60,11 @@ public class GestionMedico implements GestionMedicoLocal {
 		// TODO Auto-generated method stub
 		return dao.getMedicosPorEspecialidad(filtro);
 	}
+	
+	@Override
+	public List<Medico> getMedicoPorId(int codigo){
+		// TODO Auto-generated method stub
+		return dao.getMedicosPorId(codigo);
+	}
 
 }

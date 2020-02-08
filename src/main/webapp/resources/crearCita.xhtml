@@ -34,7 +34,7 @@
 				<li class="nav-item"><a class="nav-link" data-widget="pushmenu"
 					href="#"><i class="fas fa-bars"></i></a></li>
 				<li class="nav-item d-none d-sm-inline-block"><a
-					href="index3.html" class="nav-link">Home</a></li>
+					href="paginaPrincipalPaciente.xhtml" class="nav-link">Home</a></li>
 				<li class="nav-item d-none d-sm-inline-block"><a href="#"
 					class="nav-link">Contact</a></li>
 			</ul>
@@ -152,7 +152,7 @@
 		<!-- Main Sidebar Container -->
 		<aside class="main-sidebar sidebar-dark-primary elevation-4">
 			<!-- Brand Logo -->
-			<a href="index3.html" class="brand-link"> <img
+			<a href="paginaPrincipalPaciente.xhtml" class="brand-link"> <img
 				src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo"
 				class="brand-image img-circle elevation-3" style="opacity: .8" /> <span
 				class="brand-text font-weight-light">Paciente</span>
@@ -163,11 +163,11 @@
 				<!-- Sidebar user (optional) -->
 				<div class="user-panel mt-3 pb-3 mb-3 d-flex">
 					<div class="image">
-						<img src="dist/img/angel.jpg" class="img-circle elevation-2"
+						<img src="dist/img/avatar5.png" class="img-circle elevation-2"
 							alt="User Image" />
 					</div>
 					<div class="info">
-						<a href="#" class="d-block">Angel Ruiz</a>
+						<span class="nav-link">#{gestionLoginBean.nameUser.toUpperCase()}</span>
 					</div>
 				</div>
 
@@ -229,7 +229,7 @@
 						</div>
 						<div class="col-sm-6">
 							<ol class="breadcrumb float-sm-right">
-								<li class="breadcrumb-item"><a href="index2.xhtml">Inicio</a></li>
+								<li class="breadcrumb-item"><a href="paginaPrincipalPaciente.xhtml">Inicio</a></li>
 								<li class="breadcrumb-item active">Agendar Cita</li>
 							</ol>
 						</div>
@@ -264,7 +264,7 @@
 							<div class="form-group">
 								<h:outputText value="Medicos:" />
 								<h:selectOneMenu class="form-control select2"
-									style="width: 80%;" value="#{gestionIndexPacienteBean.medico}"
+									style="width: 80%;" value="#{gestionIndexPacienteBean.cita.medico}"
 									converter="medicoConverter">
 									<f:selectItems value="#{gestionIndexPacienteBean.medicos}"
 										var="m" itemLabel="#{m.nombre}" itemValue="#{m}" />
@@ -273,7 +273,7 @@
 
 
 							<div class="input-group mb-3">
-								<h:inputText value="#{gestionIndexPacienteBean.fecha}"
+								<h:inputText value="#{gestionIndexPacienteBean.cita.fecha}"
 									class="form-control" pt:placeholder="Fecha">
 									<f:convertDateTime pattern="yyyy/MM/dd" />
 								</h:inputText>
@@ -285,7 +285,7 @@
 							</div>
 
 							<div class="input-group mb-3">
-								<h:inputText value="#{gestionIndexPacienteBean.hora}"
+								<h:inputText value="#{gestionIndexPacienteBean.cita.hora}"
 									pt:type="text" class="form-control" pt:placeholder="Hora" />
 								<div class="input-group-append">
 									<div class="input-group-text">

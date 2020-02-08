@@ -142,8 +142,6 @@ public class GestionPacienteBean {
 	}
 	
 	
-	
-	
 	public String getValidar() {
 		return validar;
 	}

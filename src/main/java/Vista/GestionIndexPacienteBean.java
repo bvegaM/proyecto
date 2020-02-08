@@ -34,10 +34,10 @@ public class GestionIndexPacienteBean {
 	@Inject
 	private GestionHistorialLocal ghl;
 	
+	private String idMedico;
 	
-	private Medico medico;
-	private Date fecha;
-	private String hora;
+	private Cita cita;
+	
 	
 	private List<Medico> medicos;
 	private List<Cita> citas;
@@ -52,6 +52,41 @@ public class GestionIndexPacienteBean {
 	
 	
 	
+	
+	
+	
+	public Cita getCita() {
+		return cita;
+	}
+
+
+
+
+
+
+	public void setCita(Cita cita) {
+		this.cita = cita;
+	}
+
+
+
+
+
+
+	public String getIdMedico() {
+		return idMedico;
+	}
+
+
+
+
+	public void setIdMedico(String idMedico) {
+		this.idMedico = idMedico;
+	}
+
+
+
+
 	public GestionHistorialLocal getGhl() {
 		return ghl;
 	}
@@ -87,24 +122,6 @@ public class GestionIndexPacienteBean {
 	}
 	public void setGcl(GestionCitaLocal gcl) {
 		this.gcl = gcl;
-	}
-	public Medico getMedico() {
-		return medico;
-	}
-	public void setMedico(Medico medico) {
-		this.medico = medico;
-	}
-	public Date getFecha() {
-		return fecha;
-	}
-	public void setFecha(Date fecha) {
-		this.fecha = fecha;
-	}
-	public String getHora() {
-		return hora;
-	}
-	public void setHora(String hora) {
-		this.hora = hora;
 	}
 	
 	
@@ -143,18 +160,16 @@ public class GestionIndexPacienteBean {
 	
 	public String guardarCita(String user) {
 		System.out.println(user);
-		Cita cita = new Cita();
 		cita.setCodigo(this.gcl.getCitas().size()+1);
 		cita.setPaciente(this.buscarPacientexEmail(user));
-		cita.setMedico(this.getMedico());
-		cita.setFecha(this.getFecha());
-		cita.setHora(this.getHora());
 		cita.setEstado("Pendiente");
-		System.out.println(this.medico.toString());
+		System.out.println(this.cita.getMedico().toString());
 		System.out.println(cita.toString());
 		this.gcl.insertar(cita);
-		return "index2?faces-redirect=true";
+		return "paginaPrincipalPaciente?faces-redirect=true";
 	}
+	
+	
 	
 	public Paciente buscarPacientexEmail(String user) {
 		List<Paciente> pacientes = new ArrayList<Paciente>();
@@ -203,6 +218,15 @@ public class GestionIndexPacienteBean {
 			}
 		}
 		return aux;
+	}
+	
+	public String MedicoPorId(Medico medico) {
+		return "crearCitaPorMedico?faces-redirect=true&id="+medico.getCodigo();
+	}
+	
+	public void cargarMedico() {
+		this.cita = new Cita();
+		this.cita.setMedico(this.gml.leer(Integer.parseInt(idMedico)));
 	}
 
 

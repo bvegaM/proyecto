@@ -31,7 +31,7 @@
         <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="index2.xhtml" class="nav-link">Home</a>
+        <a href="paginaPrincipalPaciente.xhtml" class="nav-link">Home</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Contact</a>
@@ -149,7 +149,7 @@
 		<!-- Main Sidebar Container -->
 		<aside class="main-sidebar sidebar-dark-primary elevation-4">
 			<!-- Brand Logo -->
-			<a href="index2.xhtml" class="brand-link"> <img
+			<a href="paginaPrincipalPaciente.xhtml" class="brand-link"> <img
 				src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo"
 				class="brand-image img-circle elevation-3" style="opacity: .8" /> <span
 				class="brand-text font-weight-light">Paciente</span>
@@ -160,11 +160,11 @@
 				<!-- Sidebar user (optional) -->
 				<div class="user-panel mt-3 pb-3 mb-3 d-flex">
 					<div class="image">
-						<img src="dist/img/angel.jpg" class="img-circle elevation-2"
+						<img src="dist/img/avatar5.png" class="img-circle elevation-2"
 							alt="User Image" />
 					</div>
 					<div class="info">
-						<a href="#" class="d-block">Angel Ruiz</a>
+						<span class="nav-link"><ui:insert name="nombrePaciente"></ui:insert></span>
 					</div>
 				</div>
 
@@ -206,8 +206,6 @@
 								class="nav-icon fas fa-tachometer-alt"></i>
 								<p>Mis Facturas</p>
 						</a></li>
-
-
 					</ul>
 				</nav>
 				<!-- /.sidebar-menu -->
@@ -288,33 +286,7 @@
           </div>
         </div>
         <div class="card-body">
-        	<h:form>
-				<div class="row">
-					<div class="col-12 table-responsive">
-						<h:dataTable var="_especialidades" value="#{gestionEspecialidadBean.especialidades}"
-						styleClass="table table-striped">
-						<h:column>
-							<f:facet name="header">Codigo</f:facet>
-							#{_especialidades.codigo}
-						</h:column>
-						<h:column>
-							<f:facet name="header">Nombre</f:facet>
-							#{_especialidades.nombre}
-						</h:column>
-						<h:column>
-							<f:facet name="header">Descripcion</f:facet>
-							#{_especialidades.descripcion}
-						</h:column>	
-						<h:column>
-							<f:facet name="header">Acciones</f:facet>
-							<div class="btn-group btn-group-sm">
-								<h:commandButton action="#{gestionMedicoBean.MedicoPorEspecialidad(_especialidades)}" styleClass="btn btn-info" value="Aceptar" />
-							</div>
-						</h:column>
-					</h:dataTable>
-					</div>
-				</div>
-			</h:form>
+        	<ui:insert  name="listarEspecialidad"></ui:insert>
         </div>
         <!-- /.card-body -->
         <div class="card-footer">
