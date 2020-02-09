@@ -7,22 +7,34 @@
 <head>
   <meta charset="utf-8"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-  <title>Digital Medical | Paciente | Inicio</title>
+  <title>Digital Medical</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-
   <!-- Font Awesome -->
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css"/>
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"/>
-  <!-- overlayScrollbars -->
+  <!-- Tempusdominus Bbootstrap 4 -->
+  <link rel="stylesheet" href="plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css"/>
+  <!-- iCheck -->
+  <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css"/>
+  <!-- JQVMap -->
+  <link rel="stylesheet" href="plugins/jqvmap/jqvmap.min.css"/>
+  <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/adminlte.min.css"/>
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css"/>
+  <!-- Daterange picker -->
+  <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css"/>
+  <!-- summernote -->
+  <link rel="stylesheet" href="plugins/summernote/summernote-bs4.css"/>
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet"/>
+  
 </head>
-<body class="hold-transition sidebar-mini">
-<!-- Site wrapper -->
+<body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
+
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Left navbar links -->
@@ -39,33 +51,31 @@
         <ui:insert name="cerrarSesion"></ui:insert>
       </li>
     </ul>
+    <!-- Right navbar links -->
   </nav>
- 		<!-- /.navbar -->
+  <!-- /.navbar -->
 
-		<!-- Main Sidebar Container -->
-		<aside class="main-sidebar sidebar-dark-primary elevation-4">
-			<!-- Brand Logo -->
-			<a href="paginaPrincipalPaciente.xhtml" class="brand-link"> <img
-				src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo"
-				class="brand-image img-circle elevation-3" style="opacity: .8" /> <span
-				class="brand-text font-weight-light">Paciente</span>
-			</a>
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="paginaPrincipalPaciente.xhtml" class="brand-link">
+      <img src="dist/img/avatar5.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+           style="opacity: .8"/>
+      <span class="brand-text font-weight-light">Paciente</span>
+    </a>
 
-			<!-- Sidebar -->
-			<div class="sidebar">
-				<!-- Sidebar user (optional) -->
-				<div class="user-panel mt-3 pb-3 mb-3 d-flex">
-					<div class="image">
-						<img src="dist/img/avatar5.png" class="img-circle elevation-2"
-							alt="User Image" />
-					</div>
-					<div class="info">
-          				<a href="PaginaEditarPerfilPaciente.xhtml" class="d-block"><ui:insert name="nombrePaciente"></ui:insert></a>
-        			</div>
-				</div>
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="info">
+          <a href="PaginaEditarPerfilPaciente.xhtml" class="d-block"><ui:insert name="nombrePaciente"></ui:insert></a>
+        </div>
+      </div>
 
-				<!-- Sidebar Menu -->
-				<nav class="mt-2">
+      <!-- MENU PRINCIPAL -->
+      
+      <nav class="mt-2">
 					<ul class="nav nav-pills nav-sidebar flex-column"
 						data-widget="treeview" role="menu" data-accordion="false">
 						<!-- Add icons to the links using the .nav-icon class
@@ -127,75 +137,37 @@
 			          </li>
 					</ul>
 				</nav>
-				<!-- /.sidebar-menu -->
-			</div>
-			<!-- /.sidebar -->
-		</aside>
+      
+      <!-- /.TERMINA MENU PRINCIPAL -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
 
-  <!-- Content Wrapper. Contains page content -->
+    <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <section class="content-header">
+    <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Inicio</h1>
-          </div>
+            <h1 class="m-0 text-dark">Cambia Tu Contraseña Aquí</h1>
+          </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="paginaPrincipalPaciente.xhtml">Inicio</a></li>
-              <li class="breadcrumb-item active">Inicio</li>
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Cambiar Contraseña</li>
             </ol>
-          </div>
-        </div>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
       </div><!-- /.container-fluid -->
-    </section>
+    </div>
+    <!-- /.content-header -->
 
     <!-- Main content -->
     <section class="content">
- <!-- AQUIIIIIIIIIIIIIIIII COMIENZAAAAAAAAAAAA EL PERFIL -->
-              <!-- /.col -->
-          <div class="col-md-5">
-            <!-- Widget: user widget style 1 -->
-            <div class="card card-widget widget-user">
-              <!-- Add the bg color to the header using any of the bg-* classes -->
-              <div class="widget-user-header bg-info">
-                <h3 class="widget-user-username"><ui:insert name="nombrePaciente"></ui:insert></h3>
-                <h5 class="widget-user-desc">Paciente</h5>
-                <h5 class="widget-user-desc">Bienvenido al Sistema</h5>
-              </div>
-              <div class="card-footer">
-                <div class="row">
-                  <!-- /.col -->
-                  <div class="col-sm-6 border-right">
-                    <div class="description-block">
-                      <h5 class="description-header">Cédula</h5>
-                      <span class="description-text"><ui:insert name="cedula"></ui:insert></span>
-                    </div>
-                    <!-- /.description-block -->
-                  </div>
-                  <!-- /.col -->
-                  <div class="col-sm-6">
-                    <div class="description-block">
-                      <h5 class="description-header">Correo</h5>
-                      <span class="description-text"><ui:insert name="correo"></ui:insert></span>
-                    </div>
-                    <!-- /.description-block -->
-                  </div>
-                  <!-- /.col -->
-                </div>
-                <!-- /.row -->
-              </div>
-            </div>
-            <!-- /.widget-user -->
-          </div>
-          <!-- /.col -->
-   <!-- AQUIIIIIIIIIIIIIIIII TERMINA EL PERFIL -->  
- 
-          <!-- Default box -->
-      <div class="card">
+      <div class="card card-danger">
         <div class="card-header">
-          <h3 class="card-title">Especialidad</h3>
+          <h3 class="card-title">Cambia tu Clave</h3>
 
           <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -205,31 +177,19 @@
           </div>
         </div>
         <div class="card-body">
-        	<ui:insert  name="listarEspecialidad"></ui:insert>
+        	<ui:insert name="cambiarClavePaciente"></ui:insert>    
         </div>
-        <!-- /.card-body -->
-        <div class="card-footer">
-          
-        </div>
-        <!-- /.card-footer-->
       </div>
-      <!-- /.card -->
-      
-      
-      
-      
-
     </section>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-
   <footer class="main-footer">
-    <div class="float-right d-none d-sm-block">
-      <b>Version</b> 3.0.1
+    <strong>Copyright copy; 2014-2019 <a href="http://adminlte.io">Universidad Politécnica Salesiana</a>.</strong>
+    All rights reserved.
+    <div class="float-right d-none d-sm-inline-block">
+      <b>Version</b> 3.0.2
     </div>
-    <strong>Copyright 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong> All rights
-    reserved.
   </footer>
 
   <!-- Control Sidebar -->
@@ -242,11 +202,38 @@
 
 <!-- jQuery -->
 <script src="plugins/jquery/jquery.min.js"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="plugins/jquery-ui/jquery-ui.min.js"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script>
+  $.widget.bridge('uibutton', $.ui.button)
+</script>
 <!-- Bootstrap 4 -->
 <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- ChartJS -->
+<script src="plugins/chart.js/Chart.min.js"></script>
+<!-- Sparkline -->
+<script src="plugins/sparklines/sparkline.js"></script>
+<!-- JQVMap -->
+<script src="plugins/jqvmap/jquery.vmap.min.js"></script>
+<script src="plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+<!-- jQuery Knob Chart -->
+<script src="plugins/jquery-knob/jquery.knob.min.js"></script>
+<!-- daterangepicker -->
+<script src="plugins/moment/moment.min.js"></script>
+<script src="plugins/daterangepicker/daterangepicker.js"></script>
+<!-- Tempusdominus Bootstrap 4 -->
+<script src="plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+<!-- Summernote -->
+<script src="plugins/summernote/summernote-bs4.min.js"></script>
+<!-- overlayScrollbars -->
+<script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <!-- AdminLTE App -->
-<script src="dist/js/adminlte.min.js"></script>
+<script src="dist/js/adminlte.js"></script>
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script src="dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
 </body>
 </html>
+

@@ -1,0 +1,54 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+		template="editarPerfilPaciente.xhtml">
+	
+		<ui:define name="nombrePaciente">#{gestionLoginBean.paciente.nombre.toUpperCase()} #{gestionLoginBean.paciente.apellido.toUpperCase()}</ui:define>
+
+		<ui:define name="cedula">#{gestionLoginBean.paciente.cedula}</ui:define>
+		<ui:define name="correo">#{gestionLoginBean.paciente.email.toLowerCase()}</ui:define>
+		<ui:define name="cerrarSesion"><h:form><h:commandButton styleClass="btn btn-block btn-outline-success" action="#{gestionLoginBean.cerrarSesion()}" value="Cerrar Sesion" /> </h:form>
+		</ui:define>
+		
+		<ui:define name="editarPerfil">
+			<div class="tab-pane active" id="settings">
+	        	<h:form class="form-horizontal">
+	            	<div class="form-group row">
+	                	<label for="inputName" class="col-sm-2 col-form-label">Cedula</label>
+	                    	<div class="col-sm-10">
+	                          <h:inputText value="#{gestionLoginBean.paciente.cedula}" pt:type="text" class="form-control" />
+	                        </div>
+	                </div>
+	                <div class="form-group row">
+	                	<label for="inputName" class="col-sm-2 col-form-label">Nombre</label>
+	                    	<div class="col-sm-10">
+	                          <h:inputText value="#{gestionLoginBean.paciente.nombre}" pt:type="text" class="form-control" />
+	                        </div>
+	                </div>
+	                <div class="form-group row">
+	                	<label for="inputName" class="col-sm-2 col-form-label">Apellido</label>
+	                    	<div class="col-sm-10">
+	                          <h:inputText value="#{gestionLoginBean.paciente.apellido}" pt:type="text" class="form-control" />
+	                        </div>
+	                </div>
+	                <div class="form-group row">
+	                	<label for="inputName" class="col-sm-2 col-form-label">Correo</label>
+	                    	<div class="col-sm-10">
+	                          <h:inputText value="#{gestionLoginBean.paciente.email}" pt:type="text" class="form-control" />
+	                        </div>
+	                </div>
+	                      <div class="form-group row">
+	                        <div class="offset-sm-2 col-sm-10">
+	                          <h:commandButton styleClass="btn btn-danger" value="Guardar" action="#{gestionLoginBean.editarPaciente()}">
+							  </h:commandButton>	 
+	                        </div>
+	                      </div>    
+	            </h:form>            
+        	</div>
+		</ui:define>
+		
+		
+		
+</ui:composition>

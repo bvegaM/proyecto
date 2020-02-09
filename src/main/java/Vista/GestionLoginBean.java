@@ -107,6 +107,12 @@ public class GestionLoginBean implements Serializable {
 		return "PaginaPrincipalAdministrador.xhtml";
 	}
 	
+	public String editarPaciente() {
+		this.gpl.actualizar(this.paciente); 
+		this.nameUser=paciente.getNombre()+" "+paciente.getApellido();
+		return "paginaPrincipalPaciente.xhtml";
+	}
+	
 	public String editarMedico() {
 		this.gml.actualizar(this.medico);
 		this.nameUser=medico.getNombre()+" "+medico.getApellido();
@@ -125,6 +131,20 @@ public class GestionLoginBean implements Serializable {
 			return "PaginaCambiarClave";
 		}
 	}
+	
+	public String editarClavePaciente() {
+		if(this.getNuevaContrasena().equals(this.getRepiteContrasena())) {
+			this.paciente.setClave(this.getNuevaContrasena());
+			System.out.println(this.paciente.toString());
+			this.gpl.actualizar(this.paciente);
+			this.cerrarSesion();
+			return "login.xhtml";
+		}else {
+			System.out.println("Las contraseñas no son iguales");
+			return "PaginaCambiarClavePaciente";
+		}
+	}
+	
 	
 	public String editarClaveMedico() {
 		if(this.getNuevaContrasena().equals(this.getRepiteContrasena())) {
