@@ -23,6 +23,8 @@
 	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700"
 	rel="stylesheet" />
 	
+	<link rel="stylesheet" href="build/js/jquery.timepicker.min.css"/>
+	
 <f:metadata>
         <f:viewParam id="id" name="id" value="#{gestionIndexPacienteBean.idMedico}"/>
         <f:viewAction action="#{gestionIndexPacienteBean.cargarMedico()}" />
@@ -301,7 +303,7 @@
 					</div>
 					<div class="card-body">
 
-						<h:form>
+						<h:form id="form">
 							<div class="form-group">
 								<h:outputText value="Medicos: " />
 								<h:outputText value="#{gestionIndexPacienteBean.cita.medico.nombre.toUpperCase()}"/>
@@ -321,8 +323,9 @@
 							</div>
 
 							<div class="input-group mb-3">
-								<h:inputText value="#{gestionIndexPacienteBean.cita.hora}"
-									pt:type="text" class="form-control" pt:placeholder="Hora" />
+								<!-- <h:inputText id="time" value="#{gestionIndexPacienteBean.cita.hora}"
+									pt:type="text" class="form-control" pt:placeholder="Hora" /> -->
+								 <h:inputText pt:type="text" id="time"  class="form-control datetimepicker-input" data-target="time" value="#{gestionIndexPacienteBean.hora}"/>
 								<div class="input-group-append">
 									<div class="input-group-text">
 										<span class="fas fa-calendar"></span>
@@ -373,6 +376,22 @@
 
 	<!-- jQuery -->
 	<script src="plugins/jquery/jquery.min.js"></script>
+	<script src="build/js/jquery.timepicker.min.js"></script>
+	<script type="text/javascript">
+ $(document).ready(function(){
+ 	$("#form\\:time").timepicker({
+ 	    timeFormat: 'H:mm ',
+ 	    interval: 45,
+ 	    minTime: '10',
+ 	    maxTime: '20:00',
+ 	    defaultTime: '10',
+ 	    startTime: '10:00',
+ 	    dynamic: false,
+ 	    dropdown: true,
+ 	    scrollbar: true
+ 	});
+  });
+</script>
 	<!-- Bootstrap 4 -->
 	<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 	<!-- AdminLTE App -->

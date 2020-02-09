@@ -29,6 +29,8 @@ public class GestionIndexPacienteBean {
 	@Inject
 	private GestionCitaLocal gcl;
 	
+	private String hora;
+	
 	@Inject
 	private GestionPacienteLocal gpl;
 	@Inject
@@ -45,6 +47,7 @@ public class GestionIndexPacienteBean {
 	
 	@PostConstruct
 	public void init() {
+		this.cita = new Cita();
 		this.listarMedico();
 		this.citas= new ArrayList<Cita>();
 		
@@ -55,6 +58,24 @@ public class GestionIndexPacienteBean {
 	
 	
 	
+	public String getHora() {
+		return hora;
+	}
+
+
+
+
+
+
+	public void setHora(String hora) {
+		this.hora = hora;
+	}
+
+
+
+
+
+
 	public Cita getCita() {
 		return cita;
 	}
@@ -163,6 +184,7 @@ public class GestionIndexPacienteBean {
 		cita.setCodigo(this.gcl.getCitas().size()+1);
 		cita.setPaciente(this.buscarPacientexEmail(user));
 		cita.setEstado("Pendiente");
+		cita.setHora(hora);
 		System.out.println(this.cita.getMedico().toString());
 		System.out.println(cita.toString());
 		this.gcl.insertar(cita);
@@ -187,7 +209,7 @@ public class GestionIndexPacienteBean {
 		try {
 			this.gcl.borrar(codigo);
 			System.out.println("Cita eliminado");
-			return "index2?faces-redirect=true";
+			return "misCitas?faces-redirect=true";
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			System.out.println("Error al eliminar");
