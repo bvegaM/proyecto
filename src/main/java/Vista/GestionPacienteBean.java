@@ -176,18 +176,26 @@ public class GestionPacienteBean {
 	}
 	
 	public String editarPaciente() {
-		Paciente pacienteActualizado = new Paciente();
-		pacienteActualizado.setCodigo(Integer.parseInt(this.getId()));
-		pacienteActualizado.setCedula(this.getCedula());
-		pacienteActualizado.setNombre(this.getNombre());
-		pacienteActualizado.setApellido(this.getApellido());
-		pacienteActualizado.setEmail(this.getEmail());
-		pacienteActualizado.setClave(this.getClave());
-		pacienteActualizado.setFechaNac(this.getFechaNac());
-		pacienteActualizado.setSexo(this.getSexo());
-		pacienteActualizado.setPreguntaSecreta(this.getPreguntaSecreta());
-		this.gpl.actualizar(pacienteActualizado);
-		return "crearMedico?faces-redirect=true";
+		try {
+			SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+			Paciente pacienteActualizado = new Paciente();
+			pacienteActualizado.setCodigo(Integer.parseInt(this.getId()));
+			pacienteActualizado.setCedula(this.getCedula());
+			pacienteActualizado.setNombre(this.getNombre());
+			pacienteActualizado.setApellido(this.getApellido());
+			pacienteActualizado.setEmail(this.getEmail());
+			pacienteActualizado.setClave(this.getClave());
+			Date fecha=formato.parse(this.fecha);
+			pacienteActualizado.setFechaNac(fecha);
+			pacienteActualizado.setSexo(this.getSexo());
+			pacienteActualizado.setPreguntaSecreta(this.getPreguntaSecreta());
+			this.gpl.actualizar(pacienteActualizado);
+			return "PaginaListarPacientes?faces-redirect=true";
+		}catch (Exception e) {
+			// TODO: handle exception
+			return e.getMessage();
+		}
+		
 	}
 	
 	public String eliminar(int codigo) {
@@ -204,19 +212,26 @@ public class GestionPacienteBean {
 	}
 	
 	public String guardarPaciente() {
-		Paciente paciente = new Paciente();
-		paciente.setCodigo(this.gpl.getPacientes().size()+1);
-		paciente.setCedula(this.getCedula());
-		paciente.setNombre(this.getNombre());
-		paciente.setApellido(this.getApellido());
-		paciente.setEmail(this.getEmail());
-		paciente.setClave(this.getClave());
-		paciente.setFechaNac(this.getFechaNac());
-		paciente.setSexo(this.getSexo());
-		paciente.setRol(this.gpl.obtenerRol(3));
-		paciente.setPreguntaSecreta(this.getPreguntaSecreta());
-		this.gpl.insertar(paciente);
-		return "PaginaListarPacientes";
+		try {
+			SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+			Paciente paciente = new Paciente();
+			paciente.setCodigo(this.gpl.getPacientes().size()+1);
+			paciente.setCedula(this.getCedula());
+			paciente.setNombre(this.getNombre());
+			paciente.setApellido(this.getApellido());
+			paciente.setEmail(this.getEmail());
+			paciente.setClave(this.getClave());
+			Date fecha=formato.parse(this.fecha);
+			paciente.setFechaNac(fecha);
+			paciente.setSexo(this.getSexo());
+			paciente.setRol(this.gpl.obtenerRol(3));
+			paciente.setPreguntaSecreta(this.getPreguntaSecreta());
+			this.gpl.insertar(paciente);
+			return "PaginaListarPacientes";
+		}catch(Exception e) {
+			return e.getMessage();
+		}
+		
 	}
 	
 	

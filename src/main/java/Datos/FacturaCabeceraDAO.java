@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import Modelo.FacturaCabecera;
+import Modelo.Medico;
 
 @Stateless
 public class FacturaCabeceraDAO {
@@ -34,6 +35,14 @@ public class FacturaCabeceraDAO {
 	public List<FacturaCabecera> getFacturaCabecera(){
 		String jpql = "SELECT f FROM FacturaCabecera f";
 		Query query = em.createQuery(jpql, FacturaCabecera.class);
+		List<FacturaCabecera> listado = query.getResultList();		
+		return listado;
+	}
+	
+	public List<FacturaCabecera> getFacturaCabeceraMedico(Medico medico){
+		String jpql = "SELECT f FROM FacturaCabecera f WHERE f.medico = :medico";
+		Query query = em.createQuery(jpql, FacturaCabecera.class);
+		query.setParameter("medico", medico);
 		List<FacturaCabecera> listado = query.getResultList();		
 		return listado;
 	}

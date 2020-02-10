@@ -1,6 +1,7 @@
 package Vista;
 
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -44,6 +45,8 @@ public class GestionMedicoBean {
 	private String clave;
 	private Date fechaNac;
 	private Especialidad especialidad;
+	
+	private String fecha;
 	
 	@PostConstruct
 	public void init() {
@@ -151,23 +154,40 @@ public class GestionMedicoBean {
 	public void setEspecialidadesEditar(List<Especialidad> especialidadesEditar) {
 		this.especialidadesEditar = especialidadesEditar;
 	}
+	
+	
+	public String getFecha() {
+		return fecha;
+	}
+	public void setFecha(String fecha) {
+		this.fecha = fecha;
+	}
+	
+	
 	public String guardarMedico() {
-		Medico medico = new Medico();
-		if(this.gml.getMedicos().size()==0) {
-			medico.setCodigo(this.gml.getMedicos().size()+1);
-		}else {
-			medico.setCodigo(this.gml.getMedicos().get(this.gml.getMedicos().size()-1).getCodigo()+1);
+		try {
+			SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+			Medico medico = new Medico();
+			if(this.gml.getMedicos().size()==0) {
+				medico.setCodigo(this.gml.getMedicos().size()+1);
+			}else {
+				medico.setCodigo(this.gml.getMedicos().get(this.gml.getMedicos().size()-1).getCodigo()+1);
+			}
+			medico.setCedula(this.getCedula());
+			medico.setNombre(this.getNombre());
+			medico.setApellido(this.getApellido());
+			medico.setEmail(this.getEmail());
+			medico.setClave(this.getClave());
+			Date fecha=formato.parse(this.fecha);
+			medico.setFechaNac(fecha);
+			medico.setRol(this.grl.leer(2));
+			medico.setEspecialidad(this.getEspecialidad());
+			this.gml.insertar(medico);
+			return "PaginaListarMedicos?faces-redirect=true";
+		}catch(Exception e) {
+			return e.getMessage();
 		}
-		medico.setCedula(this.getCedula());
-		medico.setNombre(this.getNombre());
-		medico.setApellido(this.getApellido());
-		medico.setEmail(this.getEmail());
-		medico.setClave(this.getClave());
-		medico.setFechaNac(this.getFechaNac());
-		medico.setRol(this.grl.leer(2));
-		medico.setEspecialidad(this.getEspecialidad());
-		this.gml.insertar(medico);
-		return "PaginaListarMedicos?faces-redirect=true";
+		
 	}
 	
 	public String eliminar(int codigo) {

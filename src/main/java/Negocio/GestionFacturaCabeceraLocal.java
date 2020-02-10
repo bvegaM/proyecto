@@ -3,6 +3,7 @@ package Negocio;
 import java.util.List;
 
 import Modelo.FacturaCabecera;
+import Modelo.Medico;
 
 public interface GestionFacturaCabeceraLocal {
 
@@ -11,4 +12,5 @@ public interface GestionFacturaCabeceraLocal {
 	public FacturaCabecera read(String numeroFactura);
 	public void delete(String numeroFactura);
 	public List<FacturaCabecera> getFacturaCabecera();
+	public List<FacturaCabecera> getFacturaCabeceraMedico(Medico medico);
 }

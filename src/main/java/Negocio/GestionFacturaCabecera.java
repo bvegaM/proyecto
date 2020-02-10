@@ -7,6 +7,7 @@ import javax.inject.Inject;
 
 import Datos.FacturaCabeceraDAO;
 import Modelo.FacturaCabecera;
+import Modelo.Medico;
 
 @Stateless
 public class GestionFacturaCabecera implements GestionFacturaCabeceraLocal {
@@ -37,6 +38,10 @@ public class GestionFacturaCabecera implements GestionFacturaCabeceraLocal {
 	@Override
 	public List<FacturaCabecera> getFacturaCabecera() {
 		return dao.getFacturaCabecera();
+	}
+	
+	public List<FacturaCabecera> getFacturaCabeceraMedico(Medico medico) {
+		return dao.getFacturaCabeceraMedico(medico);
 	}
 
 }

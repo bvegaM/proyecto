@@ -13,6 +13,8 @@ import javax.inject.Inject;
 import Modelo.Cita;
 import Modelo.FacturaCabecera;
 import Modelo.FacturaDetalle;
+import Modelo.Medico;
+import Modelo.Receta;
 import Modelo.Servicio;
 import Negocio.GestionFacturaCabeceraLocal;
 import Negocio.GestionMedicoLocal;
@@ -144,8 +146,29 @@ public class GestionFacturaCabeceraBean {
 		return "PaginaVerFactura?faces-redirect=true&id="+f.getNumeroFactura();
 	}
 	
+	public String verFacturaMedico(FacturaCabecera f) {
+		return "PaginaVerFacturaMedico?faces-redirect=true&id="+f.getNumeroFactura();
+	}
+	
 	public void loadData() {
 		this.facturaCabecera=this.gfcl.read(this.id);
+	}
+	
+	public List<FacturaCabecera> obtenerFacturaCabeceraMedico(Medico medico){
+		return this.gfcl.getFacturaCabeceraMedico(medico);
+	}
+	
+	public String eliminar(String codigo) {
+		try {
+			this.gfcl.delete(codigo);
+			System.out.println("Factura eliminada");
+			return "PaginaListarFacturasMedico?faces-redirect=true";
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			System.out.println("Error al eliminar");
+			e.printStackTrace();			
+		}		
+		return null;
 	}
 	
 }
