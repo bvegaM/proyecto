@@ -38,4 +38,11 @@ public class FacturaCabeceraDAO {
 		return listado;
 	}
 	
+	public List<FacturaCabecera> getFacturaCabeceraActivo(){
+		String jpql = "SELECT f FROM FacturaCabecera f where f.estado = :estado";
+		Query query = em.createQuery(jpql, FacturaCabecera.class);
+		query.setParameter("estado", "1");
+		List<FacturaCabecera> listado = query.getResultList();		
+		return listado;
+	}
 }

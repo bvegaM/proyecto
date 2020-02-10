@@ -38,5 +38,10 @@ public class GestionFacturaCabecera implements GestionFacturaCabeceraLocal {
 	public List<FacturaCabecera> getFacturaCabecera() {
 		return dao.getFacturaCabecera();
 	}
+	
+	@Override
+	public List<FacturaCabecera> getFacturaCabeceraActivo() {
+		return dao.getFacturaCabeceraActivo();
+	}
 
 }
