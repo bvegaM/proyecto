@@ -18,7 +18,7 @@
               		<h:outputText value="Paciente:" />
                 	<h:selectOneMenu class="form-control select2" style="width: 100%;" value="#{gestionHistorialBean.historial.paciente}" converter="pacienteConverter2">
       					<f:selectItems value="#{gestionHistorialBean.pacientes}" var="p"
-      						itemLabel="#{p.nombre}" itemValue="#{p}"/>
+      						itemLabel="#{p.nombre} #{p.apellido}" itemValue="#{p}"/>
       				</h:selectOneMenu>
               	</div> 
         		
@@ -26,9 +26,6 @@
         		<div class="input-group mb-3">
           			<h:inputText  value="#{gestionHistorialBean.historial.motivoConsulta}" class="form-control"></h:inputText>
           			<div class="input-group-append">
-            			<div class="input-group-text">
-              				<span class="fas fa-calendar"></span>
-            			</div>
           			</div>
         		</div>
         		
@@ -36,9 +33,6 @@
         		<div class="input-group mb-3">
           			<h:inputText  value="#{gestionHistorialBean.historial.diagnostico}" class="form-control"></h:inputText>
           			<div class="input-group-append">
-            			<div class="input-group-text">
-              				<span class="fas fa-calendar"></span>
-            			</div>
           			</div>
         		</div>
         		
@@ -46,9 +40,6 @@
         		<div class="input-group mb-3">
           			<h:inputText  value="#{gestionHistorialBean.historial.tratamiento}" class="form-control"></h:inputText>
           			<div class="input-group-append">
-            			<div class="input-group-text">
-              				<span class="fas fa-calendar"></span>
-            			</div>
           			</div>
         		</div>
         		
@@ -58,9 +49,6 @@
         		<div class="input-group mb-3">
           			<h:inputText  value="#{gestionHistorialBean.historial.enfermedades}" class="form-control"></h:inputText>
           			<div class="input-group-append">
-            			<div class="input-group-text">
-              				<span class="fas fa-calendar"></span>
-            			</div>
           			</div>
         		</div>
         		
@@ -68,9 +56,6 @@
         		<div class="input-group mb-3">
           			<h:inputText  value="#{gestionHistorialBean.historial.medicamentosActuales}" class="form-control"></h:inputText>
           			<div class="input-group-append">
-            			<div class="input-group-text">
-              				<span class="fas fa-calendar"></span>
-            			</div>
           			</div>
         		</div>
         		
@@ -78,9 +63,6 @@
         		<div class="input-group mb-3">
           			<h:inputText  value="#{gestionHistorialBean.historial.antecedentesEnfermedades}" class="form-control"></h:inputText>
           			<div class="input-group-append">
-            			<div class="input-group-text">
-              				<span class="fas fa-calendar"></span>
-            			</div>
           			</div>
         		</div>
         		
@@ -89,9 +71,6 @@
         		<div class="input-group mb-3">
           			<h:inputText  value="#{gestionHistorialBean.historial.alergias}" class="form-control"></h:inputText>
           			<div class="input-group-append">
-            			<div class="input-group-text">
-              				<span class="fas fa-calendar"></span>
-            			</div>
           			</div>
         		</div>
         		  

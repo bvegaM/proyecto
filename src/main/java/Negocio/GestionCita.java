@@ -59,4 +59,9 @@ public class GestionCita implements GestionCitaLocal {
 		return this.cdao.obtenerCitasAtendidas(medico);
 	}
 
+	@Override
+	public int obtenerCitasHorario(Cita cita) {
+		return this.cdao.obtenerCitasPorHorario(cita).size();
+	}
+
 }

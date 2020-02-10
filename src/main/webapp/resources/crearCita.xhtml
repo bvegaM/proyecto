@@ -23,6 +23,8 @@
 	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700"
 	rel="stylesheet" />
 	<link rel="stylesheet" href="build/js/jquery.timepicker.min.css"/>
+	<script src="sweetalert2.min.js"></script>
+	<link rel="stylesheet" href="sweetalert2.min.css"/>
 </h:head>
 <body class="hold-transition sidebar-mini">
 	<!-- Site wrapper -->
@@ -185,15 +187,14 @@
 									style="width: 80%;" value="#{gestionIndexPacienteBean.cita.medico}"
 									converter="medicoConverter">
 									<f:selectItems value="#{gestionIndexPacienteBean.medicos}"
-										var="m" itemLabel="#{m.nombre}" itemValue="#{m}" />
+										var="m" itemLabel="Dr. #{m.nombre} #{m.apellido}" itemValue="#{m}" />
 								</h:selectOneMenu>
 							</div>
 
 
 							<div class="input-group mb-3">
-								<h:inputText value="#{gestionIndexPacienteBean.cita.fecha}"
+								<h:inputText pt:type="date" value="#{gestionIndexPacienteBean.fecha}"
 									class="form-control" pt:placeholder="Fecha">
-									<f:convertDateTime pattern="yyyy/MM/dd" />
 								</h:inputText>
 								<div class="input-group-append">
 									<div class="input-group-text">
@@ -280,6 +281,14 @@
 	<script src="dist/js/adminlte.min.js"></script>
 	<!-- AdminLTE for demo purposes -->
 	<script src="dist/js/demo.js"></script>
+	
+	<h:outputScript rendered="#{gestionIndexPacienteBean.banderaCita}">
+		 Swal.fire({
+  			icon: 'error',
+  			title: 'Oops...',
+  			text: 'El horario que eligió no está disponible. Intente seleccionando otro horario.'
+})
+	</h:outputScript>
 	
 </body>
 </html>

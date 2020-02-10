@@ -26,7 +26,7 @@
               		<h:outputText value="Paciente:" />
                 	<h:selectOneMenu class="form-control select2" style="width: 100%;" value="#{gestionRecetaBean.receta.paciente}" converter="pacienteConverter">
       					<f:selectItems value="#{gestionRecetaBean.pacientes}" var="p"
-      						itemLabel="#{p.nombre}" itemValue="#{p}"/>
+      						itemLabel="#{p.nombre} #{p.apellido}" itemValue="#{p}"/>
       				</h:selectOneMenu>
               	</div>   
               	

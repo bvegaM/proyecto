@@ -25,10 +25,13 @@
 	
 	<link rel="stylesheet" href="build/js/jquery.timepicker.min.css"/>
 	
+	
 <f:metadata>
         <f:viewParam id="id" name="id" value="#{gestionIndexPacienteBean.idMedico}"/>
         <f:viewAction action="#{gestionIndexPacienteBean.cargarMedico()}" />
   </f:metadata>
+  <script src="sweetalert2.min.js"></script>
+	<link rel="stylesheet" href="sweetalert2.min.css"/>
 </h:head>
 <body class="hold-transition sidebar-mini">
 	<!-- Site wrapper -->
@@ -306,14 +309,14 @@
 						<h:form id="form">
 							<div class="form-group">
 								<h:outputText value="Medicos: " />
-								<h:outputText value="#{gestionIndexPacienteBean.cita.medico.nombre.toUpperCase()}"/>
+								<h:outputText value="Dr. #{gestionIndexPacienteBean.cita.medico.nombre} #{gestionIndexPacienteBean.cita.medico.apellido}"/>
 							</div>
 
 
 							<div class="input-group mb-3">
-								<h:inputText value="#{gestionIndexPacienteBean.cita.fecha}"
+								<h:inputText pt:type="date" value="#{gestionIndexPacienteBean.fecha}"
 									class="form-control" pt:placeholder="Fecha">
-									<f:convertDateTime pattern="yyyy/MM/dd" />
+									
 								</h:inputText>
 								<div class="input-group-append">
 									<div class="input-group-text">
@@ -398,5 +401,14 @@
 	<script src="dist/js/adminlte.min.js"></script>
 	<!-- AdminLTE for demo purposes -->
 	<script src="dist/js/demo.js"></script>
+	
+		<h:outputScript rendered="#{gestionIndexPacienteBean.banderaCita}">
+		 Swal.fire({
+  			icon: 'error',
+  			title: 'Oops...',
+  			text: 'El horario que eligió no está disponible. Intente seleccionando otro horario.'
+})
+	</h:outputScript>
+	
 </body>
 </html>

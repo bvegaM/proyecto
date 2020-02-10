@@ -258,12 +258,8 @@
 						<h:dataTable var="_medicos" value="#{gestionMedicoBean.medicos}"
 						styleClass="table table-striped">
 						<h:column>
-							<f:facet name="header">Codigo</f:facet>
-							#{_medicos.codigo}
-						</h:column>
-						<h:column>
 							<f:facet name="header">Nombre</f:facet>
-							#{_medicos.nombre}
+							Dr. #{_medicos.nombre} #{_medicos.apellido}
 						</h:column>
 						<h:column>
 							<f:facet name="header">Especialidad</f:facet>

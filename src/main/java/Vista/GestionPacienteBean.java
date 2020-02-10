@@ -1,5 +1,6 @@
 package Vista;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -42,7 +43,19 @@ public class GestionPacienteBean {
 	private String validar;
 	private String validar2;
 	
+	private String fecha;
 	
+	
+	
+	
+	public String getFecha() {
+		return fecha;
+	}
+
+	public void setFecha(String fecha) {
+		this.fecha = fecha;
+	}
+
 	public String getClave2() {
 		return clave2;
 	}
@@ -209,17 +222,25 @@ public class GestionPacienteBean {
 	
 	public void guardarPaciente2() {
 		Paciente paciente = new Paciente();
-		paciente.setCodigo(this.gpl.getPacientes().size()+1);
-		paciente.setCedula(this.getCedula());
-		paciente.setNombre(this.getNombre());
-		paciente.setApellido(this.getApellido());
-		paciente.setEmail(this.getEmail());
-		paciente.setClave(this.getClave());
-		paciente.setFechaNac(this.getFechaNac());
-		paciente.setSexo(this.getSexo());
-		paciente.setRol(this.gpl.obtenerRol(3));
-		paciente.setPreguntaSecreta(this.getPreguntaSecreta());
-		System.out.println("Este paciente tiene los datos: "+paciente.toString());
+		try {
+			SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+			paciente.setCodigo(this.gpl.getPacientes().size()+1);
+			paciente.setCedula(this.getCedula());
+			paciente.setNombre(this.getNombre());
+			paciente.setApellido(this.getApellido());
+			paciente.setEmail(this.getEmail());
+			paciente.setClave(this.getClave());
+			Date fecha=formato.parse(this.fecha);
+			paciente.setFechaNac(fecha);
+			paciente.setSexo(this.getSexo());
+			paciente.setRol(this.gpl.obtenerRol(3));
+			paciente.setPreguntaSecreta(this.getPreguntaSecreta());
+			System.out.println("Este paciente tiene los datos: "+paciente.toString());
+		}catch (Exception e) {
+			// TODO: handle exception
+			e.getMessage();
+		}
+		
 		try {
 			if(this.getClave().equals(this.getClave2())) {
 				System.out.println("Datos del paciente entrando en el try y antes de guardar: "+paciente.toString());

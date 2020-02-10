@@ -1,5 +1,6 @@
 package Vista;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -8,7 +9,9 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
+import javax.swing.JOptionPane;
 
+import Exception.ExcepcionCita;
 import Modelo.Cita;
 import Modelo.Historial;
 import Modelo.Medico;
@@ -29,6 +32,7 @@ public class GestionIndexPacienteBean {
 	@Inject
 	private GestionCitaLocal gcl;
 	
+	private String fecha;
 	private String hora;
 	
 	@Inject
@@ -45,6 +49,8 @@ public class GestionIndexPacienteBean {
 	private List<Cita> citas;
 	private List<Historial> historiales;
 	
+	private boolean banderaCita = false;
+	
 	@PostConstruct
 	public void init() {
 		this.cita = new Cita();
@@ -58,6 +64,24 @@ public class GestionIndexPacienteBean {
 	
 	
 	
+	public String getFecha() {
+		return fecha;
+	}
+
+
+
+
+
+
+	public void setFecha(String fecha) {
+		this.fecha = fecha;
+	}
+
+
+
+
+
+
 	public String getHora() {
 		return hora;
 	}
@@ -179,16 +203,53 @@ public class GestionIndexPacienteBean {
 	
 	
 	
+	
+	public boolean isBanderaCita() {
+		return banderaCita;
+	}
+
+
+
+
+
+
+	public void setBanderaCita(boolean banderaCita) {
+		this.banderaCita = banderaCita;
+	}
+
+
+
+
+
+
 	public String guardarCita(String user) {
-		System.out.println(user);
-		cita.setCodigo(this.gcl.getCitas().size()+1);
-		cita.setPaciente(this.buscarPacientexEmail(user));
-		cita.setEstado("Pendiente");
-		cita.setHora(hora);
-		System.out.println(this.cita.getMedico().toString());
-		System.out.println(cita.toString());
-		this.gcl.insertar(cita);
-		return "paginaPrincipalPaciente?faces-redirect=true";
+		ExcepcionCita exp = new ExcepcionCita();
+		try {
+			SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+			System.out.println(user);
+			cita.setCodigo(this.gcl.getCitas().size()+1);
+			cita.setPaciente(this.buscarPacientexEmail(user));
+			cita.setEstado("Pendiente");
+			cita.setHora(hora);
+			Date fecha=formato.parse(this.fecha);
+			cita.setFecha(fecha);
+		}catch(Exception e) {
+			e.getMessage();
+		}
+		
+		try {
+			banderaCita=exp.verificarCita(this.gcl.obtenerCitasHorario(cita));
+			System.out.println(banderaCita);
+			if(banderaCita==true) {
+				throw new ExcepcionCita();
+			}else {
+				this.gcl.insertar(cita);
+				return "misCitas?faces-redirect=true";
+			}
+		}catch (ExcepcionCita e){
+			e.getMessage();
+			return null;
+		}
 	}
 	
 	

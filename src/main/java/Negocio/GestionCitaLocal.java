@@ -18,4 +18,5 @@ public interface GestionCitaLocal {
 	public List<Cita> obtenerCitasPendientes(Medico medico);
 	public List<Cita> obtenerCitasAgendadas(Medico medico);
 	public List<Cita> obtenerCitasAtendidas(Medico medico);
+	public int obtenerCitasHorario(Cita cita);
 }

@@ -66,5 +66,15 @@ public class CitaDAO {
 		return listado;
 	}
 	
+	public List<Cita> obtenerCitasPorHorario(Cita cita){
+		String jpql = "SELECT c FROM Cita c WHERE c.medico = :medico and c.fecha = :fecha and c.hora = :hora";
+		Query query = em.createQuery(jpql, Cita.class);
+		query.setParameter("medico", cita.getMedico());
+		query.setParameter("fecha", cita.getFecha());
+		query.setParameter("hora", cita.getHora());
+		List<Cita> listado = query.getResultList();
+		return listado;
+	}
+	
 	
 }
