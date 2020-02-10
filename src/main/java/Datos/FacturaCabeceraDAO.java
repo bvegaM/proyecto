@@ -12,6 +12,7 @@ import Modelo.Medico;
 import Modelo.Paciente;
 import Modelo.Receta;
 
+
 @Stateless
 public class FacturaCabeceraDAO {
 
@@ -49,4 +50,13 @@ public class FacturaCabeceraDAO {
 		return listado;
 	}
 
+	
+	public List<FacturaCabecera> getFacturaCabeceraMedico(Medico medico){
+		String jpql = "SELECT f FROM FacturaCabecera f WHERE f.medico = :medico";
+		Query query = em.createQuery(jpql, FacturaCabecera.class);
+		query.setParameter("medico", medico);
+		List<FacturaCabecera> listado = query.getResultList();		
+		return listado;
+	}
+	
 }

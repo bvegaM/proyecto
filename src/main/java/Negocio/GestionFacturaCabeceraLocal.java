@@ -4,6 +4,7 @@ import java.util.List;
 
 import Modelo.FacturaCabecera;
 import Modelo.Paciente;
+import Modelo.Medico;
 
 public interface GestionFacturaCabeceraLocal {
 
@@ -14,4 +15,5 @@ public interface GestionFacturaCabeceraLocal {
 	public List<FacturaCabecera> getFacturaCabecera();
 	public List<FacturaCabecera> getFacturaCabeceraActivo();
 
+	public List<FacturaCabecera> getFacturaCabeceraMedico(Medico medico);
 }
