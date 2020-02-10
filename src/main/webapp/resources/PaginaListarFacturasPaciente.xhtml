@@ -1,0 +1,43 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+		template="listarFacturaPaciente.xhtml">
+		
+		<f:metadata>
+        	<f:viewParam id="id" name="id" value="#{gestionFacturaCabeceraBean.id}"/>
+        	<f:viewAction action="#{gestionFacturaCabeceraBean.loadFacturaPorPaciente()}" />
+ 		</f:metadata>
+		
+		<ui:define name="listarFacturaPaciente">
+			<h:form>
+				<div class="row">
+					<div class="col-12 table-responsive">
+						<h:dataTable var="_factura" value="#{gestionFacturaCabeceraBean.facturasCabecera}"
+						styleClass="table table-striped">
+						<h:column>
+							<f:facet name="header">Numero Factura</f:facet>
+							#{_factura.numeroFactura}
+						</h:column>
+						<h:column>
+							<f:facet name="header">Medico</f:facet>
+							#{_factura.medico.nombre} #{_factura.medico.apellido}
+						</h:column>
+						<h:column>
+							<f:facet name="header">Paciente</f:facet>
+							#{_factura.paciente.nombre} #{_factura.paciente.apellido}
+						</h:column>	
+						<h:column>
+							<f:facet name="header">Acciones</f:facet>
+							<div class="btn-group btn-group-sm">
+								<h:commandButton action="#{gestionFacturaCabeceraBean.verFacturaPaciente(_factura)}" styleClass="btn btn-warning" value="Ver" />
+							</div>
+						</h:column>
+					</h:dataTable>
+					</div>
+				</div>
+			</h:form>
+		</ui:define>
+		
+		
+</ui:composition>

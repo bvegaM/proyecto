@@ -13,6 +13,7 @@ import javax.inject.Inject;
 import Modelo.Cita;
 import Modelo.FacturaCabecera;
 import Modelo.FacturaDetalle;
+import Modelo.Medico;
 import Modelo.Servicio;
 import Negocio.GestionFacturaCabeceraLocal;
 import Negocio.GestionMedicoLocal;
@@ -144,8 +145,20 @@ public class GestionFacturaCabeceraBean {
 		return "PaginaVerFactura?faces-redirect=true&id="+f.getNumeroFactura();
 	}
 	
+	public String verFacturaPaciente(FacturaCabecera f) {
+		return "PaginaVerFacturaPaciente?faces-redirect=true&id="+f.getNumeroFactura();
+	}
+	
 	public void loadData() {
 		this.facturaCabecera=this.gfcl.read(this.id);
+	}
+	
+	public void loadFacturaPorPaciente() {
+		System.out.println("load data " + id);
+		if(id==null)
+			return;
+		List<FacturaCabecera> aux = gfcl.obtenerFacturaPaciente(Integer.parseInt(id));
+		this.facturasCabecera=aux;
 	}
 	
 }

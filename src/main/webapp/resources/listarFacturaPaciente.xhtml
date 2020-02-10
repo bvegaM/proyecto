@@ -19,10 +19,6 @@
   <link rel="stylesheet" href="dist/css/adminlte.min.css"/>
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet"/>
-  <f:metadata>
-        <f:viewParam id="id" name="id" value="#{gestionMedicoBean.id}"/>
-        <f:viewAction action="#{gestionMedicoBean.loadMedico()}" />
-  </f:metadata>
 </head>
 <body class="hold-transition sidebar-mini">
 <!-- Site wrapper -->
@@ -38,7 +34,7 @@
         <a href="paginaPrincipalPaciente.xhtml" class="nav-link">Home</a>
       </li>
     </ul>
-	<ul class="navbar-nav ml-auto">
+    <ul class="navbar-nav ml-auto">
 		      <li class="nav-item">
 		        <h:form><h:commandButton styleClass="btn btn-block btn-outline-success" action="#{gestionLoginBean.cerrarSesion()}" value="Cerrar Sesion" /> </h:form>
 		      </li>
@@ -102,10 +98,33 @@
 								<p>Mi Historial</p>
 						</a></li>
 						<li class="nav-item has-treeview"><a
-							href="PaginaListarFacturasPaciente.xhtml" class="nav-link"> <i
+							href="misFacturas.xhtml" class="nav-link"> <i
 								class="nav-icon fas fa-tachometer-alt"></i>
 								<p>Mis Facturas</p>
 						</a></li>
+						<li class="nav-item has-treeview">
+				            <a href="#" class="nav-link">
+				              <i class="nav-icon fas fa-edit"></i>
+				              <p>
+				                Configuración
+				                <i class="fas fa-angle-left right"></i>
+				              </p>
+				            </a>
+				            <ul class="nav nav-treeview">
+				              <li class="nav-item">
+				                <a href="PaginaEditarPerfilPaciente.xhtml" class="nav-link">
+				                  <i class="far fa-circle nav-icon"></i>
+				                  <p>Editar Perfil</p>
+				                </a>
+				              </li>
+				              <li class="nav-item">
+				                <a href="PaginaCambiarClavePaciente.xhtml" class="nav-link">
+				                  <i class="far fa-circle nav-icon"></i>
+				                  <p>Cambiar Contraseña</p>
+				                </a>
+			              	  </li>
+			            </ul>
+			          </li>
 					</ul>
 				</nav>
 				<!-- /.sidebar-menu -->
@@ -124,7 +143,7 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="index2.xhtml">Inicio</a></li>
+              <li class="breadcrumb-item"><a href="paginaPrincipalPaciente.xhtml">Inicio</a></li>
               <li class="breadcrumb-item active">Inicio</li>
             </ol>
           </div>
@@ -132,13 +151,12 @@
       </div><!-- /.container-fluid -->
     </section>
 
-	   <!-- Main content -->
+    <!-- Main content -->
     <section class="content">
-   
-          <!-- Default box -->
-      <div class="card">
+ 		 <!-- Default box -->
+      <div class="card card-info">
         <div class="card-header">
-          <h3 class="card-title">Especialidad</h3>
+          <h3 class="card-title">Estos son las Facturas</h3>
 
           <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -148,45 +166,11 @@
           </div>
         </div>
         <div class="card-body">
-        	<h:form>
-				<div class="row">
-					<div class="col-12 table-responsive">
-						<h:dataTable var="_medicos" value="#{gestionMedicoBean.medicos}"
-						styleClass="table table-striped">
-						<h:column>
-							<f:facet name="header">Nombre</f:facet>
-							Dr. #{_medicos.nombre} #{_medicos.apellido}
-						</h:column>
-						<h:column>
-							<f:facet name="header">Especialidad</f:facet>
-							#{_medicos.especialidad.nombre}
-						</h:column>	
-						<h:column>
-							<f:facet name="header">Acciones</f:facet>
-							<div class="btn-group btn-group-sm">
-								<h:commandButton action="#{gestionMedicoBean.MedicoPorId(_medicos)}" styleClass="btn btn-info" value="Aceptar" />
-							</div>
-						</h:column>
-					</h:dataTable>
-					</div>
-				</div>
-			</h:form>
+        	<ui:insert name="listarFacturaPaciente"></ui:insert>    
         </div>
-        <!-- /.card-body -->
-        <div class="card-footer">
-          Footer
-        </div>
-        <!-- /.card-footer-->
       </div>
-      <!-- /.card -->
-      
-      
-      
-      
-
     </section>
     <!-- /.content -->
-	
   </div>
   <!-- /.content-wrapper -->
 
