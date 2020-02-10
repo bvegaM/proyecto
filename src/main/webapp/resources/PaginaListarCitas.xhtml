@@ -38,8 +38,8 @@
 						<h:column>
 							<f:facet name="header">Acciones</f:facet>
 							<div class="btn-group btn-group-sm">
-								<h:commandButton action="#{gestionIndexMedicoBean.agendarCita(_citas)}" styleClass="btn btn-info" value="Ver" />
-								<h:commandButton action="#{gestionIndexMedicoBean.rechazarCita(_citas)}" styleClass="btn btn-danger" value="Eliminar" />
+								<h:commandButton action="#{gestionCitaBean.verCita(_citas)}" styleClass="btn btn-info" value="Ver" />
+								<h:commandButton action="#{gestionCitaBean.eliminar(_citas.codigo)}" styleClass="btn btn-danger" value="Eliminar" />
 							</div>
 							
 						</h:column>

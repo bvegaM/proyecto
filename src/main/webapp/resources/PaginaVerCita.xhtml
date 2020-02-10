@@ -1,0 +1,59 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+		template="verCitas.xhtml">
+
+		<f:metadata>
+        	<f:viewParam id="id" name="id" value="#{gestionCitaBean.id}"/>
+        	<f:viewAction action="#{gestionCitaBean.loadData()}" />
+ 		</f:metadata>
+
+		<ui:define name="nombreAdmin">#{gestionLoginBean.nameUser.toUpperCase()}</ui:define>
+		<ui:define name="cerrarSesion"><h:form><h:commandButton styleClass="btn btn-block btn-outline-success" action="#{gestionLoginBean.cerrarSesion()}" value="Cerrar Sesion" /> </h:form>
+		</ui:define>
+		
+		<ui:define name="verCita">
+		<div class="card card-info">
+        	<div class="card-header">
+          		<h3 class="card-title">Datos de la Cita</h3>
+		    	<div class="card-tools">
+		            <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+		              <i class="fas fa-minus"></i></button>
+		            <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
+		              <i class="fas fa-times"></i></button>
+		         </div>      
+        	</div>
+        	<div class="card-body">
+        		<h:form>
+	        		<h:outputLabel value="Paciente:" />
+	        		<div class="input-group mb-3">
+	          			<h:outputText value="#{gestionCitaBean.cita.paciente.nombre.toUpperCase()} #{gestionCitaBean.cita.paciente.apellido.toUpperCase()}"  class="form-right" pt:placeholder="Paciente:" ></h:outputText>
+	        		</div>
+	        		<h:outputLabel value="Médico: " />
+	        		<div class="input-group mb-3">
+	          			<h:outputText value="#{gestionCitaBean.cita.medico.nombre.toUpperCase()} #{gestionCitaBean.cita.medico.apellido.toUpperCase()}" class="form-right" pt:placeholder="Paciente:" ></h:outputText>
+	        		</div>     		
+	        		<h:outputLabel value="Especialidad del médico:" />
+	        		<div class="input-group mb-3">
+	          			<h:outputText  value="#{gestionCitaBean.cita.medico.especialidad.nombre.toUpperCase()}" class="form-right"></h:outputText>
+	        		</div>
+	        		<h:outputLabel value="Fecha de la Cita:" />
+	        		<div class="input-group mb-3">
+	          			<h:outputText value="#{gestionCitaBean.cita.fecha}" class="float-right" ><f:convertDateTime pattern="yyyy/MM/dd"/></h:outputText>
+	        		</div>
+	        		<h:outputLabel value="Hora de la Cita:" />
+	        		<div class="input-group mb-3">
+	          			<h:outputText  value="#{gestionCitaBean.cita.hora}" class="form-right"></h:outputText>
+	        		</div>
+	        		<h:outputLabel value="Estado la Cita:" />
+	        		<div class="input-group mb-3">
+	          			<h:outputText  value="#{gestionCitaBean.cita.estado}" class="form-right"></h:outputText>
+	        		</div>
+        		</h:form>        	 
+        	</div>
+        </div>
+		</ui:define>
+		
+</ui:composition>

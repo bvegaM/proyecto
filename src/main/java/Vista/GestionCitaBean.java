@@ -68,4 +68,13 @@ public class GestionCitaBean {
 			return;
 		this.cita=this.gcl.leer(Integer.parseInt(id));
 	}
+	
+	public String verCita(Cita c) {
+		return "PaginaVerCita?faces-redirect=true&id="+c.getCodigo();
+	}
+	
+	public String eliminar(int codigo) {
+		this.gcl.borrar(codigo);
+		return "PaginaListarCitas?faces-redirect=true";
+	}
 }
