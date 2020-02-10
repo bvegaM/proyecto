@@ -4,7 +4,7 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
-<head>
+<h:head>
   <meta charset="utf-8"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
   <title>Digital Medical</title>
@@ -30,7 +30,8 @@
   <link rel="stylesheet" href="plugins/summernote/summernote-bs4.css"/>
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet"/>
-</head>
+  
+</h:head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
 
@@ -42,7 +43,7 @@
         <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="PaginaPrincipalAdministrador.xhtml" class="nav-link">Home</a>
+        <a href="PaginaPrincipalMedico.xhtml" class="nav-link">Home</a>
       </li>
     </ul>
     <ul class="navbar-nav ml-auto">
@@ -57,10 +58,10 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
+    <a href="PaginaPrincipalMedico.xhtml" class="brand-link">
       <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8"/>
-      <span class="brand-text font-weight-light">Administrador</span>
+      <span class="brand-text font-weight-light">Médico</span>
     </a>
 
     <!-- Sidebar -->
@@ -68,7 +69,7 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="info">
-          <a href="PaginaEditarPerfil.xhtml" class="d-block"><ui:insert name="nombreAdmin"></ui:insert></a>
+          <a href="PaginaEditarPerfil.xhtml" class="d-block"><ui:insert name="nombreMedico"></ui:insert></a>
         </div>
       </div>
 
@@ -82,33 +83,39 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-edit"></i>
               <p>
-                Menu de Creación
+                Citas
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="PaginaCrearMedico.xhtml" class="nav-link">
+                <a href="PaginaListarCitasMedico.xhtml" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Crear Medico</p>
+                  <p>Mis Citas</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+               
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-edit"></i>
+              <p>
+                Recetas
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="PaginaCrearRecetasMedico.xhtml" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Nueva Receta</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="PaginaCrearPaciente.xhtml" class="nav-link">
+                <a href="PaginaListarRecetasMedico.xhtml" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Crear Paciente</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="PaginaCrearEspecialidad.xhtml" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Crear Especialidad</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="PaginaCrearMedicamento.xhtml" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Crear Medicamento</p>
+                  <p>Ver Recetas</p>
                 </a>
               </li>
             </ul>
@@ -118,57 +125,21 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
-                Ver Listas
+                Historial Pacientes
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="PaginaListarPacientes.xhtml" class="nav-link">
+                <a href="PaginaCrearHistorialesMedico.xhtml" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Listar Pacientes</p>
+                  <p>Nuevo Historial</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="PaginaListarMedicos.xhtml" class="nav-link">
+                <a href="PaginaListarHistorialesMedico.xhtml" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Listar Medicos</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="PaginaListarEspecialidades.xhtml" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Listar Especialidades</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="PaginaListarRecetas.xhtml" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Listar Recetas</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="PaginaListarFacturas.xhtml" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Listar Facturas</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="PaginaListarCitas.xhtml" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Listar Citas</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="PaginaListarMedicamentos.xhtml" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Listar Medicamentos</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="PaginaListarHistoriales.xhtml" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Listar Historiales</p>
+                  <p>Ver Historiales</p>
                 </a>
               </li>
             </ul>
@@ -183,13 +154,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="PaginaEditarPerfil.xhtml" class="nav-link">
+                <a href="PaginaEditarPerfilMedico.xhtml" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Editar Perfil</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="PaginaCambiarClave.xhtml" class="nav-link">
+                <a href="PaginaCambiarClaveMedico.xhtml" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Cambiar Contraseña</p>
                 </a>
@@ -198,7 +169,7 @@
           </li>
         </ul>
       </nav>
-      
+        
       <!-- /.TERMINA MENU PRINCIPAL -->
     </div>
     <!-- /.sidebar -->
@@ -211,18 +182,20 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Receta</h1>
+            <h1 class="m-0 text-dark">Crear Factura</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item">Ver Recetas</li>
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Facturar</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
     <section class="content">
-    	<ui:insert name="verReceta"></ui:insert>  
+    	<ui:insert name="crearFactura"></ui:insert>
+      <!-- Default box -->
     </section>
     <!-- /.content-header -->
     <!-- /.content -->

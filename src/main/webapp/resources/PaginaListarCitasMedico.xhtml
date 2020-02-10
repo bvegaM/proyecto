@@ -71,7 +71,7 @@
 						<h:column>
 							<f:facet name="header">Acciones</f:facet>
 							<h:commandButton class="btn btn-primary" action="#{gestionRecetaBean.recetar(_citas.paciente)}" value="Recetar" />
-							<h:commandButton class="btn btn-warning" action="#{gestionIndexMedicoBean.facturar()}" value="Facturar" />
+							<h:commandButton class="btn btn-warning" action="#{gestionIndexMedicoBean.facturar(_citas)}" value="Facturar" />
 							<h:commandButton class="btn btn-success" action="#{gestionIndexMedicoBean.citaAtendida(_citas)}" value="Atendido" />
 						</h:column>
 						

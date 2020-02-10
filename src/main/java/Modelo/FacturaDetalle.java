@@ -10,16 +10,17 @@ public class FacturaDetalle {
 
 	@Id
 	@GeneratedValue
-	private String numeroDetalle;
+	private int numeroDetalle;
 	private int cantidad;
 	@OneToOne
 	private Servicio servicio;
+	private double precio;
 	private String estado;
 	
-	public String getNumeroDetalle() {
+	public int getNumeroDetalle() {
 		return numeroDetalle;
 	}
-	public void setNumeroDetalle(String numeroDetalle) {
+	public void setNumeroDetalle(int numeroDetalle) {
 		this.numeroDetalle = numeroDetalle;
 	}
 	public int getCantidad() {
@@ -40,11 +41,18 @@ public class FacturaDetalle {
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
+	public double getPrecio() {
+		return precio;
+	}
+	public void setPrecio(double precio) {
+		this.precio = precio;
+	}
 	@Override
 	public String toString() {
 		return "FacturaDetalle [numeroDetalle=" + numeroDetalle + ", cantidad=" + cantidad + ", servicio=" + servicio
-				+ ", estado=" + estado + "]";
+				+ ", precio=" + precio + ", estado=" + estado + "]";
 	}
+	
 	
 	
 	

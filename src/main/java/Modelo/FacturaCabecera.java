@@ -1,5 +1,6 @@
 package Modelo;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -25,6 +26,11 @@ public class FacturaCabecera {
 	@JoinColumn(name = "cabeceraId", referencedColumnName = "numeroFactura")
 	private List<FacturaDetalle> facturaDetalles;
 	private double total;
+	
+	public void addFacturaDetalle(FacturaDetalle fd) {
+		if(this.facturaDetalles==null) this.facturaDetalles=new ArrayList<>();
+		this.facturaDetalles.add(fd);
+	}
 	
 	public String getNumeroFactura() {
 		return numeroFactura;

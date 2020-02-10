@@ -9,7 +9,6 @@ public class Servicio {
 	@Id
 	private int codigo;
 	private String descripción;
-	private double precio;
 	
 	public int getCodigo() {
 		return codigo;
@@ -23,16 +22,10 @@ public class Servicio {
 	public void setDescripción(String descripción) {
 		this.descripción = descripción;
 	}
-	public double getPrecio() {
-		return precio;
-	}
-	public void setPrecio(double precio) {
-		this.precio = precio;
-	}
 	
 	@Override
 	public String toString() {
-		return "Servicio [codigo=" + codigo + ", descripción=" + descripción + ", precio=" + precio + "]";
+		return "Servicio [codigo=" + codigo + ", descripción=" + descripción + "]";
 	}
 	
 	

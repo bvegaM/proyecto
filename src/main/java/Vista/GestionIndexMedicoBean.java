@@ -75,8 +75,12 @@ public class GestionIndexMedicoBean {
 		return this.gcl.obtenerCitasAtendidas(medico);
 	}
 	
-	public String facturar() {
-		return "factura?faces-redirect=true";
+	public String facturar(Cita c) {
+		return "PaginaCrearFactura?faces-redirect=true&id="+c.getCodigo();
 	}
 
+	public List<Cita> obtenerCita() {
+		return this.gcl.getCitas();
+	}
+	
 }
