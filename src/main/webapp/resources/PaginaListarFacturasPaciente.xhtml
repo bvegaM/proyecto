@@ -4,16 +4,12 @@
       xmlns:h="http://java.sun.com/jsf/html"
 		template="listarFacturaPaciente.xhtml">
 		
-		<f:metadata>
-        	<f:viewParam id="id" name="id" value="#{gestionFacturaCabeceraBean.id}"/>
-        	<f:viewAction action="#{gestionFacturaCabeceraBean.loadFacturaPorPaciente()}" />
- 		</f:metadata>
 		
 		<ui:define name="listarFacturaPaciente">
 			<h:form>
 				<div class="row">
 					<div class="col-12 table-responsive">
-						<h:dataTable var="_factura" value="#{gestionFacturaCabeceraBean.facturasCabecera}"
+						<h:dataTable var="_factura" value="#{gestionFacturaCabeceraBean.obtenerFacturaCabeceraPaciente(gestionLoginBean.paciente)}"
 						styleClass="table table-striped">
 						<h:column>
 							<f:facet name="header">Numero Factura</f:facet>

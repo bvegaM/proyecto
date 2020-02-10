@@ -78,15 +78,15 @@
 <script src="../../dist/js/adminlte.min.js"></script>
 
 	<h:outputScript rendered="#{gestionLoginBean.banderaLogin}">
-Swal.fire({
-  icon: 'error',
-  title: 'Oops...',
-  text: 'Verifica que tu email y contraseña sean los correctos',
-  footer: 'Si no recuerdas tu contraseña recuerda que puedes recuperarla.'
-})
-
-document.getElementById('j_idt5:email').value="";
-document.getElementById('j_idt5:clave').value="";
+		Swal.fire({
+		  icon: 'error',
+		  title: 'Oops...',
+		  text: 'Verifica que tu email y contraseña sean los correctos',
+		  footer: 'Si no recuerdas tu contraseña recuerda que puedes recuperarla.'
+		})
+		
+		document.getElementById('j_idt5:email').value="";
+		document.getElementById('j_idt5:clave').value="";
 	</h:outputScript>
 
 </body>

@@ -14,6 +14,7 @@ import Modelo.Cita;
 import Modelo.FacturaCabecera;
 import Modelo.FacturaDetalle;
 import Modelo.Medico;
+import Modelo.Paciente;
 import Modelo.Receta;
 import Modelo.Servicio;
 import Negocio.GestionFacturaCabeceraLocal;
@@ -177,6 +178,10 @@ public class GestionFacturaCabeceraBean {
 		return "PaginaVerFacturaMedico?faces-redirect=true&id="+f.getNumeroFactura();
 	}
 	
+	public String verFacturaPaciente(FacturaCabecera f) {
+		return "PaginaVerFacturaPaciente?faces-redirect=true&id="+f.getNumeroFactura();
+	}
+	
 	public void loadData() {
 		this.facturaCabecera=this.gfcl.read(this.id);
 	}
@@ -186,5 +191,8 @@ public class GestionFacturaCabeceraBean {
 		return this.gfcl.getFacturaCabeceraMedico(medico);
 	}
 	
+	public List<FacturaCabecera> obtenerFacturaCabeceraPaciente(Paciente paciente){
+		return this.gfcl.getFacturaCabeceraPacente(paciente);
+	}
 	
 }

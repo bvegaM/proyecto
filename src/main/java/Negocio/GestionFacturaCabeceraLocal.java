@@ -14,6 +14,6 @@ public interface GestionFacturaCabeceraLocal {
 	public void delete(String numeroFactura);
 	public List<FacturaCabecera> getFacturaCabecera();
 	public List<FacturaCabecera> getFacturaCabeceraActivo();
-
 	public List<FacturaCabecera> getFacturaCabeceraMedico(Medico medico);
+	public List<FacturaCabecera> getFacturaCabeceraPacente(Paciente paciente);
 }
