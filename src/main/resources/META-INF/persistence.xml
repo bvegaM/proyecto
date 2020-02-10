@@ -26,7 +26,7 @@
       <!-- The datasource is deployed as WEB-INF/proyectoserver-ds.xml, you
          can find it in the source at src/main/webapp/WEB-INF/proyectoserver-ds.xml -->
       <jta-data-source>java:/MySqlDS</jta-data-source>
-      <properties>
+      <properties>s
          <!-- Properties for Hibernate -->
          <property name="hibernate.hbm2ddl.auto" value="update" />
          <property name="hibernate.show_sql" value="true" />
