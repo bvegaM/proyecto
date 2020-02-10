@@ -40,13 +40,13 @@ public class FacturaCabeceraDAO {
 		List<FacturaCabecera> listado = query.getResultList();		
 		return listado;
 	}
-	
-	public List<FacturaCabecera> obtenerFacturaPaciente(int paciente){
-		String jpql = "SELECT f FROM FacturaCabecera f WHERE f.paciente.codigo = :paciente";
-		Query query = em.createQuery(jpql, Paciente.class);
-		query.setParameter("paciente", paciente);
-		List<FacturaCabecera> listado = query.getResultList();
+
+	public List<FacturaCabecera> getFacturaCabeceraActivo(){
+		String jpql = "SELECT f FROM FacturaCabecera f where f.estado = :estado";
+		Query query = em.createQuery(jpql, FacturaCabecera.class);
+		query.setParameter("estado", "1");
+		List<FacturaCabecera> listado = query.getResultList();		
 		return listado;
 	}
-	
+
 }

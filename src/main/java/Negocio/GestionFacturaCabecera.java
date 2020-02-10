@@ -41,8 +41,9 @@ public class GestionFacturaCabecera implements GestionFacturaCabeceraLocal {
 	}
 	
 	@Override
-	public List<FacturaCabecera> obtenerFacturaPaciente(int paciente) {
-		return dao.obtenerFacturaPaciente(paciente);
+	public List<FacturaCabecera> getFacturaCabeceraActivo() {
+		return dao.getFacturaCabeceraActivo();
+
 	}
 
 }

@@ -26,6 +26,10 @@ public class FacturaCabecera {
 	@JoinColumn(name = "cabeceraId", referencedColumnName = "numeroFactura")
 	private List<FacturaDetalle> facturaDetalles;
 	private double total;
+	private double subtotal;
+	private double iva;
+	private String estado;
+	
 	
 	public void addFacturaDetalle(FacturaDetalle fd) {
 		if(this.facturaDetalles==null) this.facturaDetalles=new ArrayList<>();
@@ -68,6 +72,28 @@ public class FacturaCabecera {
 	public void setMedico(Medico medico) {
 		this.medico = medico;
 	}
+	public String getEstado() {
+		return estado;
+	}
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+	public double getSubtotal() {
+		return subtotal;
+	}
+
+	public void setSubtotal(double subtotal) {
+		this.subtotal = subtotal;
+	}
+
+	public double getIva() {
+		return iva;
+	}
+
+	public void setIva(double iva) {
+		this.iva = iva;
+	}
+
 	@Override
 	public String toString() {
 		return "FacturaCabecera [numeroFactura=" + numeroFactura + ", medico=" + medico + ", paciente=" + paciente

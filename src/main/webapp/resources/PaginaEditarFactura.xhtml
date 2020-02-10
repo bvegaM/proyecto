@@ -1,0 +1,94 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+		template="editarFactura.xhtml">
+	
+		<ui:define name="nombreMedico">#{gestionLoginBean.nameUser.toUpperCase()}</ui:define>
+		<ui:define name="cerrarSesion"><h:form><h:commandButton styleClass="btn btn-block btn-outline-success" action="#{gestionLoginBean.cerrarSesion()}" value="Cerrar Sesion" /> </h:form>
+		</ui:define>
+		
+		
+
+		<f:metadata>
+        	<f:viewParam id="id" name="id" value="#{gestionFacturaCabeceraBean.id}"/>
+        	<f:viewAction action="#{gestionFacturaCabeceraBean.loadData()}" />
+ 		</f:metadata>
+
+ 		<ui:define name="editarFactura">
+			<h:form id="form">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-12">
+							<div class="invoice p-3 mb-3">
+								<div class="row">
+									 <div class="col-12">
+									 	<h4>
+	                   					<i class="fas fa-globe"></i> Digital Medical
+	                    				<h:outputText value="#{gestionFacturaCabeceraBean.facturaCabecera.fecha}" class="float-right" ><f:convertDateTime pattern="yyyy/MM/dd"/></h:outputText>
+	                  					</h4>
+									 </div>
+								</div>
+								
+								<div class="row invoice-info">
+									<div class="col-sm-4 invoice-col">
+										<strong>Datos Medico:</strong> 
+						                  <address>
+						                    Nombre: #{gestionFacturaCabeceraBean.facturaCabecera.medico.nombre} #{gestionFacturaCabeceraBean.facturaCabecera.medico.apellido}<br/>
+						                    cedula: #{gestionFacturaCabeceraBean.facturaCabecera.medico.cedula}<br/>
+						                    Especialidad: #{gestionFacturaCabeceraBean.facturaCabecera.medico.especialidad.nombre}<br/>
+						                    Correo: #{gestionFacturaCabeceraBean.facturaCabecera.medico.email}
+						                  </address>
+									</div>
+									
+									<div class="col-sm-4 invoice-col">
+					                  <strong>Datos Paciente:</strong> 
+					                  <address>
+					                    Nombre: #{gestionFacturaCabeceraBean.facturaCabecera.paciente.nombre.toUpperCase()} #{gestionFacturaCabeceraBean.facturaCabecera.paciente.apellido.toUpperCase()}<br/>
+					                    cedula: #{gestionFacturaCabeceraBean.facturaCabecera.paciente.cedula}<br/>
+					                    Email: #{gestionFacturaCabeceraBean.facturaCabecera.paciente.email}
+					                  </address>
+					                </div>
+									
+									<div class="col-sm-4 invoice-col">
+					                  <b>Numero Factura: ##{gestionFacturaCabeceraBean.facturaCabecera.numeroFactura.toUpperCase()}</b><br/>
+					                </div>
+								</div>
+								<h:commandButton styleClass="btn btn-success" action="#{gestionFacturaCabeceraBean.addFacturaDetalle()}" value="Agregar Servicio" >
+				              		<f:ajax render="tblfDetalle" execute="@all" />
+				              	</h:commandButton>
+								<div class="row">
+									<div class="col-12 table-responsive">
+										<h:dataTable class="table table-striped" style="width:100%" var="_detalle" value="#{gestionFacturaCabeceraBean.facturaCabecera.facturaDetalles}" id="tblfDetalle">
+											<h:column>
+						              			<f:facet name="header">Cantidad</f:facet>
+						              			<h:inputText styleClass="form-control input-sm" value="#{_detalle.cantidad}" />
+						              		</h:column>
+						                 	<h:column>
+						              			<f:facet name="header">Servicio</f:facet>
+						              			<h:outputText  style="display:none;" id="codigoMedicamento" value="#{_detalle.servicio.codigo}" ></h:outputText>
+						              			<h:selectOneMenu class="form-control select2" style="width: 100%;" value="#{_detalle.servicio}" converter="servicioConverter" id="medi" name="medi">
+						      						<f:selectItems value="#{gestionFacturaCabeceraBean.servicios}" var="r"
+						      							itemLabel="#{r.descripción}" itemValue="#{r}"/>
+						      					</h:selectOneMenu>
+						              		</h:column>
+						              		<h:column>
+						              			<f:facet name="header">Precio</f:facet>
+						              			<h:inputText styleClass="form-control input-sm" value="#{_detalle.precio}" />
+						              		</h:column>
+										</h:dataTable>
+									</div>
+								</div>
+								<div class="row no-print">
+				                <div class="col-12">
+				                  <h:commandButton class="btn btn-success float-right" action="#{gestionFacturaCabeceraBean.editar()}" value="Actualizar"></h:commandButton>
+				                </div>
+							</div>
+							</div>
+					</div>
+              </div>
+				</div>
+				
+			</h:form>
+		</ui:define>
+</ui:composition>

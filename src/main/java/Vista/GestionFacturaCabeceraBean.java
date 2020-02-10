@@ -112,8 +112,22 @@ public class GestionFacturaCabeceraBean {
 		this.facturaCabecera.setPaciente(c.getPaciente());
 		this.facturaCabecera.setFecha(c.getFecha());
 		this.facturaCabecera.setTotal(this.calcularTotal());
+		this.facturaCabecera.setSubtotal(this.calcularSubtotal());
+		this.facturaCabecera.setIva(this.calcularIva());
+		this.facturaCabecera.setEstado("1");
 		this.gfcl.insert(this.facturaCabecera);
 		return "PaginaListarCitasMedico?faces-redirect=true";
+	}
+	
+	public String eliminar(String numeroFactura) {
+		this.facturaCabecera=this.gfcl.read(numeroFactura);
+		this.facturaCabecera.setEstado("0");
+		this.gfcl.update(this.facturaCabecera);
+		return "PaginaListarFacturas?faces-redirect=true";
+	}
+	
+	public List<FacturaCabecera> obtenerFacturaCabeceraActivos(){
+		return this.gfcl.getFacturaCabeceraActivo();
 	}
 	
 	public double calcularTotal() {
@@ -145,20 +159,23 @@ public class GestionFacturaCabeceraBean {
 		return "PaginaVerFactura?faces-redirect=true&id="+f.getNumeroFactura();
 	}
 	
-	public String verFacturaPaciente(FacturaCabecera f) {
-		return "PaginaVerFacturaPaciente?faces-redirect=true&id="+f.getNumeroFactura();
+
+	public String editarFactura(FacturaCabecera f) {
+		return "PaginaEditarFactura?faces-redirect=true&id="+f.getNumeroFactura();
+	}
+	
+	public String editar() {
+		this.facturaCabecera.setTotal(this.calcularTotal());
+		this.facturaCabecera.setSubtotal(this.calcularSubtotal());
+		this.facturaCabecera.setIva(this.calcularIva());
+		this.gfcl.update(this.facturaCabecera);
+		return "PaginaListarFacturas?faces-redirect=true";
 	}
 	
 	public void loadData() {
 		this.facturaCabecera=this.gfcl.read(this.id);
 	}
 	
-	public void loadFacturaPorPaciente() {
-		System.out.println("load data " + id);
-		if(id==null)
-			return;
-		List<FacturaCabecera> aux = gfcl.obtenerFacturaPaciente(Integer.parseInt(id));
-		this.facturasCabecera=aux;
-	}
+
 	
 }
