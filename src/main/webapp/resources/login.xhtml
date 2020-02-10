@@ -4,7 +4,7 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
-<head>
+<h:head>
   <meta charset="utf-8"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
   <title>Digital Medical | Iniciar Sesion</title>
@@ -21,7 +21,9 @@
   <link rel="stylesheet" href="dist/css/adminlte.min.css"/>
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet"/>
-</head>
+  <script src="sweetalert2.min.js"></script>
+	<link rel="stylesheet" href="sweetalert2.min.css"/>
+</h:head>
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
@@ -34,7 +36,7 @@
 
       <h:form>
         <div class="input-group mb-3">
-          <h:inputText value="#{gestionLoginBean.email}" pt:placeholder="Email" pt:type="email" class="form-control"/>
+          <h:inputText id="email" value="#{gestionLoginBean.email}" pt:placeholder="Email" pt:type="email" class="form-control"/>
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -42,7 +44,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-        <h:inputText value="#{gestionLoginBean.contrasena}" pt:placeholder="Contraseña" pt:type="password" class="form-control"/>
+        <h:inputText id="clave" value="#{gestionLoginBean.contrasena}" pt:placeholder="Contraseña" pt:type="password" class="form-control"/>
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -74,6 +76,18 @@
 <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../../dist/js/adminlte.min.js"></script>
+
+	<h:outputScript rendered="#{gestionLoginBean.banderaLogin}">
+Swal.fire({
+  icon: 'error',
+  title: 'Oops...',
+  text: 'Verifica que tu email y contraseña sean los correctos',
+  footer: 'Si no recuerdas tu contraseña recuerda que puedes recuperarla.'
+})
+
+document.getElementById('j_idt5:email').value="";
+document.getElementById('j_idt5:clave').value="";
+	</h:outputScript>
 
 </body>
 </html>

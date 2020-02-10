@@ -40,6 +40,8 @@ public class GestionLoginBean implements Serializable {
 	private Paciente paciente;
 	private String nuevaContrasena;
 	private String repiteContrasena;
+	
+	private boolean banderaLogin = false;
 
 	public String iniciarSesion() {
 		
@@ -66,6 +68,8 @@ public class GestionLoginBean implements Serializable {
 			this.admin=administrador;
 			this.nameUser=this.admin.getNombre()+" "+this.admin.getApellido();
 			return "PaginaPrincipalAdministrador.xhtml";
+		}else {
+			banderaLogin=true;
 		}
 		
 		return null;
@@ -252,6 +256,14 @@ public class GestionLoginBean implements Serializable {
 
 	public void setPaciente(Paciente paciente) {
 		this.paciente = paciente;
+	}
+
+	public boolean isBanderaLogin() {
+		return banderaLogin;
+	}
+
+	public void setBanderaLogin(boolean banderaLogin) {
+		this.banderaLogin = banderaLogin;
 	}
 	
 	
