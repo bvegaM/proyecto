@@ -1,0 +1,103 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+		template="verFacturas.xhtml">
+
+		<f:metadata>
+        	<f:viewParam id="id" name="id" value="#{gestionFacturaCabeceraBean.id}"/>
+        	<f:viewAction action="#{gestionFacturaCabeceraBean.loadData()}" />
+ 		</f:metadata>
+
+		<ui:define name="nombreAdmin">#{gestionLoginBean.nameUser.toUpperCase()}</ui:define>
+		<ui:define name="cerrarSesion"><h:form><h:commandButton styleClass="btn btn-block btn-outline-success" action="#{gestionLoginBean.cerrarSesion()}" value="Cerrar Sesion" /> </h:form>
+		</ui:define>
+		
+		<ui:define name="verFactura">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-12">
+						<div class="invoice p-3 mb-3">
+							<div class="row">
+								 <div class="col-12">
+								 	<h4>
+                   					<i class="fas fa-globe"></i> Digital Medical
+                    				<h:outputText value="#{gestionFacturaCabeceraBean.facturaCabecera.fecha}" class="float-right" ><f:convertDateTime pattern="yyyy/MM/dd"/></h:outputText>
+                  					</h4>
+								 </div>
+							</div>
+							
+							<div class="row invoice-info">
+								<div class="col-sm-4 invoice-col">
+									<strong>Datos Medico:</strong> 
+					                  <address>
+					                    Nombre: #{gestionFacturaCabeceraBean.facturaCabecera.medico.nombre} #{gestionFacturaCabeceraBean.facturaCabecera.medico.apellido}<br/>
+					                    cedula: #{gestionFacturaCabeceraBean.facturaCabecera.medico.cedula}<br/>
+					                    Especialidad: #{gestionFacturaCabeceraBean.facturaCabecera.medico.especialidad.nombre}<br/>
+					                    Correo: #{gestionFacturaCabeceraBean.facturaCabecera.medico.email}
+					                  </address>
+								</div>
+								
+								<div class="col-sm-4 invoice-col">
+				                  <strong>Datos Paciente:</strong> 
+				                  <address>
+				                    Nombre: #{gestionFacturaCabeceraBean.facturaCabecera.paciente.nombre.toUpperCase()} #{gestionFacturaCabeceraBean.facturaCabecera.paciente.apellido.toUpperCase()}<br/>
+				                    cedula: #{gestionFacturaCabeceraBean.facturaCabecera.paciente.cedula}<br/>
+				                    Email: #{gestionFacturaCabeceraBean.facturaCabecera.paciente.email}
+				                  </address>
+				                </div>
+								
+								<div class="col-sm-4 invoice-col">
+				                  <b>Numero Factura: ##{gestionFacturaCabeceraBean.facturaCabecera.numeroFactura.toUpperCase()}</b><br/>
+				                </div>
+							</div>
+							
+							<div class="row">
+								<div class="col-12 table-responsive">
+									<h:dataTable class="table table-striped" style="width:100%" var="_detalle" value="#{gestionFacturaCabeceraBean.facturaCabecera.facturaDetalles}" id="tblDetalle">
+										<h:column>
+					              			<f:facet name="header">Cantidad</f:facet>
+					              			<h:outputText value="#{_detalle.cantidad}" />
+					              		</h:column>
+					              		<h:column>
+					              			<f:facet name="header">Servicio</f:facet>
+					              			<h:outputText value="#{_detalle.servicio.descripción}" />
+					              		</h:column>
+										<h:column>
+					              			<f:facet name="header">Precio</f:facet>
+					              			<h:outputText value="#{_detalle.precio}" />
+					              		</h:column>
+									</h:dataTable>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-6">
+                				</div>
+								<div class="col-6">
+									<div class="table-responsive">
+										<table class="table">
+											<tr>
+						                        <th style="width:52%">Subtotal:</th>
+						                        <td>#{gestionFacturaCabeceraBean.calcularSubtotal()}</td>
+						                    </tr>
+						                    <tr>
+						                        <th style="width:52%">Iva (12%):</th>
+						                        <td>#{gestionFacturaCabeceraBean.calcularIva()}</td>
+						                    </tr>
+						                    <tr>
+						                        <th style="width:52%">Total:</th>
+						                        <td>#{gestionFacturaCabeceraBean.calcularTotal()}</td>
+						                    </tr>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>	
+		
+		</ui:define>
+		
+</ui:composition>

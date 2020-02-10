@@ -38,7 +38,7 @@ public class GestionCita implements GestionCitaLocal {
 	@Override
 	public Cita leer(int codigo) {
 		// TODO Auto-generated method stub
-		return null;
+		return cdao.leer(codigo);
 	}
 
 	@Override
