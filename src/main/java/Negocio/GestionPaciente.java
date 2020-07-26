@@ -64,7 +64,10 @@ public class GestionPaciente implements GestionPacienteLocal {
 	@Override
 	public void insertar(Paciente paciente) {
 		// TODO Auto-generated method stub
-		System.out.println(paciente.toString());
+		Rol rol=new Rol();
+		rol.setCodigo(2);
+		rol.setNombre("paciente");
+		paciente.setRol(rol);
 		pdao.insertar(paciente);
 	}
 

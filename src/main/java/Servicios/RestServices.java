@@ -46,7 +46,6 @@ public class RestServices {
 		return "OK";
 	}
 	
-	
 	@POST
 	@Path("/crearMedicamento")
 	@Produces("application/json")
@@ -60,8 +59,6 @@ public class RestServices {
 	@Path("/listarRol")
 	@Produces("application/json")
 	public List<Rol> listarRol() {
-		System.out.print("--------------------------SERVICIO LLEGADO-------------"+"TAMAÑO: ");
-	
 		return this.grl.getRoles();
 	}
 
