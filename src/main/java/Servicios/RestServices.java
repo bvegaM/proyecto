@@ -39,6 +39,15 @@ public class RestServices {
 		return "OK";
 	}
 	
+	@POST
+	@Path("/crearRol")
+	@Consumes("application/json")
+	@Produces("application/json")
+	public String insertarRol(Rol rol) {
+		this.grl.insertar(rol);
+		return "OK";
+	}
+	
 	@GET
 	@Path("/listarRol")
 	@Produces("application/json")
