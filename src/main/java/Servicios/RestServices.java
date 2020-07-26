@@ -11,16 +11,18 @@ import javax.ws.rs.Produces;
 
 import Modelo.Medicina;
 import Modelo.Medico;
+import Modelo.Paciente;
 import Modelo.Rol;
 import Negocio.GestionMedicinaLocal;
 import Negocio.GestionMedicoLocal;
+import Negocio.GestionPacienteLocal;
 import Negocio.GestionRolLocal;
 
 @Path("/practicaws")
 public class RestServices {
 	
 	@Inject
-	private GestionMedicoLocal gml;
+	private GestionPacienteLocal gml;
 	
 	@Inject
 	private GestionMedicinaLocal gmel;
@@ -29,29 +31,11 @@ public class RestServices {
 	private GestionRolLocal grl;
 	
 	@POST
-	@Path("/crearMedico")
+	@Path("/crearPaciente")
 	@Consumes("application/json")
 	@Produces("application/json")
-	public String insertarMedico(Medico medico) {
-		this.gml.insertar(medico);
-		return "OK";
-	}
-
-	
-	@GET
-	@Path("/hola")
-	@Produces("application/json")
-	public String hola() {
-		
-		return "OK";
-	}
-	
-	@POST
-	@Path("/crearMedicamento")
-	@Produces("application/json")
-	@Consumes("application/json")
-	public String insertarMedicamento(Medicina medicina) {
-		this.gmel.insertar(medicina);
+	public String insertarPaciente(Paciente paciente) {
+		this.gml.insertar(paciente);
 		return "OK";
 	}
 	
