@@ -54,5 +54,12 @@ public class RestServices {
 	public List<Rol> listarRol() {
 		return this.grl.getRoles();
 	}
+	
+	@GET
+	@Path("/listarPaciente")
+	@Produces("application/json")
+	public List<Paciente> listarPaciente() {
+		return this.gml.getPacientes();
+	}
 
 }
