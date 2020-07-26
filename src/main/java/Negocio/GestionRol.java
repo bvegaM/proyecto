@@ -42,7 +42,7 @@ public class GestionRol implements GestionRolLocal {
 	@Override
 	public List<Rol> getRoles() {
 		// TODO Auto-generated method stub
-		return null;
+		return rdao.getRoles();
 	}
 
 

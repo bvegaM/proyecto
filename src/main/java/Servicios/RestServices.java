@@ -36,6 +36,16 @@ public class RestServices {
 		this.gml.insertar(medico);
 		return "OK";
 	}
+
+	
+	@GET
+	@Path("/hola")
+	@Produces("application/json")
+	public String hola() {
+		
+		return "OK";
+	}
+	
 	
 	@POST
 	@Path("/crearMedicamento")
@@ -50,6 +60,8 @@ public class RestServices {
 	@Path("/listarRol")
 	@Produces("application/json")
 	public List<Rol> listarRol() {
+		System.out.print("--------------------------SERVICIO LLEGADO-------------"+"TAMAÑO: ");
+	
 		return this.grl.getRoles();
 	}
 
