@@ -39,6 +39,7 @@ public class RestServices {
 	@Produces("application/json")
 	public String insertarPaciente(Paciente paciente) throws ParseException {
 		SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+		paciente.setCodigo(this.gml.getPacientes().size()+1);
 		Date fecha=formato.parse(paciente.getFechaStr());
 		this.gml.insertar(paciente);
 		return "OK";
