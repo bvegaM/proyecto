@@ -41,6 +41,7 @@ public class RestServices {
 		SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
 		paciente.setCodigo(this.gml.getPacientes().size()+1);
 		Date fecha=formato.parse(paciente.getFechaStr());
+		paciente.setFechaNac(fecha);
 		this.gml.insertar(paciente);
 		return "OK";
 	}
