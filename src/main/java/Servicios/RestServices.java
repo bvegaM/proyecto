@@ -1,5 +1,8 @@
 package Servicios;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -34,7 +37,9 @@ public class RestServices {
 	@Path("/crearPaciente")
 	@Consumes("application/json")
 	@Produces("application/json")
-	public String insertarPaciente(Paciente paciente) {
+	public String insertarPaciente(Paciente paciente) throws ParseException {
+		SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+		Date fecha=formato.parse(paciente.getFechaStr());
 		this.gml.insertar(paciente);
 		return "OK";
 	}

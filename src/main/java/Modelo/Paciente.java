@@ -28,6 +28,7 @@ public class Paciente {
 	private String email;
 	private String clave;
 	private String preguntaSecreta;
+	private String fechaStr;
 	
 	
 	@OneToOne
@@ -46,6 +47,13 @@ public class Paciente {
 	@JoinColumn(name = "direccion", referencedColumnName = "codigo")
 	private Set<Direccion> direcciones;
 	
+	
+	public String getFechaStr() {
+		return fechaStr;
+	}
+	public void setFechaStr(String fechaStr) {
+		this.fechaStr = fechaStr;
+	}
 	
 	public int getCodigo() {
 		return codigo;
